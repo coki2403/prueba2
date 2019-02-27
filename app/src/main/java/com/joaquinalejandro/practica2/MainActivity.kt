@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
         ids!![1][4].setImageDrawable(getDrawable(R.drawable.circulo_amarillo))
 
     }
