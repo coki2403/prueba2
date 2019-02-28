@@ -34,7 +34,7 @@
                     app:srcCompat="@drawable/circulo"
                     android:id="@+id/f00"
                     android:scaleType="centerInside"
-                    android:accessibilityHeading="false"
+
                     android:layout_width="wrap_content"
                     android:cropToPadding="false"
                     android:adjustViewBounds="true"/>
