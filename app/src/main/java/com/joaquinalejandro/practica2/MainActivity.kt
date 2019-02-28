@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_main.*
+import android.content.Intent
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,11 +29,6 @@ class MainActivity : AppCompatActivity() {
             arrayOf(f50, f51, f52, f53, f54, f55, f56)
         )
 
-
-
-
-
-
         ids!![1][4].setImageDrawable(getDrawable(R.drawable.circulo_amarillo))
 
     }
@@ -39,5 +37,9 @@ class MainActivity : AppCompatActivity() {
         f50.setImageDrawable(getDrawable(R.drawable.circulo_amarillo))
         val col=view.contentDescription.toString().toInt();
         ids!!.get(5)[col].setImageDrawable(getDrawable(R.drawable.circulo_amarillo))
+    }
+
+    fun aPartidas() {
+        startActivity(Intent(this@MainActivity, PartidaListaActivity::class.java))
     }
 }

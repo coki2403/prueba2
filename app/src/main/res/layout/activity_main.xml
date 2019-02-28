@@ -16,6 +16,7 @@
             tools:text="@string/app_name" android:id="@+id/titulo"
     />
     <TableLayout
+            android:id="@+id/tabla"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/titulo"
@@ -485,6 +486,15 @@
                 android:layout_weight="1" android:contentDescription="6" tools:ignore="HardcodedText"
                 android:onClick="onButtonClicked"/>
     </LinearLayout>
+    <Button
+            android:text="A partidas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:layout_below="@id/tabla"
+            android:onClick="aPartidas"
+
+    />
 
 
 </RelativeLayout>

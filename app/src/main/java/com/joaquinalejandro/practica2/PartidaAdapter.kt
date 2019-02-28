@@ -1,14 +1,14 @@
 package com.joaquinalejandro.practica2
 
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import es.uam.eps.multij.Partida
+import android.support.design.widget.Snackbar
+import android.view.LayoutInflater
+import android.view.ViewGroup
 
-
-class PartidaListaHolder(val textView: TextView): RecyclerView.ViewHolder(textView), View.OnClickListener {
+class PartidaHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
     override fun onClick(v: View?) {
         Snackbar.make(itemView, "Item ${idTextView.text} selected",
             Snackbar.LENGTH_SHORT).show()
@@ -30,17 +30,14 @@ class PartidaListaHolder(val textView: TextView): RecyclerView.ViewHolder(textVi
     }
 }
 
-class PartidaListaAdapter(val partidas:List<PartidaLista>):RecyclerView.Adapter<PartidaListaHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartidaListaHolder {
-        return PartidaListaHolder(TextView(parent.context))
+class PartidaAdapter(val partidas: List<Partida>): RecyclerView.Adapter<PartidaHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartidaHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val view = layoutInflater.inflate(R.layout.elemento_lista_partida, parent, false)
+        return PartidaHolder(view)
     }
-
-    override fun getItemCount(): Int =partidas.size
-
-    override fun onBindViewHolder(holder: PartidaListaHolder, position: Int) {
-        holder.textView.text="${partidas[position].title}\n ${partidas[position].date.substringBefore("GMT")}\n" +
-                "${partidas[position].players}\n"
-
+    override fun getItemCount(): Int = partidas.size
+    override fun onBindViewHolder(holder: PartidaHolder, position: Int) {
+        holder.vincularPartida(partidas[position])
     }
-
 }
