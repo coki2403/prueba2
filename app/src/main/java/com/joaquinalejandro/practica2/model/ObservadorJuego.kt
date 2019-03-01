@@ -1,3 +1,5 @@
+package com.joaquinalejandro.practica2.model
+
 import es.uam.eps.multij.Evento
 import es.uam.eps.multij.PartidaListener
 

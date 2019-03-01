@@ -1,3 +1,6 @@
+package com.joaquinalejandro.practica2.model
+
+import JugadorJuego
 import es.uam.eps.multij.Jugador
 import es.uam.eps.multij.JugadorAleatorio
 import es.uam.eps.multij.Partida
@@ -23,7 +26,7 @@ fun Partida.cargarPartida():Partida{
         println("Tipo de partida: Jugador vs Jugador")
         listaJugadores.add(JugadorJuego(nombre2))
     }
-    val t2=TableroJuego(0,0)
+    val t2= TableroJuego(0, 0)
     if(turno.toInt()==1)
         t2.cambiarTurno()
     t2.stringToTablero(tablero)

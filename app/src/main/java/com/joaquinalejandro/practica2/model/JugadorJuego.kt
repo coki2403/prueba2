@@ -1,3 +1,5 @@
+import com.joaquinalejandro.practica2.model.MovimientoJuego
+import com.joaquinalejandro.practica2.model.guardarPartida
 import es.uam.eps.multij.*
 
 class JugadorJuego(var nombreJugador:String):Jugador{
@@ -51,7 +53,9 @@ class JugadorJuego(var nombreJugador:String):Jugador{
                     }while(mov !is Int)
 
                     try {
-                        evento.partida.realizaAccion(AccionMover(this, MovimientoJuego(mov - 1)))
+                        evento.partida.realizaAccion(AccionMover(this,
+                            MovimientoJuego(mov - 1)
+                        ))
                     } catch (e: ExcepcionJuego) {
                         flag = false
                         println("El movimiento no es válido.")

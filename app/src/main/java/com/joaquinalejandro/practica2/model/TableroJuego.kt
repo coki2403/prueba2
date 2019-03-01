@@ -1,8 +1,9 @@
+package com.joaquinalejandro.practica2.model
+
 import es.uam.eps.multij.ExcepcionJuego
 import es.uam.eps.multij.Movimiento
 import es.uam.eps.multij.Tablero
 import java.util.ArrayList
-import java.io.File
 
 class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
 

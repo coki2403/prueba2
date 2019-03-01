@@ -1,3 +1,5 @@
+package com.joaquinalejandro.practica2.model
+
 import es.uam.eps.multij.Movimiento
 
 class MovimientoJuego (var dim: Int): Movimiento(){

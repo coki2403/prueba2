@@ -4,6 +4,7 @@ import android.support.design.widget.Snackbar
 import android.view.View
 import es.uam.eps.multij.Movimiento
 import com.joaquinalejandro.practica2.R
+import com.joaquinalejandro.practica2.model.MovimientoJuego
 
 
 import es.uam.eps.multij.*
@@ -29,9 +30,9 @@ class ControladorPlayer: View.OnClickListener, Jugador {
                     Snackbar.LENGTH_SHORT).show()
                 return
             }
-            //val m: Movimiento = Movimiento(fromViewToI(v), fromViewToJ(v))
-            //val a = AccionMover(this, m)
-            //game.realizaAccion(a)
+            val m: Movimiento = MovimientoJuego(dim)
+            val a = AccionMover(this, m)
+            game.realizaAccion(a)
         } catch (e: Exception) {
             //Snackbar.make(v, R.string.invalid_movement,
                 //Snackbar.LENGTH_SHORT).show()
@@ -41,6 +42,7 @@ class ControladorPlayer: View.OnClickListener, Jugador {
     override fun getNombre() = "ER local player"
     override fun puedeJugar(p0: Tablero?) = true
     override fun onCambioEnPartida(p0: Evento) {}
+
     private fun fromViewToI(view: View): Int {
         for (i in 0 until ids.size)
             for (j in 0 until ids.size) {

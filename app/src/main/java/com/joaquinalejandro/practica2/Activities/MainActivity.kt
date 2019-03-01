@@ -1,4 +1,5 @@
-package com.joaquinalejandro.practica2
+package com.joaquinalejandro.practica2.Activities
+
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -6,8 +7,14 @@ import android.view.View
 import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
+import com.joaquinalejandro.practica2.R
+import com.joaquinalejandro.practica2.model.JugadorJuego
+import com.joaquinalejandro.practica2.model.ObservadorJuego
+import com.joaquinalejandro.practica2.model.TableroJuego
 
-
+import es.uam.eps.multij.JugadorAleatorio
+import es.uam.eps.multij.Jugador
+import es.uam.eps.multij.Partida
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +36,14 @@ class MainActivity : AppCompatActivity() {
             arrayOf(f50, f51, f52, f53, f54, f55, f56)
         )
 
-        ids!![1][4].setImageDrawable(getDrawable(R.drawable.circulo_amarillo))
+        val listaJugadores = arrayListOf<Jugador>()
+        listaJugadores.add(JugadorJuego("Antonio"))
+        listaJugadores.add(JugadorAleatorio("maquina"))
+
+        val partida= Partida(TableroJuego(5, 7),listaJugadores)
+        partida.addObservador(ObservadorJuego())
+
+        partida.comenzar()
 
     }
 

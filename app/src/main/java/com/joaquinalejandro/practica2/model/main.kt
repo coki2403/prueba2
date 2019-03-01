@@ -1,3 +1,6 @@
+package com.joaquinalejandro.practica2.model
+
+import JugadorJuego
 import es.uam.eps.multij.Jugador
 import es.uam.eps.multij.JugadorAleatorio
 import es.uam.eps.multij.Partida
@@ -14,14 +17,14 @@ fun Menu(){
     var mov:Any?
     do {
         println("\n\n\n\t\tCONECTA 4")
-        println("Menu:")
+        println("com.joaquinalejandro.practica2.model.Menu:")
         println("1- Comenzar nuevo juego")
         println("2- Continuar partida")
         println("3- Salir del juego")
         mov=readLine()?.toIntOrNull()?:println("comando invalido. Introduzca un entero.")
         when(mov){
-            1->MenuComenzar()
-            2->Reanudar()
+            1-> MenuComenzar()
+            2-> Reanudar()
             3-> System.exit(0)
 
         }
@@ -50,10 +53,10 @@ fun MenuComenzar(){
             println("Introduce el nombre del jugador:")
             val nombre= readLine()!!
             val listaJugadores = arrayListOf<Jugador>()
-            listaJugadores.add(JugadorJuego( nombre))
+            listaJugadores.add(JugadorJuego(nombre))
             listaJugadores.add(JugadorAleatorio("maquina"))
 
-            val partida= Partida(TableroJuego(5,7),listaJugadores)
+            val partida= Partida(TableroJuego(5, 7),listaJugadores)
             partida.addObservador(ObservadorJuego())
 
             partida.comenzar()
@@ -68,10 +71,10 @@ fun MenuComenzar(){
             println("Introduce el nombre del segundo jugador:")
             val nombre2= readLine()!!
             val listaJugadores = arrayListOf<Jugador>()
-            listaJugadores.add(JugadorJuego( nombre1))
-            listaJugadores.add(JugadorJuego( nombre2))
+            listaJugadores.add(JugadorJuego(nombre1))
+            listaJugadores.add(JugadorJuego(nombre2))
 
-            val partida= Partida(TableroJuego(5,7),listaJugadores)
+            val partida= Partida(TableroJuego(5, 7),listaJugadores)
             partida.addObservador(ObservadorJuego())
 
             partida.comenzar()
