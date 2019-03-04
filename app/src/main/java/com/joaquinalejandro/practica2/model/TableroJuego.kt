@@ -7,9 +7,12 @@ import java.util.ArrayList
 
 class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
 
-    private var tablero = ArrayList<ArrayList<Int>>()
+    var tablero = ArrayList<ArrayList<Int>>()
 
 
+    fun getTablero(fil:Int,col:Int): Int {
+        return tablero[fil][col]
+    }
     init {
 
         for (i in 0 until filas) {
