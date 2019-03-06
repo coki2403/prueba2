@@ -9,6 +9,7 @@ import android.content.Intent
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.Toast
+import com.joaquinalejandro.practica2.BlankFragment
 import com.joaquinalejandro.practica2.model.TableroJuego
 import es.uam.eps.multij.*
 import com.joaquinalejandro.practica2.R
@@ -102,7 +103,7 @@ class MainActivity : AppCompatActivity(),PartidaListener{
     }
 
     fun aPartidas(v: View) {
-        startActivity(Intent(this@MainActivity, PartidaListaActivity::class.java))
+        startActivity(Intent(this@MainActivity, frameActivity::class.java))
 
     }
 }
