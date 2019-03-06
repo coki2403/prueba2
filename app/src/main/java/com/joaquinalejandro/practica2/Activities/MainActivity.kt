@@ -27,8 +27,9 @@ class MainActivity : AppCompatActivity(),PartidaListener{
         when (evento.tipo) {
             Evento.EVENTO_CAMBIO -> actualizaInterfaz()
             Evento.EVENTO_FIN -> {
+                actualizaInterfaz()
                 Toast.makeText(getApplicationContext(),
-                    "Fin del juego", Toast.LENGTH_SHORT).show() /***********************************MAs bonito*******************************/
+                    "Fin del juego", Toast.LENGTH_SHORT).show() /*********************************MAs bonito*******************************/
             }
         }
     }
@@ -100,8 +101,8 @@ class MainActivity : AppCompatActivity(),PartidaListener{
 
     }
 
-
     fun aPartidas(v: View) {
         startActivity(Intent(this@MainActivity, PartidaListaActivity::class.java))
+
     }
 }
