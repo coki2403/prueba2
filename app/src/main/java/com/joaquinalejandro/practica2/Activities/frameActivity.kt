@@ -27,17 +27,12 @@ class frameActivity : AppCompatActivity() , BlankFragment.OnFragmentInteractionL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_frame)
-        setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
 
         //val fm:FragmentManager = supportFragmentManager
         //val transaction = fm.beginTransaction()
         //transaction.add(R.id.fragment_container,BlankFragment()).commit()
-        supportFragmentManager.beginTransaction().add(R.id.primer_fragment,BlankFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.blank_fragment,BlankFragment()).commit()
     }
 
 }
