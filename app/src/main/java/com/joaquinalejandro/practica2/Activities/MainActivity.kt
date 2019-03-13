@@ -103,7 +103,8 @@ class MainActivity : AppCompatActivity(),PartidaListener{
     }
 
     fun aPartidas(v: View) {
-        startActivity(Intent(this@MainActivity, frameActivity::class.java))
+
+        startActivity(Intent(v.context, PartidaListaActivity::class.java))
 
     }
 }
