@@ -10,7 +10,7 @@
 
     <ImageView
             android:layout_width="200dp"
-            tools:srcCompat="@android:drawable/ic_delete"
+            tools:srcCompat="@drawable/icono_conecta4"
             android:id="@+id/imageView" android:layout_height="200dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
@@ -21,40 +21,41 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:layout_centerHorizontal="true"
-            android:textSize="@android:dimen/notification_large_icon_width"
             tools:text="@string/app_name"
             android:id="@+id/tituloMenu"
             android:layout_below="@id/imageView"
-    />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" android:fontFamily="casual"
+            android:typeface="normal" android:textStyle="bold"
+            android:textAllCaps="false"/>
     <Button
-            android:text="Nueva Partida"
+            android:text="@string/boton_nueva"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/tituloMenu"
             android:id="@+id/nuevapartida"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp" style="@style/Widget.AppCompat.Button"
-            android:background="@drawable/forma_lista_partidas"/>
+            android:background="@drawable/botonMenu" tools:text="@string/boton_nueva"/>
 
     <Button
-            android:text="Cargar Partida"
+            android:text="@string/boton_cargar"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/nuevapartida"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:aligns
             android:id="@+id/cargarpartida"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp" android:background="@drawable/botonMenu" tools:text="@string/boton_cargar"/>
 
     <Button
-            android:text="Salir"
+            android:text="@string/boton_salir"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/cargarpartida"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_centerHorizontal="true"
             android:id="@+id/salir"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp" android:background="@drawable/botonMenu"/>
 </RelativeLayout>
