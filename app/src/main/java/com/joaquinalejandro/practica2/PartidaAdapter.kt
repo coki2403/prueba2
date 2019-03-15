@@ -9,11 +9,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import java.util.ArrayList
 
-class PartidaHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
-    override fun onClick(v: View?) {
+class PartidaHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    /*override fun onClick(v: View?) {
         Snackbar.make(itemView, "Item ${idTextView.text} selected",
             Snackbar.LENGTH_SHORT).show()
-    }
+    }*/
 
     lateinit var idTextView: TextView
     lateinit var jugadoresTextView: TextView
@@ -21,17 +21,18 @@ class PartidaHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnC
 
     init {
         idTextView = itemView.findViewById(R.id.list_item_id) as TextView
-        jugadoresTextView = itemView.findViewById(R.id.list_item_board) as TextView
+        jugadoresTextView = itemView.findViewById(R.id.list_item_players) as TextView
         dateTextView = itemView.findViewById(R.id.list_item_date) as TextView
     }
-    fun vincularPartida(partida: PartidaLista) {
-        // idTextView.text = Partida.id
-        // jugadoresTextView.text = Partida.jugadores
-        // dateTextView.text = Partida.date.toString().substring(0,19)
+    fun vincularPartida(partida: PartidaLista,listener:(PartidaLista)->Unit) {
+         idTextView.text = partida.idC
+         jugadoresTextView.text = partida.playersC
+         dateTextView.text = partida.dateC.substringBefore("GMT")
+        itemView.setOnClickListener({listener(partida)})
     }
 }
 
-class PartidaAdapter(val partidas: ArrayList<PartidaLista>): RecyclerView.Adapter<PartidaHolder>() {
+class PartidaAdapter(val partidas: ArrayList<PartidaLista>, val listener: (PartidaLista) -> Unit): RecyclerView.Adapter<PartidaHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartidaHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.elemento_lista_partida, parent, false)
@@ -39,21 +40,16 @@ class PartidaAdapter(val partidas: ArrayList<PartidaLista>): RecyclerView.Adapte
     }
     override fun getItemCount(): Int = partidas.size
     override fun onBindViewHolder(holder: PartidaHolder, position: Int) {
-        holder.vincularPartida(partidas[position])
+        holder.vincularPartida(partidas[position],listener)
     }
 }
 
-class PartidaLista(val titleC : String, val dateC : String, val playersC : String, val idC:String) {
+class PartidaLista(val idC:String, val dateC : String, val playersC : String ) {
 
-    var title : String
-    var date : String
-    var players : String
-    var id:String
+
+
 
     init{
-        title = titleC //hay que cogerlo de algun sitio
-        date=dateC
-        players=playersC
-        id=idC
+
     }
 }

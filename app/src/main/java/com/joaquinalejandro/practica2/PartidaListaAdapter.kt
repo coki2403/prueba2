@@ -10,10 +10,10 @@ import es.uam.eps.multij.Partida
 
 class PartidaListaHolder(val textView: TextView): RecyclerView.ViewHolder(textView), View.OnClickListener {
     override fun onClick(v: View?) {
-        Snackbar.make(itemView, "Item ${idTextView.text} selected",
-            Snackbar.LENGTH_SHORT).show()
+        /*Snackbar.make(itemView, "Item ${idTextView.text} selected",
+            Snackbar.LENGTH_SHORT).show()*/
     }
-
+/*
     lateinit var idTextView: TextView
     lateinit var jugadoresTextView: TextView
     lateinit var dateTextView: TextView
@@ -27,7 +27,7 @@ class PartidaListaHolder(val textView: TextView): RecyclerView.ViewHolder(textVi
         // idTextView.text = Partida.id
         // jugadoresTextView.text = Partida.jugadores
         // dateTextView.text = Partida.date.toString().substring(0,19)
-    }
+    }*/
 }
 
 class PartidaListaAdapter(val partidas:List<PartidaLista>):RecyclerView.Adapter<PartidaListaHolder>(){
@@ -38,8 +38,8 @@ class PartidaListaAdapter(val partidas:List<PartidaLista>):RecyclerView.Adapter<
     override fun getItemCount(): Int =partidas.size
 
     override fun onBindViewHolder(holder: PartidaListaHolder, position: Int) {
-        holder.textView.text="${partidas[position].title}\n ${partidas[position].date.substringBefore("GMT")}\n" +
-                "${partidas[position].players}\n"
+       /* holder.textView.text="${partidas[position].title}\n ${partidas[position].date.substringBefore("GMT")}\n" +
+                "${partidas[position].players}\n"*/
 
     }
 

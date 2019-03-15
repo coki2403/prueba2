@@ -9,27 +9,39 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:clickable="true"
-                android:background="@drawable/fondo"
-                android:orientation="vertical">
+                android:background="@drawable/forma_lista_partidas"
+                android:orientation="vertical" android:layout_marginTop="2dp" android:layout_marginBottom="2dp"
+                android:layout_marginStart="1dp" android:layout_marginEnd="1dp">
+
     <TextView
-            android:id="@+id/list_item_id"
-            android:layout_width="match_parent"
+            android:id="@+id/titulo_id"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            android:text="@string/titulo_lista_partidas"/>
+
 
     <TextView
-            android:id="@+id/list_item_date"
-            android:layout_width="match_parent"
+            android:id="@+id/list_item_id"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/list_item_id"/>
+            android:layout_toEndOf="@+id/titulo_id"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary" android:text="Id" android:layout_marginStart="5dp"/>
+
     <TextView
-            android:id="@+id/list_item_board"
+            android:id="@+id/list_item_players"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/list_item_id" android:text="jugadores"/>
+    <TextView
+            android:id="@+id/list_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-    />
+            android:layout_marginStart="20dp" android:text="fecha"/>
 </RelativeLayout>
