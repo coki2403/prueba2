@@ -1,8 +1,8 @@
 package com.joaquinalejandro.practica2.Activities
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import com.joaquinalejandro.practica2.PartidaAdapter
@@ -25,9 +25,13 @@ class PartidaListaActivity : AppCompatActivity() {
     }
 
     fun onPartidaSelected(partida:PartidaLista){
-        Snackbar.make(recyclerView, "${partida.idC} selected",
-            Snackbar.LENGTH_SHORT).show()
-        /*Aqui abriemos la partida que queramos*/
+
+
+        val intent = Intent(this, MainActivity::class.java)
+        println("sel: ${partida.idC}")
+        intent.putExtra("ID", partida.idC.toInt())
+        println("enviado: ${intent.extras.getInt("ID")}")
+        startActivity(intent)
 
     }
 

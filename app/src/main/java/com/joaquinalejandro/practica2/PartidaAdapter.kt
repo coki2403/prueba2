@@ -26,9 +26,10 @@ class PartidaHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     }
     fun vincularPartida(partida: PartidaLista,listener:(PartidaLista)->Unit) {
          idTextView.text = partida.idC
-         jugadoresTextView.text = partida.playersC
+
+         jugadoresTextView.text = partida.jugadoresC
          dateTextView.text = partida.dateC.substringBefore("GMT")
-        itemView.setOnClickListener({listener(partida)})
+         itemView.setOnClickListener({listener(partida)})
     }
 }
 
@@ -44,12 +45,4 @@ class PartidaAdapter(val partidas: ArrayList<PartidaLista>, val listener: (Parti
     }
 }
 
-class PartidaLista(val idC:String, val dateC : String, val playersC : String ) {
-
-
-
-
-    init{
-
-    }
-}
+class PartidaLista(val idC:String, val dateC : String,var jugadoresC:String,var tablero:String)

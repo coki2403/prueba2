@@ -40,17 +40,16 @@ fun Partida.cargarPartida():Partida{
 }
 
 
-fun Partida.guardarPartida() {
+fun Partida.guardarPartida():String {
     //val path = context.getFilesDir()
     //val letDirectory = File(path, "LET") letDirectory.mkdirs()
     //val file = File(letDirectory , "partida.txt")
     //file.appendText("hola que tal")
 
-    /**  MODELO:  nombre1,nombre2,tablero,estado,turno,numJugadas**/
 
-    val f = File("Partida.txt")
     //f.appendText("Hola")
-    f.writeText("${getJugador(0)?.nombre},${getJugador(1)?.nombre},${tablero?.tableroToString()},${tablero?.estado},${tablero?.turno},${tablero?.numJugadas}")
+    val str="${getJugador(0)?.nombre},${getJugador(1)?.nombre},${tablero?.tableroToString()},${tablero?.estado},${tablero?.turno},${tablero?.numJugadas}"
+    return str
 
 
 }

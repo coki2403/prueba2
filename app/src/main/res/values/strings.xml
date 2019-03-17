@@ -11,4 +11,9 @@
     <string name="boton_nueva">NUEVA PARTIDA</string>
     <string name="boton_cargar">CARGAR PARTIDA</string>
     <string name="boton_salir">SALIR</string>
+    <string name="boton_salir_guardas">GUARDAR Y SALIR</string>
+    <string name="boton_lista">LISTA PARTIDAS</string>
+    <string name="fichas">ficha</string>
+
+
 </resources>
