@@ -36,5 +36,4 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     implementation 'com.android.support:palette-v7:27.1.1'
     implementation files('libs/multijugador.jar')
-    implementation files('build/libs/multijugador.jar')
 }
