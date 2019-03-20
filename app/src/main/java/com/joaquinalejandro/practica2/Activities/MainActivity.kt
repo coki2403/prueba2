@@ -122,7 +122,9 @@ class MainActivity : AppCompatActivity(), PartidaListener {
         this.tablero = t2
         partida = Partida(this.tablero, listaJugadores)
         partida.addObservador(this)
-        partida.comenzar()
+        if(partida.tablero.estado== Tablero.EN_CURSO)
+            partida.comenzar()
+
         jugadorHumano.setPartida(partida)
         Toast.makeText(
             getApplicationContext(),
