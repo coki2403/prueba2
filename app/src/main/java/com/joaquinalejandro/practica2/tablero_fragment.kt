@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -39,14 +38,12 @@ private const val ARG_PARAM2 = "param2"
 class tablero_fragment : Fragment(), PartidaListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
-    private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -62,13 +59,13 @@ class tablero_fragment : Fragment(), PartidaListener {
             arrayOf(f50, f51, f52, f53, f54, f55, f56)
         )
 
-        if (intent.extras != null){
+        /*if (intent.extras != null){
             idPartida = intent.extras.getInt("ID")
             println("Recibido: ${intent.extras.getInt("ID")}")
         }
 
 
-        else
+        else*/
             idPartida = -1
 
         if (idPartida == -1)
@@ -134,11 +131,10 @@ class tablero_fragment : Fragment(), PartidaListener {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String) =
             tablero_fragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }
@@ -178,11 +174,11 @@ class tablero_fragment : Fragment(), PartidaListener {
                     for (j in 0 until columnas) {
                         val elem = (tablero as TableroJuego).getTablero(i, j)
                         if (elem == 1) {
-                            ids!!.get(i)[j].setImageDrawable(getDrawable(R.drawable.circulo_rojo))
+                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,R.drawable.circulo_rojo))
                         } else if (elem == 2) {
-                            ids!!.get(i)[j].setImageDrawable(getDrawable(R.drawable.circulo_amarillo))
+                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,R.drawable.circulo_amarillo))/*****************************************CUIDADO(cotext)***********************************/
                         } else {
-                            ids!!.get(i)[j].setImageDrawable(getDrawable(R.drawable.circulo))
+                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,R.drawable.circulo))
                         }
 
                     }
