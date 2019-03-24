@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.joaquinalejandro.practica2.Activities.MainActivity
 import kotlinx.android.synthetic.main.activity_partida_lista.*
+import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 
 // TODO: Rename parameter arguments, choose names that match

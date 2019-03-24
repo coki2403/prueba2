@@ -6,7 +6,7 @@ import android.os.Bundle
 
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.executeTransaction
-import com.joaquinalejandro.practica2.lista_fragment
+import com.joaquinalejandro.practica2.tablero_fragment
 
 
 class MainActivity : AppCompatActivity(){
@@ -18,8 +18,9 @@ class MainActivity : AppCompatActivity(){
         setContentView(R.layout.activity_main)
 
         val fm = supportFragmentManager
+        println("HOLA")
         if (fm.findFragmentById(R.id.fragment_container) == null) {
-            fm.executeTransaction { add(R.id.fragment_container, lista_fragment()) }
+            fm.executeTransaction { add(R.id.fragment_container, tablero_fragment()) }
         }
 
 

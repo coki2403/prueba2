@@ -38,7 +38,6 @@ private const val ARG_PARAM1 = "param1"
 class tablero_fragment : Fragment(), PartidaListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
-    private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +56,10 @@ class tablero_fragment : Fragment(), PartidaListener {
             arrayOf(f30, f31, f32, f33, f34, f35, f36),
             arrayOf(f40, f41, f42, f43, f44, f45, f46),
             arrayOf(f50, f51, f52, f53, f54, f55, f56)
+        )
+
+        Guardar.setOnClickListener(
+            {guardarPartida(view)}
         )
 
         /*if (intent.extras != null){
@@ -85,40 +88,7 @@ class tablero_fragment : Fragment(), PartidaListener {
         return inflater.inflate(R.layout.fragment_tablero_fragment, container, false)
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     *
-     *
-     * See the Android Training lesson [Communicating with Other Fragments]
-     * (http://developer.android.com/training/basics/fragments/communicating.html)
-     * for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        fun onFragmentInteraction(uri: Uri)
-    }
 
     companion object {
         /**
