@@ -489,14 +489,15 @@
                 android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="50dp" android:id="@+id/TextoInfo" android:layout_alignParentStart="true"
-                android:layout_below="@+id/tabla" android:layout_marginTop="0dp" android:layout_marginStart="0dp"/>
+                android:layout_below="@+id/tabla" android:layout_marginTop="0dp" android:layout_marginStart="0dp"
+                android:textSize="18sp" android:textStyle="bold" android:fontFamily="casual"
+                android:paddingStart="10dp" android:textAlignment="center"/>
         <Button
                 android:text="@string/boton_salir_guardas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/Guardar"
                 android:layout_toEndOf="@id/botonLista"
-                android:onClick="guardarPartida"
 
                 android:layout_alignTop="@+id/botonLista"
                 android:layout_marginStart="20dp" android:layout_marginTop="0dp" tools:text="@string/boton_salir"/>
@@ -506,7 +507,6 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/botonLista"
                 android:layout_below="@+id/TextoInfo"
-                android:onClick="aPartidas"
 
                 android:layout_alignParentStart="true" android:layout_marginTop="0dp" android:layout_marginStart="1dp"/>
 

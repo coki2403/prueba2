@@ -37,12 +37,12 @@ private const val ARG_PARAM1 = "param1"
  */
 class tablero_fragment : Fragment(), PartidaListener {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
+    private var idCarga: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            idCarga = it.getString(ARG_PARAM1)
         }
     }
 
@@ -62,13 +62,19 @@ class tablero_fragment : Fragment(), PartidaListener {
             {guardarPartida(view)}
         )
 
+        botonLista.setOnClickListener(
+            {aPartidas(view)}
+        )
+
         /*if (intent.extras != null){
             idPartida = intent.extras.getInt("ID")
             println("Recibido: ${intent.extras.getInt("ID")}")
-        }
+        }*/
 
-
-        else*/
+        if (idCarga != null){
+            idPartida = idCarga.toString().toInt()
+            println("Recibido: ${idCarga}")
+        }else
             idPartida = -1
 
         if (idPartida == -1)
@@ -195,7 +201,8 @@ class tablero_fragment : Fragment(), PartidaListener {
             partida.addObservador(this)
             if(partida.tablero.estado== Tablero.EN_CURSO)
                 partida.comenzar()
-
+            else
+                TextoInfo.text="Partida Finalizada"
             jugadorHumano.setPartida(partida)
             Toast.makeText(
                 context,
