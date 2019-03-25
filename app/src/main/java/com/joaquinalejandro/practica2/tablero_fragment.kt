@@ -1,23 +1,19 @@
 package com.joaquinalejandro.practica2
 
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat.getDrawable
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import com.joaquinalejandro.practica2.Activities.ControladorPlayer
-import com.joaquinalejandro.practica2.Activities.MenuActivity
-import com.joaquinalejandro.practica2.Activities.PartidaListaActivity
+import com.joaquinalejandro.practica2.activities.ControladorPlayer
+import com.joaquinalejandro.practica2.activities.MenuActivity
+import com.joaquinalejandro.practica2.activities.PartidaListaActivity
 import com.joaquinalejandro.practica2.model.TableroJuego
-import com.joaquinalejandro.practica2.R
 import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
 

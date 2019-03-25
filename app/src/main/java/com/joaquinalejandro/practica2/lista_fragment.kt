@@ -1,8 +1,6 @@
 package com.joaquinalejandro.practica2
 
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
@@ -10,8 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.joaquinalejandro.practica2.Activities.MainActivity
-import kotlinx.android.synthetic.main.activity_partida_lista.*
+import com.joaquinalejandro.practica2.activities.MainActivity
 import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 

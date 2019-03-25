@@ -10,7 +10,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
-        <activity android:name=".Activities.MenuActivity">
+        <activity android:name=".activities.MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -18,22 +18,20 @@
             </intent-filter>
         </activity>
 
-        <activity
-                android:name=".Activities.frameActivity"
-                android:label="@string/title_activity_frame"
-                android:theme="@style/AppTheme.NoActionBar"
-                android:parentActivityName=".Activities.MenuActivity" >
 
-        </activity>
 
         <activity
-                android:name=".Activities.MainActivity"
+                android:name=".activities.MainActivity"
                 android:configChanges="orientation">
 
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
 
         </activity>
 
-        <activity android:name=".Activities.PartidaListaActivity">
+        <activity android:name=".activities.PartidaListaActivity">
         </activity>
 
     </application>

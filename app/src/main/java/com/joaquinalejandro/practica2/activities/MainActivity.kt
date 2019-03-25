@@ -1,11 +1,13 @@
-package com.joaquinalejandro.practica2.Activities
+package com.joaquinalejandro.practica2.activities
 
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.FrameLayout
 
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.executeTransaction
+import com.joaquinalejandro.practica2.lista_fragment
 import com.joaquinalejandro.practica2.tablero_fragment
 
 
@@ -31,10 +33,22 @@ class MainActivity : AppCompatActivity(){
 
 
 
-        if (fm.findFragmentById(R.id.fragment_container) == null) {
+        if (fm.findFragmentById(R.id.fragment_container_tablero) == null) {
 
-            fm.executeTransaction { add(R.id.fragment_container, tableroFrag) }
+            fm.executeTransaction { add(R.id.fragment_container_tablero, tableroFrag) }
         }
+
+        if(findViewById<FrameLayout>(R.id.fragment_container_lista)!=null){
+            if (fm.findFragmentById(R.id.fragment_container_lista) == null) {
+
+                fm.executeTransaction { add(R.id.fragment_container_lista, lista_fragment()) }
+            }
+        }
+
+
+
+
+
 
 
 

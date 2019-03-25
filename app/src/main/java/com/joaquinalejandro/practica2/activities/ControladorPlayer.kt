@@ -1,4 +1,4 @@
-package com.joaquinalejandro.practica2.Activities
+package com.joaquinalejandro.practica2.activities
 
 import android.support.design.widget.Snackbar
 import android.view.View

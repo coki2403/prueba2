@@ -8,7 +8,7 @@
                  android:layout_height="match_parent"
                  tools:context=".tablero_fragment"
                  android:layout_weight="1"
-                android:id="@+id/fragment_container">
+                android:id="@+id/fragment_container_tablero">
 
 
 </FrameLayout>
