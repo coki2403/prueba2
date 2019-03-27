@@ -31,17 +31,23 @@
             android:layout_toEndOf="@+id/titulo_id"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimary" android:text="Id" android:layout_marginStart="5dp"/>
+            android:textColor="@color/colorPrimary"  android:layout_marginStart="5dp"/>
 
     <TextView
             android:id="@+id/list_item_players"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/list_item_id" android:text="jugadores"/>
+            android:layout_below="@id/list_item_id" />
     <TextView
             android:id="@+id/list_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="20dp" android:text="fecha"/>
+            android:layout_marginStart="20dp" />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/tab"
+            android:layout_below="@id/list_item_date"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+    />
 </RelativeLayout>

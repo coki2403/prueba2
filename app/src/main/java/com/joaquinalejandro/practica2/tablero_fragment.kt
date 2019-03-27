@@ -170,6 +170,11 @@ class tablero_fragment : Fragment(), PartidaListener {
 
         }*/
 
+    /***** volver al menus***/
+    /*override  fun onBackPressed(){
+
+    }*/
+
         fun cargarPartida() {
             val partidaString = RepositorioPartidas.getPartida(idPartida)
             val tablero = partidaString.split(",".toRegex())[2]

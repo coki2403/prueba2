@@ -7,6 +7,7 @@ import es.uam.eps.multij.Partida
 import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.joaquinalejandro.practica2.model.TableroJuego
 import java.util.ArrayList
 
 class PartidaHolder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -18,11 +19,14 @@ class PartidaHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     lateinit var idTextView: TextView
     lateinit var jugadoresTextView: TextView
     lateinit var dateTextView: TextView
+    lateinit var tab: TextView
 
     init {
         idTextView = itemView.findViewById(R.id.list_item_id) as TextView
         jugadoresTextView = itemView.findViewById(R.id.list_item_players) as TextView
         dateTextView = itemView.findViewById(R.id.list_item_date) as TextView
+        tab = itemView.findViewById(R.id.tab) as TextView
+
     }
     fun vincularPartida(partida: PartidaLista,listener:(PartidaLista)->Unit) {
          idTextView.text = partida.idC
@@ -30,6 +34,7 @@ class PartidaHolder(itemView: View): RecyclerView.ViewHolder(itemView){
          jugadoresTextView.text = partida.jugadoresC
          dateTextView.text = partida.dateC.substringBefore("GMT")
          itemView.setOnClickListener({listener(partida)})
+        tab.text=partida.tabC.toString()
     }
 }
 
@@ -45,4 +50,4 @@ class PartidaAdapter(val partidas: ArrayList<PartidaLista>, val listener: (Parti
     }
 }
 
-class PartidaLista(val idC:String, val dateC : String,var jugadoresC:String,var tablero:String)
+class PartidaLista(val idC:String, val dateC : String,var jugadoresC:String,var tablero:String, var tabC:TableroJuego)

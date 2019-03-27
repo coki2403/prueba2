@@ -1,12 +1,13 @@
 package com.joaquinalejandro.practica2.activities
 
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.FrameLayout
+import com.joaquinalejandro.practica2.*
 
-import com.joaquinalejandro.practica2.R
-import com.joaquinalejandro.practica2.executeTransaction
-import com.joaquinalejandro.practica2.lista_fragment
+import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 
 class PartidaListaActivity : AppCompatActivity() {

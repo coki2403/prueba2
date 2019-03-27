@@ -1,5 +1,6 @@
 package com.joaquinalejandro.practica2
 
+import com.joaquinalejandro.practica2.model.TableroJuego
 import com.joaquinalejandro.practica2.model.guardarPartida
 import es.uam.eps.multij.Partida
 import java.lang.Exception
@@ -16,7 +17,9 @@ object RepositorioPartidas {
     fun addPartida(partida: Partida):Int{
 
         val jugadores=partida.getJugador(0).nombre+" vs "+partida.getJugador(1).nombre
-        partidas.add(PartidaLista(numPartidas.toString(), Date().toString(),jugadores,partida.guardarPartida()))
+        partidas.add(PartidaLista(numPartidas.toString(), Date().toString(),jugadores,partida.guardarPartida(),
+            partida.tablero as TableroJuego
+        ))
         numPartidas++
         return (numPartidas-1)
     }
@@ -25,7 +28,8 @@ object RepositorioPartidas {
 
         val fecha= partidas.get(id).dateC
         val jugadores=partida.getJugador(0).nombre+" vs "+partida.getJugador(1).nombre
-        partidas[id]=PartidaLista(id.toString(), fecha,jugadores,partida.guardarPartida())
+        partidas[id]=PartidaLista(id.toString(), fecha,jugadores,partida.guardarPartida(),
+            partida.tablero as TableroJuego)
     }
 
     fun getPartida(id:Int):String{

@@ -42,29 +42,29 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
         var stringTablero = ""
 
 
-        stringTablero += "\n║"
+        /*stringTablero += "\n║"
         for (i in 0 until columnas) {
             stringTablero += "\\${((i + 1).toString())}/║"
         }
-        stringTablero += "\n"
+        stringTablero += "\n"*/
 
 
         for (i in 0 until filas) {
 
-            stringTablero += "╠"
+            /*stringTablero += "╠"
             for (j in 0 until columnas) {
                 stringTablero += "═══╬"
             }
             stringTablero += "\n"
-            stringTablero += "║"
+            stringTablero += "║"*/
             for (j in 0 until columnas) {
 
                 if (tablero[i][j].toString() == "0") {
-                    stringTablero += "   ║"
+                    stringTablero += "0"
                 } else if (tablero[i][j].toString() == "1") {
-                    stringTablero += " X ║"
+                    stringTablero += "1"
                 } else if (tablero[i][j].toString() == "2") {
-                    stringTablero += " O ║"
+                    stringTablero += "2"
                 } else {
                     stringTablero += " ${tablero[i][j].toString()} ║"
                 }
@@ -74,10 +74,10 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
         }
 
 
-        stringTablero += "╚"
+        /*stringTablero += "╚"
         for (i in 0 until columnas) {
             stringTablero += "═══╩"
-        }
+        }*/
 
 
 

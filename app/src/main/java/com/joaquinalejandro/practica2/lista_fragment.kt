@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import com.joaquinalejandro.practica2.activities.MainActivity
 import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
@@ -52,11 +53,13 @@ class lista_fragment : Fragment() {
     fun onPartidaSelected(partida:PartidaLista){
 
 
-        val intent = Intent(activity, MainActivity::class.java)
-        println("sel: ${partida.idC}")
-        intent.putExtra("ID", partida.idC.toInt())
-        println("enviado: ${intent.extras.getInt("ID")}")
-        startActivity(intent)
+            val intent = Intent(activity, MainActivity::class.java)
+            println("sel: ${partida.idC}")
+            intent.putExtra("ID", partida.idC.toInt())
+            println("enviado: ${intent.extras.getInt("ID")}")
+            startActivity(intent)
+
+
 
     }
 
