@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.joaquinalejandro.practica2.activities.ControladorPlayer
+import com.joaquinalejandro.practica2.activities.MainActivity
 import com.joaquinalejandro.practica2.activities.MenuActivity
 import com.joaquinalejandro.practica2.activities.PartidaListaActivity
 import com.joaquinalejandro.practica2.model.TableroJuego
@@ -73,8 +74,14 @@ class tablero_fragment : Fragment(), PartidaListener {
         }else
             idPartida = -1
 
-        if (idPartida == -1)
+        if (idPartida == -1){
             comenzar()
+            Toast.makeText(
+                context,
+                "Comenzada nueva partida", Toast.LENGTH_SHORT
+            ).show()
+        }
+
         else {
             cargarPartida()
         }
@@ -220,6 +227,8 @@ class tablero_fragment : Fragment(), PartidaListener {
             col5?.setOnClickListener(jugador)
             col6?.setOnClickListener(jugador)
             col7?.setOnClickListener(jugador)
+            reinicio.setOnClickListener({reiniciar()})
+
 
         }
 
@@ -256,6 +265,18 @@ class tablero_fragment : Fragment(), PartidaListener {
         fun aPartidas(v: View) {
 
             startActivity(Intent(v.context, PartidaListaActivity::class.java))
+
+        }
+
+
+        fun reiniciar(){
+
+
+            val intent = Intent(activity, MainActivity::class.java)
+            /*intent.putExtra("ID", partida.idC.toInt())
+            println("enviado: ${intent.extras.getInt("ID")}")*/
+            startActivity(intent)
+
 
         }
     }

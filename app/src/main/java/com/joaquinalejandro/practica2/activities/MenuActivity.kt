@@ -13,8 +13,9 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        nuevapartida.setOnClickListener({startActivity(Intent(this@MenuActivity, MainActivity::class.java))})
-        cargarpartida.setOnClickListener({startActivity(Intent(this@MenuActivity, PartidaListaActivity::class.java))})
-        salir.setOnClickListener({exit(0)})
+        nuevapartida.setOnClickListener({ startActivity(Intent(this@MenuActivity, MainActivity::class.java)) })
+        cargarpartida.setOnClickListener({ startActivity(Intent(this@MenuActivity, PartidaListaActivity::class.java)) })
+
     }
+
 }

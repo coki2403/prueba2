@@ -47,7 +47,9 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/tab"
-            android:layout_below="@id/list_item_date"
+            android:layout_below="@id/list_item_players"
             android:textAppearance="@style/TextAppearance.AppCompat"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
     />
 </RelativeLayout>
