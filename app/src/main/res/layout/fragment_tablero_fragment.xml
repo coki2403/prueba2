@@ -21,12 +21,12 @@
         />
         <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/titulo"
+                android:layout_centerHorizontal="true"
                 android:id="@+id/filaBotones"
                 android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp">
+                android:layout_marginRight="15dp" android:layout_width="400dp">
             <Button
                     android:id="@+id/col1"
                     style="@style/Widget.AppCompat.Button" android:layout_height="match_parent"
@@ -66,12 +66,13 @@
         </LinearLayout>
         <TableLayout
                 android:id="@+id/tabla"
-                android:layout_width="wrap_content"
+                android:layout_width="400dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/filaBotones"
                 android:stretchColumns="*"
                 android:layout_marginBottom="30dp" android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/fondo">
 
             <TableRow
@@ -492,23 +493,23 @@
                 android:layout_below="@+id/tabla" android:layout_marginTop="0dp" android:layout_marginStart="0dp"
                 android:textSize="18sp" android:textStyle="bold" android:fontFamily="casual"
                 android:paddingStart="10dp" android:textAlignment="center"/>
-        <Button
-                android:text="@string/boton_salir_guardas"
-                android:layout_width="wrap_content"
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/Guardar"
-                android:layout_toEndOf="@id/botonLista"
-
-                android:layout_alignTop="@+id/botonLista"
-                android:layout_marginStart="20dp" android:layout_marginTop="0dp" tools:text="@string/boton_salir"/>
-        <Button
-                android:text="@string/boton_lista"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/botonLista"
-                android:layout_below="@+id/TextoInfo"
-
-                android:layout_alignParentStart="true" android:layout_marginTop="0dp" android:layout_marginStart="1dp"/>
+                android:layout_below="@+id/TextoInfo" android:gravity="center">
+            <Button
+                    android:text="@string/boton_lista"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/botonLista"/>
+            <Button
+                    android:text="@string/boton_salir_guardas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Guardar"
+                    tools:text="@string/boton_salir_guardas"/>
+        </LinearLayout>
 
 
     </RelativeLayout>

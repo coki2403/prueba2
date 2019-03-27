@@ -22,7 +22,8 @@
 
         <activity
                 android:name=".activities.MainActivity"
-                android:configChanges="orientation">
+                android:configChanges="orientation"
+                android:parentActivityName=".activities.MenuActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
