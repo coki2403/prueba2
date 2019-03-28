@@ -15,5 +15,10 @@
     <string name="boton_lista">LISTA PARTIDAS</string>
     <string name="fichas">ficha</string>
 
+    <string name="tiutlo_dialogo">Fin del juego</string>
+    <string name="msg_dialogo">¿Comenzar nueva partida?</string>
+    <string name="aceptar_dialogo">SI</string>
+    <string name="cancelar_dialogo">NO</string>
+
 
 </resources>

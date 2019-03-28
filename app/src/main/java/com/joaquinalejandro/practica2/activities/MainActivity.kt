@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.widget.FrameLayout
 
 import com.joaquinalejandro.practica2.R
-import com.joaquinalejandro.practica2.executeTransaction
-import com.joaquinalejandro.practica2.lista_fragment
-import com.joaquinalejandro.practica2.tablero_fragment
+import com.joaquinalejandro.practica2.extras.executeTransaction
+import com.joaquinalejandro.practica2.fragmentos.lista_fragment
+import com.joaquinalejandro.practica2.fragmentos.tablero_fragment
 
 
 class MainActivity : AppCompatActivity(){
@@ -41,7 +41,9 @@ class MainActivity : AppCompatActivity(){
         if(findViewById<FrameLayout>(R.id.fragment_container_lista)!=null){
             if (fm.findFragmentById(R.id.fragment_container_lista) == null) {
 
-                fm.executeTransaction { add(R.id.fragment_container_lista, lista_fragment()) }
+                fm.executeTransaction { add(R.id.fragment_container_lista,
+                    lista_fragment()
+                ) }
             }
         }
 

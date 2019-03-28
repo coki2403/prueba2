@@ -11,7 +11,7 @@
                  xmlns:tools="http://schemas.android.com/tools"
                  android:layout_width="0dp"
                  android:layout_height="match_parent"
-                 tools:context=".lista_fragment"
+                 tools:context=".fragmentos.lista_fragment"
                  android:layout_weight="1"
                  android:id="@+id/fragment_container_lista"/>
 
@@ -21,6 +21,6 @@
                  android:layout_width="0dp"
                  android:layout_height="match_parent"
                  android:layout_weight="3"
-                 tools:context=".tablero_fragment"/>
+                 tools:context=".fragmentos.tablero_fragment"/>
 
 </LinearLayout>

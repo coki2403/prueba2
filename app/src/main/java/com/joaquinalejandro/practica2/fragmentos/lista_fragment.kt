@@ -1,4 +1,4 @@
-package com.joaquinalejandro.practica2
+package com.joaquinalejandro.practica2.fragmentos
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
+import com.joaquinalejandro.practica2.vistaRecicladora.PartidaAdapter
+import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
+import com.joaquinalejandro.practica2.R
+import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
 import com.joaquinalejandro.practica2.activities.MainActivity
 import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
@@ -50,7 +53,7 @@ class lista_fragment : Fragment() {
 
 
 
-    fun onPartidaSelected(partida:PartidaLista){
+    fun onPartidaSelected(partida: PartidaLista){
 
 
             val intent = Intent(activity, MainActivity::class.java)
@@ -72,7 +75,11 @@ class lista_fragment : Fragment() {
         recyclerView.apply {
             if(adapter==null)
                 adapter=
-                    PartidaAdapter(RepositorioPartidas.partidas){partida->onPartidaSelected(partida)}
+                    PartidaAdapter(RepositorioPartidas.partidas) { partida ->
+                        onPartidaSelected(
+                            partida
+                        )
+                    }
             else
                 adapter.notifyDataSetChanged()
         }

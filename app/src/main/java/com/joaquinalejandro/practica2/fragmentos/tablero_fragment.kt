@@ -1,4 +1,4 @@
-package com.joaquinalejandro.practica2
+package com.joaquinalejandro.practica2.fragmentos
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import com.joaquinalejandro.practica2.R
+import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
 import com.joaquinalejandro.practica2.activities.ControladorPlayer
 import com.joaquinalejandro.practica2.activities.MainActivity
 import com.joaquinalejandro.practica2.activities.MenuActivity
@@ -17,6 +19,9 @@ import com.joaquinalejandro.practica2.activities.PartidaListaActivity
 import com.joaquinalejandro.practica2.model.TableroJuego
 import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
+import android.content.DialogInterface
+import android.support.v7.app.AlertDialog
+import android.support.v7.app.AppCompatActivity
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -137,10 +142,7 @@ class tablero_fragment : Fragment(), PartidaListener {
                 Evento.EVENTO_FIN -> {
                     actualizaInterfaz()
                     TextoInfo.text=evento.descripcion
-                    Toast.makeText(
-                        context,
-                        "Fin del juego", Toast.LENGTH_SHORT
-                    ).show()
+                    createDialog(evento.descripcion).show()
                     /*********************************MAs bonito*******************************/
                 }
             }
@@ -153,11 +155,17 @@ class tablero_fragment : Fragment(), PartidaListener {
                     for (j in 0 until columnas) {
                         val elem = (tablero as TableroJuego).getTablero(i, j)
                         if (elem == 1) {
-                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,R.drawable.circulo_rojo))
+                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,
+                                R.drawable.circulo_rojo
+                            ))
                         } else if (elem == 2) {
-                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,R.drawable.circulo_amarillo))/*****************************************CUIDADO(cotext)***********************************/
+                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,
+                                R.drawable.circulo_amarillo
+                            ))/*****************************************CUIDADO(cotext)***********************************/
                         } else {
-                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,R.drawable.circulo))
+                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,
+                                R.drawable.circulo
+                            ))
                         }
 
                     }
@@ -279,6 +287,21 @@ class tablero_fragment : Fragment(), PartidaListener {
 
 
         }
+
+    fun createDialog(msg:String): AlertDialog {
+        val builder = AlertDialog.Builder(this.getActivity()!!)
+        builder.setTitle(R.string.tiutlo_dialogo)
+            .setMessage("$msg\n${R.string.msg_dialogo.toString()}")
+            .setPositiveButton(R.string.aceptar_dialogo)
+                 { dialog, which -> reiniciar()
+                     dialog.dismiss() }
+            .setNegativeButton(R.string.cancelar_dialogo)
+                 { dialog, which -> dialog.dismiss()
+                }
+
+        return builder.create()
+    }
+
     }
 
 

@@ -10,9 +10,10 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
     var tablero = ArrayList<ArrayList<Int>>()
 
 
-    fun getTablero(fil:Int,col:Int): Int {
+    fun getTablero(fil: Int, col: Int): Int {
         return tablero[fil][col]
     }
+
     init {
 
         for (i in 0 until filas) {
@@ -27,32 +28,33 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
         estado = EN_CURSO
     }
 
-    fun cambiarTurno(){
+    fun cambiarTurno() {
         cambiaTurno()
     }
 
-    fun setEstado(est:Int){
-        estado=est
+    fun setEstado(est: Int) {
+        estado = est
     }
 
-    fun setNumJugadas(n:Int){
-        numJugadas=n
+    fun setNumJugadas(n: Int) {
+        numJugadas = n
     }
+
     override fun toString(): String {
         var stringTablero = ""
 
 
-        /*stringTablero += "\n║"
+        stringTablero += "\n╔"
         for (i in 0 until columnas) {
-            stringTablero += "\\${((i + 1).toString())}/║"
+            stringTablero += "═══"
         }
-        stringTablero += "\n"*/
+        stringTablero += "╗\n"
 
 
         for (i in 0 until filas) {
 
-            /*stringTablero += "╠"
-            for (j in 0 until columnas) {
+            stringTablero += "   "
+            /*for (j in 0 until columnas) {
                 stringTablero += "═══╬"
             }
             stringTablero += "\n"
@@ -60,24 +62,25 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
             for (j in 0 until columnas) {
 
                 if (tablero[i][j].toString() == "0") {
-                    stringTablero += "0"
+                    stringTablero += " - "
                 } else if (tablero[i][j].toString() == "1") {
-                    stringTablero += "1"
+                    stringTablero += " x "
                 } else if (tablero[i][j].toString() == "2") {
-                    stringTablero += "2"
+                    stringTablero += " o "
                 } else {
                     stringTablero += " ${tablero[i][j].toString()} ║"
                 }
 
             }
-            stringTablero += "\n"
+            stringTablero += "   \n"
         }
 
 
-        /*stringTablero += "╚"
+        stringTablero += "╚"
         for (i in 0 until columnas) {
-            stringTablero += "═══╩"
-        }*/
+            stringTablero += "═══"
+        }
+        stringTablero += "╝"
 
 
 
@@ -123,9 +126,9 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
             //Comprobar fin//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (movGanador(fil, col))
                 estado = FINALIZADA
-            else if(terminarTablas()){
+            else if (terminarTablas()) {
                 estado = TABLAS
-            }else {
+            } else {
                 cambiaTurno()
             }
         } else {
@@ -255,7 +258,7 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
             return true
 
         //comprobar vertical(solo hacia abajo): |
-        cont=0
+        cont = 0
         posFil = f
         posCol = c
 
@@ -283,7 +286,7 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
     override fun esValido(m: Movimiento?): Boolean {
         val posicion = m.toString().toInt()
 
-        if(posicion < 0 || posicion >= columnas){
+        if (posicion < 0 || posicion >= columnas) {
             return false
         }
         if (tablero[0][posicion] == 0)
@@ -292,7 +295,7 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
     }
 
     fun terminarTablas(): Boolean {
-        if(movimientosValidos().size == 0){
+        if (movimientosValidos().size == 0) {
             return true
         }
         return false

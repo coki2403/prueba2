@@ -1,12 +1,11 @@
-package com.joaquinalejandro.practica2
+package com.joaquinalejandro.practica2.vistaRecicladora
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
-import es.uam.eps.multij.Partida
-import android.support.design.widget.Snackbar
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.model.TableroJuego
 import java.util.ArrayList
 
@@ -28,7 +27,7 @@ class PartidaHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         tab = itemView.findViewById(R.id.tab) as TextView
 
     }
-    fun vincularPartida(partida: PartidaLista,listener:(PartidaLista)->Unit) {
+    fun vincularPartida(partida: PartidaLista, listener:(PartidaLista)->Unit) {
          idTextView.text = partida.idC
 
          jugadoresTextView.text = partida.jugadoresC

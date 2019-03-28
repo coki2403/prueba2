@@ -1,4 +1,4 @@
-package com.joaquinalejandro.practica2
+package com.joaquinalejandro.practica2.extras
 
 import android.graphics.Color
 import android.graphics.Paint
