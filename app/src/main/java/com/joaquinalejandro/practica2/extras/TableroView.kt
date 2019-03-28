@@ -6,19 +6,19 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import com.joaquinalejandro.practica2.model.TableroJuego
+import com.joaquinalejandro.practica2.model.TableroConecta4
 
-class TableroView(context: Context, attrs: AttributeSet? = null):View(context,attrs){
+class TableroView(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {
 
-        private val DEBUG = "ERView"
-        private var numero: Int = 0
-        private val backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        private var heightOfTile: Float = 0.toFloat()
-        private var widthOfTile: Float = 0.toFloat()
-        private var radio: Float = 0.toFloat()
-        private var size: Int = 0
-        private var board: TableroJuego? = null
+    private val DEBUG = "ERView"
+    private var numero: Int = 0
+    private val backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val linePaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private var heightOfTile: Float = 0.toFloat()
+    private var widthOfTile: Float = 0.toFloat()
+    private var radio: Float = 0.toFloat()
+    private var size: Int = 0
+    private var board: TableroConecta4? = null
 
 
     init {
@@ -78,7 +78,6 @@ class TableroView(context: Context, attrs: AttributeSet? = null):View(context,at
             }
         }
     }
-
 
 
 }

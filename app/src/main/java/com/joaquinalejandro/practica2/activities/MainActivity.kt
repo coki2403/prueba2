@@ -11,9 +11,7 @@ import com.joaquinalejandro.practica2.fragmentos.lista_fragment
 import com.joaquinalejandro.practica2.fragmentos.tablero_fragment
 
 
-class MainActivity : AppCompatActivity(){
-
-
+class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,11 +22,11 @@ class MainActivity : AppCompatActivity(){
         val tableroFrag: tablero_fragment
 
         /*Comprobacion para cargar la aprtida*/
-        if (intent.extras != null){
+        if (intent.extras != null) {
             val idPartida = intent.extras.getInt("ID")
-             tableroFrag = tablero_fragment.newInstance(idPartida.toString())
-        }else{
-             tableroFrag= tablero_fragment.newInstance("-1")
+            tableroFrag = tablero_fragment.newInstance(idPartida.toString())
+        } else {
+            tableroFrag = tablero_fragment.newInstance("-1")
         }
 
 
@@ -38,20 +36,17 @@ class MainActivity : AppCompatActivity(){
             fm.executeTransaction { add(R.id.fragment_container_tablero, tableroFrag) }
         }
 
-        if(findViewById<FrameLayout>(R.id.fragment_container_lista)!=null){
+        if (findViewById<FrameLayout>(R.id.fragment_container_lista) != null) {
             if (fm.findFragmentById(R.id.fragment_container_lista) == null) {
 
-                fm.executeTransaction { add(R.id.fragment_container_lista,
-                    lista_fragment()
-                ) }
+                fm.executeTransaction {
+                    add(
+                        R.id.fragment_container_lista,
+                        lista_fragment()
+                    )
+                }
             }
         }
-
-
-
-
-
-
 
 
     }

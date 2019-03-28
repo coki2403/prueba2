@@ -5,7 +5,7 @@ import es.uam.eps.multij.Movimiento
 import es.uam.eps.multij.Tablero
 import java.util.ArrayList
 
-class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
+class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
 
     var tablero = ArrayList<ArrayList<Int>>()
 
@@ -54,11 +54,7 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
         for (i in 0 until filas) {
 
             stringTablero += "   "
-            /*for (j in 0 until columnas) {
-                stringTablero += "═══╬"
-            }
-            stringTablero += "\n"
-            stringTablero += "║"*/
+
             for (j in 0 until columnas) {
 
                 if (tablero[i][j].toString() == "0") {
@@ -91,7 +87,7 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
         val movValidos = arrayListOf<Movimiento>()
         for (i in 0 until columnas) {
             if (tablero[0][i] == 0)
-                movValidos.add(MovimientoJuego(i))
+                movValidos.add(MovimientoConecta4(i))
         }
         return movValidos
     }
@@ -118,7 +114,7 @@ class TableroJuego(var filas: Int, var columnas: Int) : Tablero() {
                 fil = filas - 1
                 col = pos
             }
-            ultimoMovimiento = MovimientoJuego(m.toString().toInt() + 1)
+            ultimoMovimiento = MovimientoConecta4(m.toString().toInt() + 1)
 
             //println("FICHA COLOCADA EN: [$fil][$col]")
 

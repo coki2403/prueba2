@@ -33,7 +33,6 @@ private const val ARG_PARAM2 = "param2"
 class lista_fragment : Fragment() {
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,16 +51,14 @@ class lista_fragment : Fragment() {
     }
 
 
+    fun onPartidaSelected(partida: PartidaLista) {
 
-    fun onPartidaSelected(partida: PartidaLista){
 
-
-            val intent = Intent(activity, MainActivity::class.java)
-            println("sel: ${partida.idC}")
-            intent.putExtra("ID", partida.idC.toInt())
-            println("enviado: ${intent.extras.getInt("ID")}")
-            startActivity(intent)
-
+        val intent = Intent(activity, MainActivity::class.java)
+        println("sel: ${partida.idC}")
+        intent.putExtra("ID", partida.idC.toInt())
+        println("enviado: ${intent.extras.getInt("ID")}")
+        startActivity(intent)
 
 
     }
@@ -71,10 +68,10 @@ class lista_fragment : Fragment() {
         updateUI()
     }
 
-    fun updateUI(){
+    fun updateUI() {
         recyclerView.apply {
-            if(adapter==null)
-                adapter=
+            if (adapter == null)
+                adapter =
                     PartidaAdapter(RepositorioPartidas.partidas) { partida ->
                         onPartidaSelected(
                             partida

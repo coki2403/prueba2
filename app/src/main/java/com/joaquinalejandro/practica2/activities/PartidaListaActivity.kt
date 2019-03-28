@@ -16,9 +16,12 @@ class PartidaListaActivity : AppCompatActivity() {
 
         val fm = supportFragmentManager
         if (fm.findFragmentById(R.id.fragment_container) == null) {
-            fm.executeTransaction { add(R.id.fragment_container,
-                lista_fragment()
-            ) }
+            fm.executeTransaction {
+                add(
+                    R.id.fragment_container,
+                    lista_fragment()
+                )
+            }
         }
 
     }

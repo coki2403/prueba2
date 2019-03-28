@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment
 import android.content.DialogInterface
 import android.support.v7.app.AppCompatActivity
 import com.joaquinalejandro.practica2.R
+
 /*
 class AlertDialogFragment : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

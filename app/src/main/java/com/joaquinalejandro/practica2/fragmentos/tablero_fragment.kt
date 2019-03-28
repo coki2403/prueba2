@@ -16,12 +16,10 @@ import com.joaquinalejandro.practica2.activities.ControladorPlayer
 import com.joaquinalejandro.practica2.activities.MainActivity
 import com.joaquinalejandro.practica2.activities.MenuActivity
 import com.joaquinalejandro.practica2.activities.PartidaListaActivity
-import com.joaquinalejandro.practica2.model.TableroJuego
+import com.joaquinalejandro.practica2.model.TableroConecta4
 import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
-import android.content.DialogInterface
 import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -61,11 +59,11 @@ class tablero_fragment : Fragment(), PartidaListener {
         )
 
         Guardar.setOnClickListener(
-            {guardarPartida(view)}
+            { guardarPartida(view) }
         )
 
         botonLista.setOnClickListener(
-            {aPartidas(view)}
+            { aPartidas(view) }
         )
 
         /*if (intent.extras != null){
@@ -73,21 +71,19 @@ class tablero_fragment : Fragment(), PartidaListener {
             println("Recibido: ${intent.extras.getInt("ID")}")
         }*/
 
-        if (idCarga != null){
+        if (idCarga != null) {
             idPartida = idCarga.toString().toInt()
             println("Recibido: ${idCarga}")
-        }else
+        } else
             idPartida = -1
 
-        if (idPartida == -1){
+        if (idPartida == -1) {
             comenzar()
             Toast.makeText(
                 context,
                 "Comenzada nueva partida", Toast.LENGTH_SHORT
             ).show()
-        }
-
-        else {
+        } else {
             cargarPartida()
         }
 
@@ -101,7 +97,6 @@ class tablero_fragment : Fragment(), PartidaListener {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tablero_fragment, container, false)
     }
-
 
 
     companion object {
@@ -123,185 +118,198 @@ class tablero_fragment : Fragment(), PartidaListener {
             }
     }
 
-        /*  Aqui empieza la actividad del tablero */
-        var ids: Array<Array<ImageView>>? = null
-        var filas = 6
-        var columnas = 7
-        var idPartida = -1
-        private lateinit var partida: Partida
-        private lateinit var tablero: Tablero
+    /*  Aqui empieza la actividad del tablero */
+    var ids: Array<Array<ImageView>>? = null
+    var filas = 6
+    var columnas = 7
+    var idPartida = -1
+    private lateinit var partida: Partida
+    private lateinit var tablero: Tablero
 
 
-        override fun onCambioEnPartida(evento: Evento) {
-            when (evento.tipo) {
-                Evento.EVENTO_CAMBIO ->{
-                    TextoInfo.text=evento.descripcion
-                    actualizaInterfaz()
+    override fun onCambioEnPartida(evento: Evento) {
+        when (evento.tipo) {
+            Evento.EVENTO_CAMBIO -> {
+                TextoInfo.text = evento.descripcion
+                actualizaInterfaz()
 
-                }
-                Evento.EVENTO_FIN -> {
-                    actualizaInterfaz()
-                    TextoInfo.text=evento.descripcion
-                    createDialog(evento.descripcion).show()
-                    /*********************************MAs bonito*******************************/
-                }
+            }
+            Evento.EVENTO_FIN -> {
+                actualizaInterfaz()
+                TextoInfo.text = evento.descripcion
+                createDialog(evento.descripcion).show()
+                /*********************************MAs bonito*******************************/
             }
         }
+    }
 
 
-        fun actualizaInterfaz() {
-            if (ids != null) {
-                for (i in 0 until filas)
-                    for (j in 0 until columnas) {
-                        val elem = (tablero as TableroJuego).getTablero(i, j)
-                        if (elem == 1) {
-                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,
+    fun actualizaInterfaz() {
+        if (ids != null) {
+            for (i in 0 until filas)
+                for (j in 0 until columnas) {
+                    val elem = (tablero as TableroConecta4).getTablero(i, j)
+                    if (elem == 1) {
+                        ids!!.get(i)[j].setImageDrawable(
+                            getDrawable(
+                                context!!,
                                 R.drawable.circulo_rojo
-                            ))
-                        } else if (elem == 2) {
-                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,
+                            )
+                        )
+                    } else if (elem == 2) {
+                        ids!!.get(i)[j].setImageDrawable(
+                            getDrawable(
+                                context!!,
                                 R.drawable.circulo_amarillo
-                            ))/*****************************************CUIDADO(cotext)***********************************/
-                        } else {
-                            ids!!.get(i)[j].setImageDrawable(getDrawable(context!!,
+                            )
+                        )
+                        /*****************************************CUIDADO(cotext)***********************************/
+                    } else {
+                        ids!!.get(i)[j].setImageDrawable(
+                            getDrawable(
+                                context!!,
                                 R.drawable.circulo
-                            ))
-                        }
-
+                            )
+                        )
                     }
 
-            }
+                }
 
         }
 
-
-        /*override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-
-            setContentView(R.layout.activity_main)
+    }
 
 
+    /*override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setContentView(R.layout.activity_main)
 
 
-        }*/
+
+
+    }*/
 
     /***** volver al menus***/
     /*override  fun onBackPressed(){
 
     }*/
 
-        fun cargarPartida() {
-            val partidaString = RepositorioPartidas.getPartida(idPartida)
-            val tablero = partidaString.split(",".toRegex())[2]
-            val estado = partidaString.split(",".toRegex())[3]
-            val turno = partidaString.split(",".toRegex())[4]
-            val numjugadas = partidaString.split(",".toRegex())[5]
+    fun cargarPartida() {
+        val partidaString = RepositorioPartidas.getPartida(idPartida)
+        val tablero = partidaString.split(",".toRegex())[2]
+        val estado = partidaString.split(",".toRegex())[3]
+        val turno = partidaString.split(",".toRegex())[4]
+        val numjugadas = partidaString.split(",".toRegex())[5]
 
-            /*jugadores*/
-            val listaJugadores = arrayListOf<Jugador>()
-            val randomPlayer = JugadorAleatorio("Random player")
-            val jugadorHumano = ControladorPlayer()
-            registerListeners(jugadorHumano)
-            listaJugadores.add(jugadorHumano)
-            listaJugadores.add(randomPlayer)
+        /*jugadores*/
+        val listaJugadores = arrayListOf<Jugador>()
+        val randomPlayer = JugadorAleatorio("Random player")
+        val jugadorHumano = ControladorPlayer()
+        registerListeners(jugadorHumano)
+        listaJugadores.add(jugadorHumano)
+        listaJugadores.add(randomPlayer)
 
-            /*tablero*/
-            val t2 = TableroJuego(0, 0)
-            if (turno.toInt() == 1)
-                t2.cambiarTurno()
-            t2.stringToTablero(tablero)
-            t2.setEstado(estado.toInt())
-            t2.setNumJugadas(numjugadas.toInt())
-            this.tablero = t2
-            partida = Partida(this.tablero, listaJugadores)
-            partida.addObservador(this)
-            if(partida.tablero.estado== Tablero.EN_CURSO)
-                partida.comenzar()
-            else
-                TextoInfo.text="Partida Finalizada"
-            jugadorHumano.setPartida(partida)
-            Toast.makeText(
-                context,
-                "Cargada Partida con id $idPartida", Toast.LENGTH_SHORT
-            ).show()
-            actualizaInterfaz()
-        }
-
-        fun registerListeners(jugador: ControladorPlayer) {
-            col1?.setOnClickListener(jugador)
-            col2?.setOnClickListener(jugador)
-            col3?.setOnClickListener(jugador)
-            col4?.setOnClickListener(jugador)
-            col5?.setOnClickListener(jugador)
-            col6?.setOnClickListener(jugador)
-            col7?.setOnClickListener(jugador)
-            reinicio.setOnClickListener({reiniciar()})
-
-
-        }
-
-
-        fun guardarPartida(v: View) {
-            if (idPartida == -1) {
-                idPartida = RepositorioPartidas.addPartida(partida)
-            } else {
-                RepositorioPartidas.actualizarPartida(idPartida, partida)
-            }
-
-            Snackbar.make(
-                v, "Partida guardada como $idPartida",
-                Snackbar.LENGTH_SHORT
-            ).show()
-            startActivity(Intent(v.context, MenuActivity::class.java))
-        }
-
-        fun comenzar() {
-            val listaJugadores = ArrayList<Jugador>()
-            val randomPlayer = JugadorAleatorio("Maquina")
-            val jugadorHumano = ControladorPlayer()
-            registerListeners(jugadorHumano)
-            listaJugadores.add(jugadorHumano)
-            listaJugadores.add(randomPlayer)
-            tablero = TableroJuego(filas, columnas)
-            partida = Partida(tablero, listaJugadores)
-            partida.addObservador(this)
-            jugadorHumano.setPartida(partida)
+        /*tablero*/
+        val t2 = TableroConecta4(0, 0)
+        if (turno.toInt() == 1)
+            t2.cambiarTurno()
+        t2.stringToTablero(tablero)
+        t2.setEstado(estado.toInt())
+        t2.setNumJugadas(numjugadas.toInt())
+        this.tablero = t2
+        partida = Partida(this.tablero, listaJugadores)
+        partida.addObservador(this)
+        if (partida.tablero.estado == Tablero.EN_CURSO)
             partida.comenzar()
+        else
+            TextoInfo.text = "Partida Finalizada"
+        jugadorHumano.setPartida(partida)
+        Toast.makeText(
+            context,
+            "Cargada Partida con id $idPartida", Toast.LENGTH_SHORT
+        ).show()
+        actualizaInterfaz()
+    }
 
+    fun registerListeners(jugador: ControladorPlayer) {
+        col1?.setOnClickListener(jugador)
+        col2?.setOnClickListener(jugador)
+        col3?.setOnClickListener(jugador)
+        col4?.setOnClickListener(jugador)
+        col5?.setOnClickListener(jugador)
+        col6?.setOnClickListener(jugador)
+        col7?.setOnClickListener(jugador)
+        reinicio.setOnClickListener({ reiniciar() })
+
+
+    }
+
+
+    fun guardarPartida(v: View) {
+        if (idPartida == -1) {
+            idPartida = RepositorioPartidas.addPartida(partida)
+        } else {
+            RepositorioPartidas.actualizarPartida(idPartida, partida)
         }
 
-        fun aPartidas(v: View) {
+        Snackbar.make(
+            v, "Partida guardada como $idPartida",
+            Snackbar.LENGTH_SHORT
+        ).show()
+        startActivity(Intent(v.context, MenuActivity::class.java))
+    }
 
-            startActivity(Intent(v.context, PartidaListaActivity::class.java))
+    fun comenzar() {
+        val listaJugadores = ArrayList<Jugador>()
+        val randomPlayer = JugadorAleatorio("Maquina")
+        val jugadorHumano = ControladorPlayer()
+        registerListeners(jugadorHumano)
+        listaJugadores.add(jugadorHumano)
+        listaJugadores.add(randomPlayer)
+        tablero = TableroConecta4(filas, columnas)
+        partida = Partida(tablero, listaJugadores)
+        partida.addObservador(this)
+        jugadorHumano.setPartida(partida)
+        partida.comenzar()
 
-        }
+    }
+
+    fun aPartidas(v: View) {
+
+        startActivity(Intent(v.context, PartidaListaActivity::class.java))
+
+    }
 
 
-        fun reiniciar(){
+    fun reiniciar() {
 
 
-            val intent = Intent(activity, MainActivity::class.java)
-            /*intent.putExtra("ID", partida.idC.toInt())
-            println("enviado: ${intent.extras.getInt("ID")}")*/
-            startActivity(intent)
+        val intent = Intent(activity, MainActivity::class.java)
+        /*intent.putExtra("ID", partida.idC.toInt())
+        println("enviado: ${intent.extras.getInt("ID")}")*/
+        startActivity(intent)
 
 
-        }
+    }
 
-    fun createDialog(msg:String): AlertDialog {
+    fun createDialog(msg: String): AlertDialog {
         val builder = AlertDialog.Builder(this.getActivity()!!)
         builder.setTitle(R.string.tiutlo_dialogo)
             .setMessage("$msg\n${R.string.msg_dialogo.toString()}")
             .setPositiveButton(R.string.aceptar_dialogo)
-                 { dialog, which -> reiniciar()
-                     dialog.dismiss() }
+            { dialog, which ->
+                reiniciar()
+                dialog.dismiss()
+            }
             .setNegativeButton(R.string.cancelar_dialogo)
-                 { dialog, which -> dialog.dismiss()
-                }
+            { dialog, which ->
+                dialog.dismiss()
+            }
 
         return builder.create()
     }
 
-    }
+}
 
 
