@@ -102,7 +102,15 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
     }
 
     override fun actualizaLista() {
-
+        val fm = supportFragmentManager
+        if (findViewById<FrameLayout>(R.id.fragment_container_lista) != null){
+            fm.executeTransaction {
+                replace(
+                    R.id.fragment_container_lista,
+                    lista_fragment()
+                )
+            }
+        }
 
 
     }

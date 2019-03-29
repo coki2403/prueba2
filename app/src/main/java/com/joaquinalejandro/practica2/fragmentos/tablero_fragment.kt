@@ -109,6 +109,11 @@ class tablero_fragment : Fragment(), PartidaListener {
             cargarPartida()
         }
 
+        if(idPartida==-1)
+            titulo.text="Nueva Partida"
+        else
+            titulo.text="Partida "+idPartida
+
     }
 
 
@@ -161,7 +166,6 @@ class tablero_fragment : Fragment(), PartidaListener {
                 actualizaInterfaz()
                 TextoInfo.text = evento.descripcion
                 createDialog(evento.descripcion).show()
-                /*********************************MAs bonito*******************************/
             }
         }
     }
@@ -275,6 +279,8 @@ class tablero_fragment : Fragment(), PartidaListener {
         } else {
             RepositorioPartidas.actualizarPartida(idPartida, partida)
         }
+        listener?.actualizaLista()
+        titulo.text="Partida "+idPartida
         //startActivity(Intent(v.context, MenuActivity::class.java))
     }
 
