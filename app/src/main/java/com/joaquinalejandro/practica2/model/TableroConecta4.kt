@@ -46,7 +46,7 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
 
         stringTablero += "\n╔"
         for (i in 0 until columnas) {
-            stringTablero += "═══"
+            stringTablero += "══"
         }
         stringTablero += "╗\n"
 
@@ -74,7 +74,7 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
 
         stringTablero += "╚"
         for (i in 0 until columnas) {
-            stringTablero += "═══"
+            stringTablero += "══"
         }
         stringTablero += "╝"
 

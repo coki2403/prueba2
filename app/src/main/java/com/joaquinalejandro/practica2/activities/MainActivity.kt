@@ -17,26 +17,6 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
     tablero_fragment.OnTableroFragmentInteractionListener {
 
 
-    override fun reiniciar() {
-        if (findViewById<FrameLayout>(R.id.fragment_container_tablero) != null) {
-            val fm = supportFragmentManager
-            val tableroFrag: tablero_fragment
-
-            tableroFrag = tablero_fragment.newInstance("-1")
-
-            if (fm.findFragmentById(R.id.fragment_container_tablero) != null) {
-
-                fm.executeTransaction { replace(R.id.fragment_container_tablero, tableroFrag) }
-            }
-
-        } else {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-
-
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,6 +76,33 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
             println("enviado: ${intent.extras.getInt("ID")}")
             startActivity(intent)
         }
+
+
+    }
+
+
+    override fun reiniciar() {
+        if (findViewById<FrameLayout>(R.id.fragment_container_tablero) != null) {
+            val fm = supportFragmentManager
+            val tableroFrag: tablero_fragment
+
+            tableroFrag = tablero_fragment.newInstance("-1")
+
+            if (fm.findFragmentById(R.id.fragment_container_tablero) != null) {
+
+                fm.executeTransaction { replace(R.id.fragment_container_tablero, tableroFrag) }
+            }
+
+        } else {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+
+    }
+
+    override fun actualizaLista() {
+
 
 
     }

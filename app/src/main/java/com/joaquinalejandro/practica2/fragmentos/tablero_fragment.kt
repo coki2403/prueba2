@@ -14,14 +14,12 @@ import android.widget.Toast
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
 import com.joaquinalejandro.practica2.activities.ControladorPlayer
-import com.joaquinalejandro.practica2.activities.MainActivity
 import com.joaquinalejandro.practica2.activities.MenuActivity
 import com.joaquinalejandro.practica2.activities.PartidaListaActivity
 import com.joaquinalejandro.practica2.model.TableroConecta4
 import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
 import android.support.v7.app.AlertDialog
-import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -62,6 +60,7 @@ class tablero_fragment : Fragment(), PartidaListener {
 
     interface OnTableroFragmentInteractionListener {
         fun reiniciar()
+        fun actualizaLista()
     }
 
 
@@ -84,9 +83,6 @@ class tablero_fragment : Fragment(), PartidaListener {
             arrayOf(f50, f51, f52, f53, f54, f55, f56)
         )
 
-        Guardar.setOnClickListener(
-            { guardarPartida(view) }
-        )
 
         botonLista.setOnClickListener(
             { aPartidas(view) }
@@ -158,6 +154,7 @@ class tablero_fragment : Fragment(), PartidaListener {
             Evento.EVENTO_CAMBIO -> {
                 TextoInfo.text = evento.descripcion
                 actualizaInterfaz()
+                guardarPartida()
 
             }
             Evento.EVENTO_FIN -> {
@@ -272,18 +269,13 @@ class tablero_fragment : Fragment(), PartidaListener {
     }
 
 
-    fun guardarPartida(v: View) {
+    fun guardarPartida() {
         if (idPartida == -1) {
             idPartida = RepositorioPartidas.addPartida(partida)
         } else {
             RepositorioPartidas.actualizarPartida(idPartida, partida)
         }
-
-        Snackbar.make(
-            v, "Partida guardada como $idPartida",
-            Snackbar.LENGTH_SHORT
-        ).show()
-        startActivity(Intent(v.context, MenuActivity::class.java))
+        //startActivity(Intent(v.context, MenuActivity::class.java))
     }
 
     fun comenzar() {
