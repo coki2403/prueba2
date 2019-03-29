@@ -1,5 +1,6 @@
 package com.joaquinalejandro.practica2.fragmentos
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -20,6 +21,7 @@ import com.joaquinalejandro.practica2.model.TableroConecta4
 import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
 import android.support.v7.app.AlertDialog
+import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +40,27 @@ private const val ARG_PARAM1 = "param1"
 class tablero_fragment : Fragment(), PartidaListener {
     // TODO: Rename and change types of parameters
     private var idCarga: String? = null
+    var listener: OnTableroFragmentInteractionListener? = null
+
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is tablero_fragment.OnTableroFragmentInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() +
+                    " must implement OnTableroFragmentInteractionListener")
+        }
+    }
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    interface OnTableroFragmentInteractionListener {
+        fun reiniciar()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -180,6 +203,10 @@ class tablero_fragment : Fragment(), PartidaListener {
     }
 
 
+
+
+
+
     /*override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -240,7 +267,7 @@ class tablero_fragment : Fragment(), PartidaListener {
         col5?.setOnClickListener(jugador)
         col6?.setOnClickListener(jugador)
         col7?.setOnClickListener(jugador)
-        reinicio.setOnClickListener({ reiniciar() })
+        reinicio.setOnClickListener({ listener?.reiniciar() })
 
 
     }
@@ -282,24 +309,13 @@ class tablero_fragment : Fragment(), PartidaListener {
     }
 
 
-    fun reiniciar() {
-
-
-        val intent = Intent(activity, MainActivity::class.java)
-        /*intent.putExtra("ID", partida.idC.toInt())
-        println("enviado: ${intent.extras.getInt("ID")}")*/
-        startActivity(intent)
-
-
-    }
-
     fun createDialog(msg: String): AlertDialog {
         val builder = AlertDialog.Builder(this.getActivity()!!)
         builder.setTitle(R.string.tiutlo_dialogo)
             .setMessage("$msg\n${R.string.msg_dialogo.toString()}")
             .setPositiveButton(R.string.aceptar_dialogo)
             { dialog, which ->
-                reiniciar()
+                listener?.reiniciar()
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.cancelar_dialogo)

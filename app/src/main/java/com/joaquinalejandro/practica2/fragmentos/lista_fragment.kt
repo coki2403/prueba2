@@ -1,5 +1,6 @@
 package com.joaquinalejandro.practica2.fragmentos
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -32,6 +33,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class lista_fragment : Fragment() {
 
+    var listener: OnPartidaListaFragmentInteractionListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,8 +52,31 @@ class lista_fragment : Fragment() {
         }
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is OnPartidaListaFragmentInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() +
+                    " must implement OnPartidaListaFragmentInteractionListener")
+        }
+    }
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
 
-    fun onPartidaSelected(partida: PartidaLista) {
+
+
+
+
+
+    interface OnPartidaListaFragmentInteractionListener {
+        fun onPartidaSelected(partida: PartidaLista)
+    }
+
+
+    /*fun onPartidaSelected(partida: PartidaLista) {
 
 
         val intent = Intent(activity, MainActivity::class.java)
@@ -61,7 +86,7 @@ class lista_fragment : Fragment() {
         startActivity(intent)
 
 
-    }
+    }*/
 
     override fun onResume() {
         super.onResume()
@@ -73,7 +98,7 @@ class lista_fragment : Fragment() {
             if (adapter == null)
                 adapter =
                     PartidaAdapter(RepositorioPartidas.partidas) { partida ->
-                        onPartidaSelected(
+                        listener?.onPartidaSelected(
                             partida
                         )
                     }
