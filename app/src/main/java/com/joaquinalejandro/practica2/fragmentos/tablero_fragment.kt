@@ -48,10 +48,13 @@ class tablero_fragment : Fragment(), PartidaListener {
         if (context is tablero_fragment.OnTableroFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() +
-                    " must implement OnTableroFragmentInteractionListener")
+            throw RuntimeException(
+                context.toString() +
+                        " must implement OnTableroFragmentInteractionListener"
+            )
         }
     }
+
     override fun onDetach() {
         super.onDetach()
         listener = null
@@ -201,10 +204,6 @@ class tablero_fragment : Fragment(), PartidaListener {
         }
 
     }
-
-
-
-
 
 
     /*override fun onCreate(savedInstanceState: Bundle?) {

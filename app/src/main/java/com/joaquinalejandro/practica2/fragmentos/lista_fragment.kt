@@ -57,18 +57,17 @@ class lista_fragment : Fragment() {
         if (context is OnPartidaListaFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() +
-                    " must implement OnPartidaListaFragmentInteractionListener")
+            throw RuntimeException(
+                context.toString() +
+                        " must implement OnPartidaListaFragmentInteractionListener"
+            )
         }
     }
+
     override fun onDetach() {
         super.onDetach()
         listener = null
     }
-
-
-
-
 
 
     interface OnPartidaListaFragmentInteractionListener {

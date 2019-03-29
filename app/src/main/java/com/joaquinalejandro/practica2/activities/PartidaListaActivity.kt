@@ -33,8 +33,7 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
     override fun onPartidaSelected(partida: PartidaLista) {
 
 
-
-        if (findViewById<FrameLayout>(R.id.fragment_container_tablero) != null){
+        if (findViewById<FrameLayout>(R.id.fragment_container_tablero) != null) {
             val fm = supportFragmentManager
             val tableroFrag: tablero_fragment
 
@@ -45,14 +44,13 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
                 fm.executeTransaction { replace(R.id.fragment_container_tablero, tableroFrag) }
             }
 
-        }else{
+        } else {
             val intent = Intent(this, MainActivity::class.java)
             println("sel: ${partida.idC}")
             intent.putExtra("ID", partida.idC.toInt())
             println("enviado: ${intent.extras.getInt("ID")}")
             startActivity(intent)
         }
-
 
 
     }
