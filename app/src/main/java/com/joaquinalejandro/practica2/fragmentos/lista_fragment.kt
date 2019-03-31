@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaAdapter
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import com.joaquinalejandro.practica2.R
@@ -104,5 +105,9 @@ class lista_fragment : Fragment() {
             else
                 adapter.notifyDataSetChanged()
         }
+        if(RepositorioPartidas.partidas.size==0)
+            sin_partidas.visibility=TextView.VISIBLE
+        else
+            sin_partidas.visibility=TextView.INVISIBLE
     }
 }

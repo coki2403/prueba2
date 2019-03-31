@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
+
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/sin_partidas" android:visibility="invisible"
+            android:textAlignment="center" android:text="@string/sin_partidas" tools:text="@string/sin_partidas"
+            android:textSize="18sp"/>
+    <android.support.v7.widget.RecyclerView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"
         android:scrollbars="vertical"
 >
 
+
 </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>

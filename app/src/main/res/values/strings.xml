@@ -19,6 +19,7 @@
     <string name="msg_dialogo">¿Comenzar nueva partida?</string>
     <string name="aceptar_dialogo">SI</string>
     <string name="cancelar_dialogo">NO</string>
+    <string name="sin_partidas">No hay partidas disponibles</string>
 
 
 </resources>
