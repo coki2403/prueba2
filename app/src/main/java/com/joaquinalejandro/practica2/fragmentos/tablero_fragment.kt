@@ -58,6 +58,71 @@ class tablero_fragment : Fragment(), PartidaListener {
         listener = null
     }
 
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt("idPartida",idPartida)
+        println("SAVE INSTANCE")
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        try {
+            if (savedInstanceState?.getInt("idPartida") != null)
+                idPartida=savedInstanceState.getInt("idPartida")
+            else
+                idPartida=-1
+        } catch (e: ExcepcionJuego) {
+            e.printStackTrace()
+        }
+
+        println("RESTORE INSTANCE $idPartida")
+        ids = arrayOf(
+            arrayOf(f00, f01, f02, f03, f04, f05, f06),
+            arrayOf(f10, f11, f12, f13, f14, f15, f16),
+            arrayOf(f20, f21, f22, f23, f24, f25, f26),
+            arrayOf(f30, f31, f32, f33, f34, f35, f36),
+            arrayOf(f40, f41, f42, f43, f44, f45, f46),
+            arrayOf(f50, f51, f52, f53, f54, f55, f56)
+        )
+
+
+        botonLista.setOnClickListener(
+            { aPartidas(view!!) }
+        )
+
+        /*if (intent.extras != null){
+            idPartida = intent.extras.getInt("ID")
+            println("Recibido: ${intent.extras.getInt("ID")}")
+        }*/
+
+        if(idPartida==-1){
+            if (idCarga != null) {
+                idPartida = idCarga.toString().toInt()
+                println("Recibido: ${idCarga}")
+            } else
+                idPartida = -1
+        }
+
+
+        if (idPartida == -1) {
+            comenzar()
+            Toast.makeText(
+                context,
+                "Comenzada nueva partida", Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            cargarPartida()
+        }
+
+        if(idPartida==-1)
+            titulo.text="Nueva Partida"
+        else
+            titulo.text="Partida "+idPartida
+
+    }
+
     interface OnTableroFragmentInteractionListener {
         fun reiniciar()
         fun actualizaLista()
@@ -74,45 +139,7 @@ class tablero_fragment : Fragment(), PartidaListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ids = arrayOf(
-            arrayOf(f00, f01, f02, f03, f04, f05, f06),
-            arrayOf(f10, f11, f12, f13, f14, f15, f16),
-            arrayOf(f20, f21, f22, f23, f24, f25, f26),
-            arrayOf(f30, f31, f32, f33, f34, f35, f36),
-            arrayOf(f40, f41, f42, f43, f44, f45, f46),
-            arrayOf(f50, f51, f52, f53, f54, f55, f56)
-        )
 
-
-        botonLista.setOnClickListener(
-            { aPartidas(view) }
-        )
-
-        /*if (intent.extras != null){
-            idPartida = intent.extras.getInt("ID")
-            println("Recibido: ${intent.extras.getInt("ID")}")
-        }*/
-
-        if (idCarga != null) {
-            idPartida = idCarga.toString().toInt()
-            println("Recibido: ${idCarga}")
-        } else
-            idPartida = -1
-
-        if (idPartida == -1) {
-            comenzar()
-            Toast.makeText(
-                context,
-                "Comenzada nueva partida", Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            cargarPartida()
-        }
-
-        if(idPartida==-1)
-            titulo.text="Nueva Partida"
-        else
-            titulo.text="Partida "+idPartida
 
     }
 
@@ -164,6 +191,7 @@ class tablero_fragment : Fragment(), PartidaListener {
             }
             Evento.EVENTO_FIN -> {
                 actualizaInterfaz()
+                guardarPartida()
                 TextoInfo.text = evento.descripcion
                 createDialog(evento.descripcion).show()
             }

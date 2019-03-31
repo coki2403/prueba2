@@ -512,13 +512,6 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/botonLista" android:background="@drawable/boton_menu" android:paddingStart="10dp"
                     android:paddingEnd="10dp"/>
-            <Button
-                    android:text="@string/boton_salir_guardas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/Guardar"
-                    tools:text="@string/boton_salir_guardas" android:background="@drawable/boton_menu"
-                    android:paddingEnd="10dp" android:paddingStart="10dp" android:layout_marginStart="20dp"/>
         </LinearLayout>
 
 
