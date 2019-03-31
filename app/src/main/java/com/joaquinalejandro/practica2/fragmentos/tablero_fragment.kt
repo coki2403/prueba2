@@ -337,7 +337,7 @@ class tablero_fragment : Fragment(), PartidaListener {
     fun createDialog(msg: String): AlertDialog {
         val builder = AlertDialog.Builder(this.getActivity()!!)
         builder.setTitle(R.string.tiutlo_dialogo)
-            .setMessage("$msg\n${R.string.msg_dialogo.toString()}")
+            .setMessage("¿Comenzar nueva partida?")
             .setPositiveButton(R.string.aceptar_dialogo)
             { dialog, which ->
                 listener?.reiniciar()
