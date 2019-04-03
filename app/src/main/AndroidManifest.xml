@@ -10,11 +10,10 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".activities.SettingsActivity2"
+                android:name=".activities.SettingsActivity"
                 android:label="@string/title_activity_settings2">
         </activity>
-        <activity android:name=".activities.SettingsActivity">
-        </activity>
+
         <activity android:name=".activities.MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -10,6 +10,7 @@
 
     <string name="boton_nueva">CREAR PARTIDA</string>
     <string name="boton_cargar">UNIRSE A PARTIDA</string>
+    <string name="boton_ajustes">AJUSTES</string>
     <string name="boton_salir">SALIR</string>
     <string name="boton_salir_guardas">GUARDAR Y SALIR</string>
     <string name="boton_lista">LISTA PARTIDAS</string>

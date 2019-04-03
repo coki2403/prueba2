@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.joaquinalejandro.practica2.R
 import kotlinx.android.synthetic.main.activity_menu.*
-import java.lang.System.exit
 
 class MenuActivity : AppCompatActivity() {
 
@@ -15,7 +14,7 @@ class MenuActivity : AppCompatActivity() {
 
         nuevapartida.setOnClickListener({ startActivity(Intent(this@MenuActivity, MainActivity::class.java)) })
         cargarpartida.setOnClickListener({ startActivity(Intent(this@MenuActivity, PartidaListaActivity::class.java)) })
-
+        ajustes.setOnClickListener({ startActivity(Intent(this@MenuActivity, SettingsActivity::class.java)) })
     }
 
 }
