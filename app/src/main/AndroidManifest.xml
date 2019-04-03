@@ -9,7 +9,12 @@
             android:roundIcon="@drawable/logo_conecta_4_v2"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-
+        <activity
+                android:name=".activities.SettingsActivity2"
+                android:label="@string/title_activity_settings2">
+        </activity>
+        <activity android:name=".activities.SettingsActivity">
+        </activity>
         <activity android:name=".activities.MenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -17,31 +22,21 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-
-
         <activity
                 android:name=".activities.MainActivity"
                 android:configChanges="orientation"
                 android:parentActivityName=".activities.MenuActivity">
-
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
-
-
         </activity>
-
-        <activity android:name=".activities.PartidaListaActivity"
-            android:parentActivityName=".activities.MenuActivity">
-
+        <activity
+                android:name=".activities.PartidaListaActivity"
+                android:parentActivityName=".activities.MenuActivity">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
-
-
         </activity>
-
     </application>
 
 </manifest>
