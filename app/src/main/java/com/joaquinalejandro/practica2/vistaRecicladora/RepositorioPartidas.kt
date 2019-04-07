@@ -1,9 +1,37 @@
 package com.joaquinalejandro.practica2.vistaRecicladora
 
+import com.joaquinalejandro.practica2.database.RoundCursorWrapper
 import com.joaquinalejandro.practica2.model.TableroConecta4
 import com.joaquinalejandro.practica2.model.guardarPartida
 import es.uam.eps.multij.Partida
 import java.util.*
+
+interface IRepositorioPartidas {
+    @Throws(Exception::class)
+    fun open()
+    fun close()
+    interface LoginRegisterCallback {
+        fun onLogin(playerUuid: String)
+        fun onError(error: String)
+    }
+    fun login(playername: String, password: String, callback: LoginRegisterCallback)
+
+    fun register(playername: String, password: String, callback: LoginRegisterCallback)
+
+    interface BooleanCallback {
+        fun onResponse(ok: Boolean)
+    }
+    fun getPartidas(playeruuid: String, orderByField: String, group: String,
+                  callback: RoundsCallback)
+
+    fun addPartida(round: PartidaLista, callback: BooleanCallback)
+    fun actualizarPartida(round: PartidaLista, callback: BooleanCallback)
+    interface RoundsCallback {
+        fun onResponse(rounds: List<PartidaLista>)
+        fun onError(error: String)
+    }
+}
+
 
 object RepositorioPartidas {
     val partidas = ArrayList<PartidaLista>()
@@ -23,7 +51,7 @@ object RepositorioPartidas {
                 Date().toString(),
                 jugadores,
                 partida.guardarPartida(),
-                partida.tablero as TableroConecta4
+                partida.tablero as TableroConecta4,"","","",""
             )
         )
         numPartidas++
@@ -37,7 +65,7 @@ object RepositorioPartidas {
         partidas[id] =
             PartidaLista(
                 id.toString(), fecha, jugadores, partida.guardarPartida(),
-                partida.tablero as TableroConecta4
+                partida.tablero as TableroConecta4,"","","",""
             )
     }
 

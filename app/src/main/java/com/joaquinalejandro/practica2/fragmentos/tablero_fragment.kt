@@ -20,6 +20,7 @@ import com.joaquinalejandro.practica2.model.TableroConecta4
 import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
 import android.support.v7.app.AlertDialog
+import com.joaquinalejandro.practica2.activities.SettingsActivity
 
 
 // TODO: Rename parameter arguments, choose names that match

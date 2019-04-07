@@ -53,9 +53,13 @@ class PartidaAdapter(val partidas: ArrayList<PartidaLista>, val listener: (Parti
 }
 
 class PartidaLista(
-    val idC: String,
-    val dateC: String,
+    var idC: String,
+    var dateC: String,
     var jugadoresC: String,
     var tablero: String,
-    var tabC: TableroConecta4
+    var tabC: TableroConecta4,
+    var firstPlayerName:String,
+    var secondPlayerName:String,
+    var firstPlayerUUID:String,
+    var secondPlayerUUID:String
 )
