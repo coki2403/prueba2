@@ -55,5 +55,12 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
 
     }
 
+    override fun onPreferenceSelected(){
+
+    }
+    override fun onNewRoundAdded(){
+
+    }
+
 
 }

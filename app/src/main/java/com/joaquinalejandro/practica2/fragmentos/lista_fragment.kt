@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -73,6 +74,26 @@ class lista_fragment : Fragment() {
 
     interface OnPartidaListaFragmentInteractionListener {
         fun onPartidaSelected(partida: PartidaLista)
+        fun onPreferenceSelected()
+        fun onNewRoundAdded()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        /*when (item!!.itemId) {
+            R.id.menu_item_new_round -> {
+                listener?.onNewRoundAdded()
+                round_recycler_view.update { partida -> listener?.onPartidaSelected(partida) }
+                return true
+            }
+            R.id.menu_item_settings -> {
+                listener?.onPreferenceSelected()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }*/
+
+        return true
+
     }
 
 

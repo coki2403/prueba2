@@ -200,10 +200,19 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             editor.commit()
         }
 
+        fun setPlayerUUID(context:Context, id:String){
+
+        }
+
+        fun setPlayerName(context:Context, email:String){
+
+        }
+
         /**
          * A preference value change listener that updates the preference's summary
          * to reflect its new value.
          */
+
         private val sBindPreferenceSummaryToValueListener = Preference.OnPreferenceChangeListener { preference, value ->
             val stringValue = value.toString()
 

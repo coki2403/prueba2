@@ -16,8 +16,6 @@ import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentInteractionListener,
     tablero_fragment.OnTableroFragmentInteractionListener {
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -113,6 +111,15 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
         }
 
 
+    }
+
+
+    override fun onPreferenceSelected() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onNewRoundAdded() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }
