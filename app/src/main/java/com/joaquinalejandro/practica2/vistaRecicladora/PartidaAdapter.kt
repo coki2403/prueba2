@@ -92,7 +92,7 @@ class PartidaLista(
 
     companion object {
 
-        fun fromJSONString(string: String):  {
+        fun fromJSONString(string: String): PartidaLista {
             val jsonObject = JSONObject(string)
             val partida = PartidaLista(
             idC = jsonObject.get("id") as String,
@@ -104,6 +104,7 @@ class PartidaLista(
             firstPlayerUUID = jsonObject.get("firstPlayerUUID") as String,
             secondPlayerName = jsonObject.get("secondPlayerName") as String,
             secondPlayerUUID = jsonObject.get("secondPlayerUUID") as String)
+
             return partida
         }
     }
