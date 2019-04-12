@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private var mAuthTask: UserLoginTask? = null
-    private fun ERattempt(type: String) {
+    private fun attempt(type: String) {
         val repository = PartidaRepositoryFactory.createRepository(this)
         val loginRegisterCallback = object : IRepositorioPartidas.LoginRegisterCallback {
             override fun onLogin(playerUuid: String) {
@@ -78,6 +78,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         })
 
         email_sign_in_button.setOnClickListener { attemptLogin() }
+        email_register_button.setOnClickListener { attemptLogin() }
     }
 
     private fun populateAutoComplete() {
@@ -169,6 +170,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             showProgress(true)
             mAuthTask = UserLoginTask(emailStr, passwordStr)
             mAuthTask!!.execute(null as Void?)
+            attempt("login") //por ejemplo
         }
     }
 

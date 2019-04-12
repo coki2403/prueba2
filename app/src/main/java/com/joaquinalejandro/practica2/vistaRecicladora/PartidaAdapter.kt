@@ -7,7 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.model.TableroConecta4
-import java.util.ArrayList
+import org.json.JSONObject
+import java.util.*
 
 class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     /*override fun onClick(v: View?) {
@@ -62,4 +63,48 @@ class PartidaLista(
     var secondPlayerName:String,
     var firstPlayerUUID:String,
     var secondPlayerUUID:String
-)
+
+
+
+){
+
+    init {
+        idC = UUID.randomUUID().toString()
+        dateC = Date().toString()
+        tabC = TableroConecta4(7,6)
+        tablero = TableroConecta4(7,6).toString()
+    }
+
+    fun toJSONString(): String {
+
+        val json = JSONObject()
+        json.put("id", idC)
+        json.put("jugadoresC", jugadoresC)
+        json.put("dateC", dateC)
+        json.put("tablero", tablero)
+        json.put("tabC", tabC)
+        json.put("firstPlayerName", firstPlayerName)
+        json.put("firstPlayerUUID", firstPlayerUUID)
+        json.put("secondPlayerName", secondPlayerName)
+        json.put("secondPlayerUUID", secondPlayerUUID)
+        return json.toString()
+    }
+
+    companion object {
+
+        fun fromJSONString(string: String):  {
+            val jsonObject = JSONObject(string)
+            val partida = PartidaLista(
+            idC = jsonObject.get("id") as String,
+            jugadoresC = jsonObject.get("jugadoresC") as String,
+            dateC = jsonObject.get("dateC") as String,
+            tablero = jsonObject.get("tablero") as String,
+                tabC = jsonObject.get("tabC") as TableroConecta4,
+                firstPlayerName = jsonObject.get("firstPlayerName") as String,
+            firstPlayerUUID = jsonObject.get("firstPlayerUUID") as String,
+            secondPlayerName = jsonObject.get("secondPlayerName") as String,
+            secondPlayerUUID = jsonObject.get("secondPlayerUUID") as String)
+            return partida
+        }
+    }
+}
