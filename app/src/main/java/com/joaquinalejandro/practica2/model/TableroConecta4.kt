@@ -40,6 +40,8 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
         numJugadas = n
     }
 
+
+
     override fun toString(): String {
         var stringTablero = ""
 
@@ -95,7 +97,7 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
 
     override fun mueve(m: Movimiento?) {
         val pos = m?.toString()?.toInt()!!
-        var flag = 0
+        var posOcupada = 0
         var fil = 0
         var col = 0
         if (esValido(m)) {
@@ -103,13 +105,13 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
             for (i in 0 until filas) {
                 if (tablero[i][pos] != 0) {
                     tablero[i - 1][pos] = turno + 1
-                    flag = 1
+                    posOcupada = 1
                     fil = i - 1
                     col = pos
                     break
                 }
             }
-            if (flag == 0) {
+            if (posOcupada == 0) {
                 tablero[filas - 1][pos] = turno + 1
                 fil = filas - 1
                 col = pos
@@ -117,18 +119,21 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
             ultimoMovimiento = MovimientoConecta4(m.toString().toInt() + 1)
 
             //println("FICHA COLOCADA EN: [$fil][$col]")
+            actualizarEstado(fil, col)
 
-
-            //Comprobar fin//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            if (movGanador(fil, col))
-                estado = FINALIZADA
-            else if (terminarTablas()) {
-                estado = TABLAS
-            } else {
-                cambiaTurno()
-            }
         } else {
             throw ExcepcionJuego("Movimiento Invalido")
+        }
+    }
+
+    private fun actualizarEstado(fil: Int, col: Int){
+
+        if (movGanador(fil, col))
+            estado = FINALIZADA
+        else if (terminarTablas()) {
+            estado = TABLAS
+        } else {
+            cambiaTurno()
         }
     }
 
@@ -306,6 +311,11 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
             }
             str += "|" //caracter fin de linea
         }
+
+        str += estado
+        str += "|"
+        str += turno
+        str += "|"
 
         return str
     }

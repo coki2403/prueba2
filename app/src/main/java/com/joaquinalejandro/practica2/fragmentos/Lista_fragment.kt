@@ -126,9 +126,9 @@ class lista_fragment : Fragment() {
             else
                 adapter.notifyDataSetChanged()
         }
-        if(RepositorioPartidas.partidas.size==0)
-            sin_partidas.visibility=TextView.VISIBLE
+        if (RepositorioPartidas.partidas.size == 0)
+            sin_partidas.visibility = TextView.VISIBLE
         else
-            sin_partidas.visibility=TextView.INVISIBLE
+            sin_partidas.visibility = TextView.INVISIBLE
     }
 }

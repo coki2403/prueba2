@@ -61,7 +61,7 @@ class tablero_fragment : Fragment(), PartidaListener {
 
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt("idPartida",idPartida)
+        outState.putInt("idPartida", idPartida)
         println("SAVE INSTANCE")
         super.onSaveInstanceState(outState)
     }
@@ -71,9 +71,9 @@ class tablero_fragment : Fragment(), PartidaListener {
 
         try {
             if (savedInstanceState?.getInt("idPartida") != null)
-                idPartida=savedInstanceState.getInt("idPartida")
+                idPartida = savedInstanceState.getInt("idPartida")
             else
-                idPartida=-1
+                idPartida = -1
         } catch (e: ExcepcionJuego) {
             e.printStackTrace()
         }
@@ -98,7 +98,7 @@ class tablero_fragment : Fragment(), PartidaListener {
             println("Recibido: ${intent.extras.getInt("ID")}")
         }*/
 
-        if(idPartida==-1){
+        if (idPartida == -1) {
             if (idCarga != null) {
                 idPartida = idCarga.toString().toInt()
                 println("Recibido: ${idCarga}")
@@ -117,16 +117,16 @@ class tablero_fragment : Fragment(), PartidaListener {
             cargarPartida()
         }
 
-        if(idPartida==-1)
-            titulo.text="Nueva Partida"
+        if (idPartida == -1)
+            titulo.text = "Nueva Partida"
         else
-            titulo.text="Partida "+idPartida
+            titulo.text = "Partida " + idPartida
 
     }
 
     interface OnTableroFragmentInteractionListener {
-        fun reiniciar()
-        fun actualizaLista()
+        fun OnReiniciar()
+        fun OnActualizaLista()
     }
 
 
@@ -139,8 +139,6 @@ class tablero_fragment : Fragment(), PartidaListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
     }
 
@@ -201,38 +199,36 @@ class tablero_fragment : Fragment(), PartidaListener {
 
 
     fun actualizaInterfaz() {
-        if (ids != null) {
-            for (i in 0 until filas)
-                for (j in 0 until columnas) {
-                    val elem = (tablero as TableroConecta4).getTablero(i, j)
-                    if (elem == 1) {
-                        ids!!.get(i)[j].setImageDrawable(
-                            getDrawable(
-                                context!!,
-                                R.drawable.circulo_rojo
-                            )
+        if (ids == null)
+            return
+        for (i in 0 until filas) {
+            for (j in 0 until columnas) {
+                val elem = (tablero as TableroConecta4).getTablero(i, j)
+                if (elem == 1) {
+                    ids!!.get(i)[j].setImageDrawable(
+                        getDrawable(
+                            context!!,
+                            R.drawable.circulo_rojo
                         )
-                    } else if (elem == 2) {
-                        ids!!.get(i)[j].setImageDrawable(
-                            getDrawable(
-                                context!!,
-                                R.drawable.circulo_amarillo
-                            )
+                    )
+                } else if (elem == 2) {
+                    ids!!.get(i)[j].setImageDrawable(
+                        getDrawable(
+                            context!!,
+                            R.drawable.circulo_amarillo
                         )
-                        /*****************************************CUIDADO(cotext)***********************************/
-                    } else {
-                        ids!!.get(i)[j].setImageDrawable(
-                            getDrawable(
-                                context!!,
-                                R.drawable.circulo
-                            )
+                    )
+                    /*****************************************CUIDADO(cotext)***********************************/
+                } else {
+                    ids!!.get(i)[j].setImageDrawable(
+                        getDrawable(
+                            context!!,
+                            R.drawable.circulo
                         )
-                    }
-
+                    )
                 }
-
+            }
         }
-
     }
 
 
@@ -273,6 +269,8 @@ class tablero_fragment : Fragment(), PartidaListener {
         t2.stringToTablero(tablero)
         t2.setEstado(estado.toInt())
         t2.setNumJugadas(numjugadas.toInt())
+        //t2.numJugadas = numjugadas.toInt()
+        //t2.estado = estado.toInt()
         this.tablero = t2
         partida = Partida(this.tablero, listaJugadores)
         partida.addObservador(this)
@@ -296,7 +294,7 @@ class tablero_fragment : Fragment(), PartidaListener {
         col5?.setOnClickListener(jugador)
         col6?.setOnClickListener(jugador)
         col7?.setOnClickListener(jugador)
-        reinicio.setOnClickListener({ listener?.reiniciar() })
+        reinicio.setOnClickListener({ listener?.OnReiniciar() })
 
 
     }
@@ -308,8 +306,8 @@ class tablero_fragment : Fragment(), PartidaListener {
         } else {
             RepositorioPartidas.actualizarPartida(idPartida, partida)
         }
-        listener?.actualizaLista()
-        titulo.text="Partida "+idPartida
+        listener?.OnActualizaLista()
+        titulo.text = "Partida " + idPartida
         //startActivity(Intent(v.context, MenuActivity::class.java))
     }
 
@@ -341,7 +339,7 @@ class tablero_fragment : Fragment(), PartidaListener {
             .setMessage("¿Comenzar nueva partida?")
             .setPositiveButton(R.string.aceptar_dialogo)
             { dialog, which ->
-                listener?.reiniciar()
+                listener?.OnReiniciar()
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.cancelar_dialogo)

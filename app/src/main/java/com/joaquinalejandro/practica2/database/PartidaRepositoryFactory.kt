@@ -1,7 +1,6 @@
-package com.joaquinalejandro.practica2
+package com.joaquinalejandro.practica2.database
 
 import android.content.Context
-import com.joaquinalejandro.practica2.database.ERDataBase
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 
 object PartidaRepositoryFactory {

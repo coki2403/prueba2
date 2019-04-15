@@ -59,20 +59,19 @@ class PartidaLista(
     var jugadoresC: String,
     var tablero: String,
     var tabC: TableroConecta4,
-    var firstPlayerName:String,
-    var secondPlayerName:String,
-    var firstPlayerUUID:String,
-    var secondPlayerUUID:String
+    var firstPlayerName: String,
+    var secondPlayerName: String,
+    var firstPlayerUUID: String,
+    var secondPlayerUUID: String
 
 
-
-){
+) {
 
     init {
         idC = UUID.randomUUID().toString()
         dateC = Date().toString()
-        tabC = TableroConecta4(7,6)
-        tablero = TableroConecta4(7,6).toString()
+        tabC = TableroConecta4(7, 6)
+        tablero = TableroConecta4(7, 6).toString()
     }
 
     fun toJSONString(): String {
@@ -95,15 +94,16 @@ class PartidaLista(
         fun fromJSONString(string: String): PartidaLista {
             val jsonObject = JSONObject(string)
             val partida = PartidaLista(
-            idC = jsonObject.get("id") as String,
-            jugadoresC = jsonObject.get("jugadoresC") as String,
-            dateC = jsonObject.get("dateC") as String,
-            tablero = jsonObject.get("tablero") as String,
+                idC = jsonObject.get("id") as String,
+                jugadoresC = jsonObject.get("jugadoresC") as String,
+                dateC = jsonObject.get("dateC") as String,
+                tablero = jsonObject.get("tablero") as String,
                 tabC = jsonObject.get("tabC") as TableroConecta4,
                 firstPlayerName = jsonObject.get("firstPlayerName") as String,
-            firstPlayerUUID = jsonObject.get("firstPlayerUUID") as String,
-            secondPlayerName = jsonObject.get("secondPlayerName") as String,
-            secondPlayerUUID = jsonObject.get("secondPlayerUUID") as String)
+                firstPlayerUUID = jsonObject.get("firstPlayerUUID") as String,
+                secondPlayerName = jsonObject.get("secondPlayerName") as String,
+                secondPlayerUUID = jsonObject.get("secondPlayerUUID") as String
+            )
 
             return partida
         }

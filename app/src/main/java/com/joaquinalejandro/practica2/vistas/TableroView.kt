@@ -1,4 +1,4 @@
-package com.joaquinalejandro.practica2.extras
+package com.joaquinalejandro.practica2.vistas
 
 import android.content.Context
 import android.graphics.Canvas
@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import com.joaquinalejandro.practica2.extras.setColor
 import com.joaquinalejandro.practica2.model.TableroConecta4
 
 class TableroView(context: Context, attrs: AttributeSet? = null) : View(context, attrs) {

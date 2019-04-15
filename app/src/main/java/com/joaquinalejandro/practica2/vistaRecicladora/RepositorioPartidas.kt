@@ -9,11 +9,13 @@ import java.util.*
 interface IRepositorioPartidas {
     @Throws(Exception::class)
     fun open()
+
     fun close()
     interface LoginRegisterCallback {
         fun onLogin(playerUuid: String)
         fun onError(error: String)
     }
+
     fun login(playername: String, password: String, callback: LoginRegisterCallback)
 
     fun register(playername: String, password: String, callback: LoginRegisterCallback)
@@ -21,8 +23,11 @@ interface IRepositorioPartidas {
     interface BooleanCallback {
         fun onResponse(ok: Boolean)
     }
-    fun getPartidas(playeruuid: String, orderByField: String, group: String,
-                  callback: RoundsCallback)
+
+    fun getPartidas(
+        playeruuid: String, orderByField: String, group: String,
+        callback: RoundsCallback
+    )
 
     fun addPartida(round: PartidaLista, callback: BooleanCallback)
     fun actualizarPartida(round: PartidaLista, callback: BooleanCallback)
@@ -51,7 +56,7 @@ object RepositorioPartidas {
                 Date().toString(),
                 jugadores,
                 partida.guardarPartida(),
-                partida.tablero as TableroConecta4,"","","",""
+                partida.tablero as TableroConecta4, "", "", "", ""
             )
         )
         numPartidas++
@@ -65,7 +70,7 @@ object RepositorioPartidas {
         partidas[id] =
             PartidaLista(
                 id.toString(), fecha, jugadores, partida.guardarPartida(),
-                partida.tablero as TableroConecta4,"","","",""
+                partida.tablero as TableroConecta4, "", "", "", ""
             )
     }
 

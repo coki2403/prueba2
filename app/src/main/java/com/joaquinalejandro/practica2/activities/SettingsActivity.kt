@@ -34,8 +34,10 @@ class SettingsActivity : AppCompatPreferenceActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupActionBar()
-        fragmentManager.beginTransaction().replace(android.R.id.content,
-            GeneralPreferenceFragment()).commit()
+        fragmentManager.beginTransaction().replace(
+            android.R.id.content,
+            GeneralPreferenceFragment()
+        ).commit()
     }
 
     /**
@@ -200,11 +202,11 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             editor.commit()
         }
 
-        fun setPlayerUUID(context:Context, id:String){
+        fun setPlayerUUID(context: Context, id: String) {
 
         }
 
-        fun setPlayerName(context:Context, email:String){
+        fun setPlayerName(context: Context, email: String) {
 
         }
 

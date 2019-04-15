@@ -24,7 +24,7 @@ import android.widget.TextView
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
-import com.joaquinalejandro.practica2.PartidaRepositoryFactory
+import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 
@@ -38,6 +38,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private var mAuthTask: UserLoginTask? = null
+
     private fun attempt(type: String) {
         val repository = PartidaRepositoryFactory.createRepository(this)
         val loginRegisterCallback = object : IRepositorioPartidas.LoginRegisterCallback {
@@ -45,11 +46,14 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                 SettingsActivity.setPlayerUUID(this@LoginActivity, playerUuid)
                 SettingsActivity.setPlayerName(this@LoginActivity, email.text.toString())
                 startActivity(
-                    Intent(this@LoginActivity,
-                    MenuActivity::class.java)
+                    Intent(
+                        this@LoginActivity,
+                        MenuActivity::class.java
+                    )
                 )
                 finish()
             }
+
             override fun onError(error: String) {
                 email.error = getString(R.string.error_invalid_email)
                 password.error = getString(R.string.error_incorrect_password)
@@ -57,10 +61,14 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             }
         }
         when (type) {
-            "login" -> repository?.login(email.text.toString(),
-                password.text.toString(), loginRegisterCallback)
-            "register" -> repository?.register(email.text.toString(),
-                password.text.toString(), loginRegisterCallback)
+            "login" -> repository?.login(
+                email.text.toString(),
+                password.text.toString(), loginRegisterCallback
+            )
+            "register" -> repository?.register(
+                email.text.toString(),
+                password.text.toString(), loginRegisterCallback
+            )
         }
     }
 

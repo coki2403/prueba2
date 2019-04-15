@@ -18,8 +18,10 @@ class RoundCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
             val title = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.TITLE))
             val size = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.SIZE))
             val board = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.BOARD))
-            val round = PartidaLista(rounduuid,date,"jugadores",board,
-                TableroConecta4(0,0),"Random",playername,"Random",playeruuid)
+            val round = PartidaLista(
+                rounduuid, date, "jugadores", board,
+                TableroConecta4(0, 0), "Random", playername, "Random", playeruuid
+            )
             round.firstPlayerName = "Random"
             round.firstPlayerUUID = "Random"
             round.secondPlayerName = playername
