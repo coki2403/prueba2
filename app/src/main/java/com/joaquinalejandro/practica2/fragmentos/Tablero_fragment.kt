@@ -21,6 +21,7 @@ import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
 import android.support.v7.app.AlertDialog
 import com.joaquinalejandro.practica2.activities.SettingsActivity
+import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -125,8 +126,8 @@ class tablero_fragment : Fragment(), PartidaListener {
     }
 
     interface OnTableroFragmentInteractionListener {
-        fun OnReiniciar()
-        fun OnActualizaLista()
+        fun onReiniciar()
+        fun onActualizaLista()
     }
 
 
@@ -134,11 +135,17 @@ class tablero_fragment : Fragment(), PartidaListener {
         super.onCreate(savedInstanceState)
         arguments?.let {
             idCarga = it.getString(ARG_PARAM1)
+            //partida = PartidaLista.fromJSONString(it.getString(ARG_PARAM1))
         }
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //partida_id.text = "${partida.id}"
+        //if (savedInstanceState != null) {
+            //partida.Tablero.stringToTablero(savedInstanceState.getString(BOARDSTRING))
+        //}
 
     }
 
@@ -161,7 +168,7 @@ class tablero_fragment : Fragment(), PartidaListener {
          * @param param2 Parameter 2.
          * @return A new instance of fragment tablero_fragment.
          */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(param1: String) =
             tablero_fragment().apply {
@@ -294,7 +301,7 @@ class tablero_fragment : Fragment(), PartidaListener {
         col5?.setOnClickListener(jugador)
         col6?.setOnClickListener(jugador)
         col7?.setOnClickListener(jugador)
-        reinicio.setOnClickListener({ listener?.OnReiniciar() })
+        reinicio.setOnClickListener({ listener?.onReiniciar() })
 
 
     }
@@ -306,7 +313,7 @@ class tablero_fragment : Fragment(), PartidaListener {
         } else {
             RepositorioPartidas.actualizarPartida(idPartida, partida)
         }
-        listener?.OnActualizaLista()
+        listener?.onActualizaLista()
         titulo.text = "Partida " + idPartida
         //startActivity(Intent(v.context, MenuActivity::class.java))
     }
@@ -338,12 +345,12 @@ class tablero_fragment : Fragment(), PartidaListener {
         builder.setTitle(R.string.tiutlo_dialogo)
             .setMessage("¿Comenzar nueva partida?")
             .setPositiveButton(R.string.aceptar_dialogo)
-            { dialog, which ->
-                listener?.OnReiniciar()
+            { dialog, _->
+                listener?.onReiniciar()
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.cancelar_dialogo)
-            { dialog, which ->
+            { dialog, _ ->
                 dialog.dismiss()
             }
 

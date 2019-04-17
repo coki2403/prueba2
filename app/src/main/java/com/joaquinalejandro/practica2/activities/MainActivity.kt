@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
     }
 
 
-    override fun OnReiniciar() {
+    override fun onReiniciar() {
         if (findViewById<FrameLayout>(R.id.fragment_container_tablero) != null) {
             val fm = supportFragmentManager
             val tableroFrag: tablero_fragment
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
 
     }
 
-    override fun OnActualizaLista() {
+    override fun onActualizaLista() {
         val fm = supportFragmentManager
         if (findViewById<FrameLayout>(R.id.fragment_container_lista) != null) {
             fm.executeTransaction {

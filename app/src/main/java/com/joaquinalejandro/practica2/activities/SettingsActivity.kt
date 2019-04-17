@@ -201,6 +201,13 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             editor.putInt(SettingsActivity.TABLERO_FILAS_KEY, size)
             editor.commit()
         }
+        fun getPlayerUUID(context: Context) {
+
+        }
+
+        fun getPlayerName(context: Context) {
+
+        }
 
         fun setPlayerUUID(context: Context, id: String) {
 

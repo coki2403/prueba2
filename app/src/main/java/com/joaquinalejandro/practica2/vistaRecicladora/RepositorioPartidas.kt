@@ -39,6 +39,8 @@ interface IRepositorioPartidas {
 
 
 object RepositorioPartidas {
+
+
     val partidas = ArrayList<PartidaLista>()
     var numPartidas = 0
 
@@ -79,5 +81,9 @@ object RepositorioPartidas {
         return partida.tablero
 
     }
+
+
+
+
 
 }

@@ -1,7 +1,6 @@
 package com.joaquinalejandro.practica2.fragmentos
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
@@ -15,7 +14,7 @@ import com.joaquinalejandro.practica2.vistaRecicladora.PartidaAdapter
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
-import com.joaquinalejandro.practica2.activities.MainActivity
+import es.uam.eps.multij.Partida
 import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 
@@ -36,6 +35,13 @@ private const val ARG_PARAM2 = "param2"
 class lista_fragment : Fragment() {
 
     var listener: OnPartidaListaFragmentInteractionListener? = null
+
+    interface OnRoundListFragmentInteractionListener {
+        fun onRoundSelected(round: Partida)
+        fun onPreferenceSelected()
+        fun onNewRoundAdded()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

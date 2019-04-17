@@ -9,7 +9,6 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
 
     var tablero = ArrayList<ArrayList<Int>>()
 
-
     fun getTablero(fil: Int, col: Int): Int {
         return tablero[fil][col]
     }
@@ -22,8 +21,6 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
                 tablero[i].add(0)
             }
         }
-
-
 
         estado = EN_CURSO
     }
@@ -40,18 +37,8 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
         numJugadas = n
     }
 
-
-
     override fun toString(): String {
         var stringTablero = ""
-
-
-        stringTablero += "\n╔"
-        for (i in 0 until columnas) {
-            stringTablero += "══"
-        }
-        stringTablero += "╗\n"
-
 
         for (i in 0 until filas) {
 
@@ -72,15 +59,6 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
             }
             stringTablero += "   \n"
         }
-
-
-        stringTablero += "╚"
-        for (i in 0 until columnas) {
-            stringTablero += "══"
-        }
-        stringTablero += "╝"
-
-
 
         return stringTablero
     }
@@ -140,13 +118,18 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
     private fun movGanador(f: Int, c: Int): Boolean {
         val ficha = tablero[f][c].toString()
 
-        //comprobar diagonal: /
+        return comprobarDiagonalIzquierda(f,c, ficha) or
+                comprobarDiagonalDerecha(f,c, ficha)  or
+                comprobarHorizontal(f,c, ficha)       or
+                comprobarVertical(f,c, ficha)
+    }
+
+    fun comprobarDiagonalIzquierda(f:Int, c:Int, ficha:String) : Boolean{
+
         var cont = 0
         var posFil = f
         var posCol = c
-        // primero hacia abajo
-        while (posFil < filas && posCol >= 0) {
-            //println(posFil.toString() + "--" + posCol.toString())
+        while (posFil < filas && posCol >= 0) { // primero hacia abajo
             if (tablero[posFil][posCol].toString().equals(ficha)) {
                 cont++
             } else {
@@ -156,13 +139,11 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
 
             posFil++
             posCol--
-
         }
-        // segundo hacia arriba
+
         posFil = f - 1
         posCol = c + 1
-        while (posFil >= 0 && posCol < filas) {
-            //println(posFil.toString() + "--" + posCol.toString())
+        while (posFil >= 0 && posCol < filas) { // segundo hacia arriba
             if (tablero[posFil][posCol].toString().equals(ficha)) {
                 cont++
             } else {
@@ -172,21 +153,18 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
 
             posFil--
             posCol++
-
         }
         if (cont >= 4)
             return true
+        return false
+    }
 
-        //comprobar diagonal: \
+    fun comprobarDiagonalDerecha(f:Int, c:Int, ficha:String) : Boolean{
 
-        cont = 0
-        posFil = f
-        posCol = c
-
-        // primero hacia abajo
-
-        while (posFil < filas && posCol < columnas) {
-            //println(posFil.toString() + "--" + posCol.toString())
+        var cont = 0
+        var posFil = f
+        var posCol = c
+        while (posFil < filas && posCol < columnas) { // primero hacia abajo
             if (tablero[posFil][posCol].toString().equals(ficha)) {
                 cont++
             } else {
@@ -198,13 +176,10 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
             posCol++
 
         }
-
-        // segundo hacia arriba
 
         posFil = f - 1
         posCol = c - 1
-        while (posFil >= 0 && posCol >= 0) {
-            //println(posFil.toString() + "--" + posCol.toString())
+        while (posFil >= 0 && posCol >= 0) { // segundo hacia arriba
             if (tablero[posFil][posCol].toString().equals(ficha)) {
                 cont++
             } else {
@@ -218,71 +193,59 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
         }
         if (cont >= 4)
             return true
+        return false
+    }
 
+    fun comprobarHorizontal(f:Int, c:Int, ficha:String) : Boolean{
 
-        //comprobar horizontal: -
-
-        cont = 0
-        posFil = f
-        posCol = c
-        // primero hacia derecha
-        while (posCol < columnas) {
-            //println(posFil.toString() + "--" + posCol.toString())
+        var cont = 0
+        var posFil = f
+        var posCol = c
+        while (posCol < columnas) { // primero hacia derecha
             if (tablero[posFil][posCol].toString().equals(ficha)) {
                 cont++
             } else {
 
                 break
             }
-
             posCol++
-
         }
-
-        // segundo hacia izquierda
 
         posFil = f
         posCol = c - 1
-        while (posCol >= 0) {
-            //println(posFil.toString() + "--" + posCol.toString())
+        while (posCol >= 0) { // segundo hacia izquierda
             if (tablero[posFil][posCol].toString().equals(ficha)) {
                 cont++
             } else {
 
                 break
             }
-
             posCol--
-
         }
         if (cont >= 4)
             return true
+        return false
+    }
 
-        //comprobar vertical(solo hacia abajo): |
-        cont = 0
-        posFil = f
-        posCol = c
+    fun comprobarVertical(f:Int, c:Int, ficha:String) : Boolean{
 
-        while (posFil < filas) {
-            //println(posFil.toString() + "--" + posCol.toString())
+        var cont = 0
+        var posFil = f
+        var posCol = c
+        while (posFil < filas) { // solo hacia abajo
             if (tablero[posFil][posCol].toString().equals(ficha)) {
                 cont++
             } else {
 
                 break
             }
-
             posFil++
 
         }
         if (cont >= 4)
             return true
-
-
         return false
-
     }
-
 
     override fun esValido(m: Movimiento?): Boolean {
         val posicion = m.toString().toInt()
@@ -312,10 +275,10 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
             str += "|" //caracter fin de linea
         }
 
-        str += estado
-        str += "|"
-        str += turno
-        str += "|"
+        //str += estado
+        //str += "|"
+        //str += turno
+        //str += "|"
 
         return str
     }
@@ -332,8 +295,6 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
                 tablero[i].add(cad.toCharArray()[j].toInt() - 48) //viene en ascii restamos 48 para obtener nuestro numero
             }
         }
-
-
     }
 
 

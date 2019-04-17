@@ -4,15 +4,22 @@ package com.joaquinalejandro.practica2.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.widget.FrameLayout
 import com.joaquinalejandro.practica2.*
+import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.extras.executeTransaction
 import com.joaquinalejandro.practica2.fragmentos.lista_fragment
 import com.joaquinalejandro.practica2.fragmentos.tablero_fragment
+import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
+import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
+import es.uam.eps.multij.Partida
 
 
-class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentInteractionListener {
+class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentInteractionListener,
+    tablero_fragment.OnTableroFragmentInteractionListener {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,12 +62,67 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
 
     }
 
+    override fun onReiniciar() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onActualizaLista() {
+        //val repository = RepositorioPartidas.createRepository(this)
+        val callback = object : IRepositorioPartidas.BooleanCallback {
+            override fun onResponse(response: Boolean) {
+                if (response == true) {
+                    //round_recycler_view.update(
+                    //SettingsActivity.getPlayerUUID(baseContext),
+                    //{ partida :PartidaLista -> onPartidaSelected(partida) }
+                    //)
+                } else
+                    Snackbar.make(
+                        findViewById(R.id.title),
+                        R.string.error_updating_round,
+                        Snackbar.LENGTH_LONG
+                    ).show()
+            }
+        }
+        //repository?.actualizarPartida(partida, callback)
+    }
+
+
     override fun onPreferenceSelected() {
 
     }
 
     override fun onNewRoundAdded() {
+        /*
 
+        val partida = PartidaLista(idC, dateC, jugadoresC, tablero, tabC,
+            "Random",
+            SettingsActivity.getPlayerName(this).toString(),
+            "Random",
+            SettingsActivity.getPlayerUUID(this).toString()
+
+            )
+
+        val repository = PartidaRepositoryFactory.createRepository(this)
+        val callback = object : RepositorioPartidas.BooleanCallback {
+            override fun onResponse(response: Boolean) {
+                if (response == false)
+                    Snackbar.make(findViewById(R.id.round_recycler_view),
+                        R.string.error_adding_round, Snackbar.LENGTH_LONG).show()
+                else {
+                    Snackbar.make(findViewById(R.id.round_recycler_view),
+                        "New " + round.title + " added", Snackbar.LENGTH_LONG).show()
+                    val fragmentManager = supportFragmentManager
+                    val roundListFragment = fragmentManager.findFragmentById(R.id.fragment_container)
+                                as RoundListFragment
+                    roundListFragment.recyclerView.update(
+                        SettingsActivity.getPlayerUUID(baseContext),
+                        { round -> onRoundSelected(round) }
+                    )
+                }
+            }
+        }
+        repository?.addPartida(round, callback)
+        */
     }
 
 

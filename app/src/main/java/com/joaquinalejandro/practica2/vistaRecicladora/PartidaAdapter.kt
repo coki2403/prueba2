@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.model.TableroConecta4
+import es.uam.eps.multij.Partida
 import org.json.JSONObject
 import java.util.*
 
@@ -16,10 +17,10 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             Snackbar.LENGTH_SHORT).show()
     }*/
 
-    lateinit var idTextView: TextView
-    lateinit var jugadoresTextView: TextView
-    lateinit var dateTextView: TextView
-    lateinit var tab: TextView
+    var idTextView: TextView
+    var jugadoresTextView: TextView
+    var dateTextView: TextView
+    var tab: TextView
 
     init {
         idTextView = itemView.findViewById(R.id.list_item_id) as TextView
@@ -39,7 +40,7 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 }
 
-class PartidaAdapter(val partidas: ArrayList<PartidaLista>, val listener: (PartidaLista) -> Unit) :
+class PartidaAdapter(var partidas: List<PartidaLista>, val listener: (PartidaLista) -> Unit) :
     RecyclerView.Adapter<PartidaHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartidaHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

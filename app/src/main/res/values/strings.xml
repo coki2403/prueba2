@@ -102,6 +102,9 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="error_updating_round">Error updating Round</string>
+    <string name="error_adding_round">Error adding Round</string>
+
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
 
 
