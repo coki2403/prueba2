@@ -179,6 +179,7 @@ class tablero_fragment : Fragment(), PartidaListener {
     }
 
     /*  Aqui empieza la actividad del tablero */
+
     var ids: Array<Array<ImageView>>? = null
     var filas = 6
     var columnas = 7

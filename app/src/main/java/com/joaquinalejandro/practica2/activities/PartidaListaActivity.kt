@@ -9,12 +9,14 @@ import android.widget.FrameLayout
 import com.joaquinalejandro.practica2.*
 import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.extras.executeTransaction
+import com.joaquinalejandro.practica2.extras.update
 import com.joaquinalejandro.practica2.fragmentos.lista_fragment
 import com.joaquinalejandro.practica2.fragmentos.tablero_fragment
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
 import es.uam.eps.multij.Partida
+import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 
 class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentInteractionListener,
@@ -92,9 +94,9 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
     }
 
     override fun onNewRoundAdded() {
-        /*
 
-        val partida = PartidaLista(idC, dateC, jugadoresC, tablero, tabC,
+
+        val partida = PartidaLista(//idC, dateC, jugadoresC, tablero, tabC,
             "Random",
             SettingsActivity.getPlayerName(this).toString(),
             "Random",
@@ -103,26 +105,26 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
             )
 
         val repository = PartidaRepositoryFactory.createRepository(this)
-        val callback = object : RepositorioPartidas.BooleanCallback {
+        val callback = object : IRepositorioPartidas.BooleanCallback {
             override fun onResponse(response: Boolean) {
                 if (response == false)
-                    Snackbar.make(findViewById(R.id.round_recycler_view),
+                    Snackbar.make(findViewById(R.id.recyclerView),
                         R.string.error_adding_round, Snackbar.LENGTH_LONG).show()
                 else {
-                    Snackbar.make(findViewById(R.id.round_recycler_view),
-                        "New " + round.title + " added", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(findViewById(R.id.recyclerView),
+                        "New " + partida.idC + " added", Snackbar.LENGTH_LONG).show()
                     val fragmentManager = supportFragmentManager
                     val roundListFragment = fragmentManager.findFragmentById(R.id.fragment_container)
-                                as RoundListFragment
+                                as lista_fragment
                     roundListFragment.recyclerView.update(
-                        SettingsActivity.getPlayerUUID(baseContext),
-                        { round -> onRoundSelected(round) }
+                        SettingsActivity.getPlayerUUID(baseContext).toString(),
+                        { partida -> onPartidaSelected(partida) }
                     )
                 }
             }
         }
-        repository?.addPartida(round, callback)
-        */
+        repository?.addPartida(partida, callback)
+
     }
 
 

@@ -13,7 +13,11 @@ import android.widget.TextView
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaAdapter
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import com.joaquinalejandro.practica2.R
+import com.joaquinalejandro.practica2.activities.ControladorPlayer
+import com.joaquinalejandro.practica2.model.TableroConecta4
 import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
+import es.uam.eps.multij.Jugador
+import es.uam.eps.multij.JugadorAleatorio
 import es.uam.eps.multij.Partida
 import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
@@ -58,6 +62,20 @@ class lista_fragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             itemAnimator = DefaultItemAnimator()
         }
+
+        crear.setOnClickListener({
+            val listaJugadores = ArrayList<Jugador>()
+
+            val randomPlayer = JugadorAleatorio("Maquina")
+            val jugadorHumano = ControladorPlayer()
+            listaJugadores.add(jugadorHumano)
+            listaJugadores.add(randomPlayer)
+            var tablero = TableroConecta4(7, 6)
+            var partida = Partida(tablero, listaJugadores)
+            RepositorioPartidas.addPartida(partida)
+            updateUI()
+
+        })
     }
 
     override fun onAttach(context: Context?) {
