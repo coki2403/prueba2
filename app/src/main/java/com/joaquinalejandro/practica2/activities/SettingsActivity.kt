@@ -175,6 +175,8 @@ class SettingsActivity : AppCompatPreferenceActivity() {
         val TABLERO_FILAS_KEY = "num_columnas"
         val TABLERO_FILAS_DEFAULT = "6"
 
+
+
         fun getTableroColumnas(context: Context): String {
             return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(TABLERO_COLUMNAS_KEY, TABLERO_COLUMNAS_DEFAULT)
@@ -201,20 +203,38 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             editor.putInt(SettingsActivity.TABLERO_FILAS_KEY, size)
             editor.commit()
         }
-        fun getPlayerUUID(context: Context) {
 
+
+        val TABLERO_NAME_KEY = "player_name"
+        val TABLERO_NAME_DEFAULT = "player"
+
+        val TABLERO_UUID_KEY = "player_name"
+        val TABLERO_UUID_DEFAULT = "uuid"
+
+        fun getPlayerUUID(context: Context) :String {
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(TABLERO_NAME_KEY, TABLERO_UUID_DEFAULT)
         }
 
-        fun getPlayerName(context: Context) {
-
+        fun getPlayerName(context: Context):String {
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(TABLERO_UUID_KEY, TABLERO_NAME_DEFAULT)
         }
 
         fun setPlayerUUID(context: Context, id: String) {
-
+            val sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context)
+            val editor = sharedPreferences.edit()
+            editor.putString(SettingsActivity.TABLERO_UUID_KEY, id)
+            editor.commit()
         }
 
         fun setPlayerName(context: Context, email: String) {
-
+            val sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context)
+            val editor = sharedPreferences.edit()
+            editor.putString(SettingsActivity.TABLERO_NAME_KEY, email)
+            editor.commit()
         }
 
         /**

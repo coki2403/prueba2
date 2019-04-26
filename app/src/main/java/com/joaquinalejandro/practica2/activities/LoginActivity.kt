@@ -79,14 +79,23 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         populateAutoComplete()
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
-                attemptLogin()
+                //attemptLogin()
                 return@OnEditorActionListener true
             }
             false
         })
 
-        email_sign_in_button.setOnClickListener { attemptLogin() }
-        email_register_button.setOnClickListener { attemptLogin() }
+        email_sign_in_button.setOnClickListener { attemptLogin("login") }
+        email_register_button.setOnClickListener { attemptLogin("register") }
+        if(SettingsActivity.getPlayerName(this)!="" && SettingsActivity.getPlayerUUID(this)!=""){
+            email_sesion.text=SettingsActivity.getPlayerName(this)
+            uuid_sesion.text=SettingsActivity.getPlayerUUID(this)
+        }else{
+
+        }
+        cerrarSesion.setOnClickListener({SettingsActivity.setPlayerName(this,"")
+            SettingsActivity.setPlayerName(this,"")})
+
     }
 
     private fun populateAutoComplete() {
@@ -134,7 +143,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private fun attemptLogin() {
+    private fun attemptLogin(type: String) {
         if (mAuthTask != null) {
             return
         }
@@ -178,7 +187,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             showProgress(true)
             mAuthTask = UserLoginTask(emailStr, passwordStr)
             mAuthTask!!.execute(null as Void?)
-            attempt("login") //por ejemplo
+            attempt(type)
         }
     }
 
