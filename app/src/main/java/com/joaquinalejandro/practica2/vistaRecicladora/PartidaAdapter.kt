@@ -31,12 +31,12 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
     fun vincularPartida(partida: PartidaLista, listener: (PartidaLista) -> Unit) {
-        idTextView.text = partida.idC
-
-        jugadoresTextView.text = partida.jugadoresC
-        dateTextView.text = partida.dateC.substringBefore("GMT")
+        idTextView.text = partida.id
+        val str=partida.firstPlayerName+" vs "+partida.secondPlayerName
+        jugadoresTextView.text = str
+        dateTextView.text = partida.date.substringBefore("GMT")
         itemView.setOnClickListener({ listener(partida) })
-        tab.text = partida.tabC.toString()
+        tab.text = partida.board.toString()
     }
 }
 
@@ -54,35 +54,38 @@ class PartidaAdapter(var partidas: List<PartidaLista>, val listener: (PartidaLis
     }
 }
 
-class PartidaLista(
-    var idC: String,
-    var dateC: String,
-    var jugadoresC: String,
-    var tablero: String,
-    var tabC: TableroConecta4,
-    var firstPlayerName: String,
-    var secondPlayerName: String,
-    var firstPlayerUUID: String,
-    var secondPlayerUUID: String
+class PartidaLista(val fil: Int,val col: Int ){
 
+    var id: String
+    var title: String
+    var date: String
+    lateinit var board: String
+    lateinit var firstPlayerName: String
+    lateinit var firstPlayerUUID: String
+    lateinit var secondPlayerName: String
+    lateinit var secondPlayerUUID: String
 
-) {
 
     init {
-        idC = UUID.randomUUID().toString()
+        /*idC = UUID.randomUUID().toString()
         dateC = Date().toString()
         tabC = TableroConecta4(7, 6)
-        tablero = TableroConecta4(7, 6).toString()
+        tablero = TableroConecta4(7, 6).toString()*/
+
+        id = UUID.randomUUID().toString()
+        title = "ROUND ${id.toString().substring(19, 23).toUpperCase()}"
+        date = Date().toString()
     }
 
     fun toJSONString(): String {
 
         val json = JSONObject()
-        json.put("id", idC)
-        json.put("jugadoresC", jugadoresC)
-        json.put("dateC", dateC)
-        json.put("tablero", tablero)
-        json.put("tabC", tabC)
+        json.put("id", id)
+        json.put("title", title)
+        json.put("date", date)
+        json.put("filas", fil)
+        json.put("columnas", col)
+        json.put("boardString", board)
         json.put("firstPlayerName", firstPlayerName)
         json.put("firstPlayerUUID", firstPlayerUUID)
         json.put("secondPlayerName", secondPlayerName)
@@ -94,19 +97,16 @@ class PartidaLista(
 
         fun fromJSONString(string: String): PartidaLista {
             val jsonObject = JSONObject(string)
-            val partida = PartidaLista(
-                idC = jsonObject.get("id") as String,
-                jugadoresC = jsonObject.get("jugadoresC") as String,
-                dateC = jsonObject.get("dateC") as String,
-                tablero = jsonObject.get("tablero") as String,
-                tabC = jsonObject.get("tabC") as TableroConecta4,
-                firstPlayerName = jsonObject.get("firstPlayerName") as String,
-                firstPlayerUUID = jsonObject.get("firstPlayerUUID") as String,
-                secondPlayerName = jsonObject.get("secondPlayerName") as String,
-                secondPlayerUUID = jsonObject.get("secondPlayerUUID") as String
-            )
-
-            return partida
+            val round = PartidaLista(jsonObject.get("filas") as Int,jsonObject.get("columnas") as Int)
+            round.id = jsonObject.get("id") as String
+            round.title = jsonObject.get("title") as String
+            round.date = jsonObject.get("date") as String
+            round.board=jsonObject.get("boardString") as String
+            round.firstPlayerName = jsonObject.get("firstPlayerName") as String
+            round.firstPlayerUUID = jsonObject.get("firstPlayerUUID") as String
+            round.secondPlayerName = jsonObject.get("secondPlayerName") as String
+            round.secondPlayerUUID = jsonObject.get("secondPlayerUUID") as String
+            return round
         }
     }
 }

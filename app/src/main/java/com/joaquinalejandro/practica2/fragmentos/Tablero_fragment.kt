@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.joaquinalejandro.practica2.R
-import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
 import com.joaquinalejandro.practica2.activities.ControladorPlayer
 import com.joaquinalejandro.practica2.activities.MenuActivity
 import com.joaquinalejandro.practica2.activities.PartidaListaActivity
@@ -21,6 +20,9 @@ import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
 import android.support.v7.app.AlertDialog
 import com.joaquinalejandro.practica2.activities.SettingsActivity
+import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
+import com.joaquinalejandro.practica2.model.guardarPartida
+import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 
 
@@ -41,6 +43,7 @@ class tablero_fragment : Fragment(), PartidaListener {
     // TODO: Rename and change types of parameters
     private var idCarga: String? = null
     var listener: OnTableroFragmentInteractionListener? = null
+    lateinit var partidaLista: PartidaLista
 
 
     override fun onAttach(context: Context?) {
@@ -127,7 +130,7 @@ class tablero_fragment : Fragment(), PartidaListener {
 
     interface OnTableroFragmentInteractionListener {
         fun onReiniciar()
-        fun onActualizaLista()
+        fun onActualizaLista(partidaLista: PartidaLista)
     }
 
 
@@ -135,6 +138,8 @@ class tablero_fragment : Fragment(), PartidaListener {
         super.onCreate(savedInstanceState)
         arguments?.let {
             idCarga = it.getString(ARG_PARAM1)
+            if(idCarga!="-1")
+              partidaLista = PartidaLista.fromJSONString(it.getString(ARG_PARAM1))
             //partida = PartidaLista.fromJSONString(it.getString(ARG_PARAM1))
         }
     }
@@ -256,7 +261,7 @@ class tablero_fragment : Fragment(), PartidaListener {
     }*/
 
     fun cargarPartida() {
-        val partidaString = RepositorioPartidas.getPartida(idPartida)
+        val partidaString = partidaLista.board
         val tablero = partidaString.split(",".toRegex())[2]
         val estado = partidaString.split(",".toRegex())[3]
         val turno = partidaString.split(",".toRegex())[4]
@@ -310,11 +315,30 @@ class tablero_fragment : Fragment(), PartidaListener {
 
     fun guardarPartida() {
         if (idPartida == -1) {
-            idPartida = RepositorioPartidas.addPartida(partida)
-        } else {
-            RepositorioPartidas.actualizarPartida(idPartida, partida)
+            partidaLista= PartidaLista(filas,columnas)
+            partidaLista.board=partida.guardarPartida()
+            partidaLista.firstPlayerName=partida.getJugador(0).nombre
+            partidaLista.firstPlayerName=partida.getJugador(1).nombre
+            partidaLista.firstPlayerUUID=partida.getJugador(0).nombre
+            partidaLista.secondPlayerUUID=partida.getJugador(0).nombre
+
+
+            val repository = PartidaRepositoryFactory.createRepository(this.context!!)
+            val callback = object : IRepositorioPartidas.BooleanCallback {
+                override fun onResponse(response: Boolean) {
+                    if (response == true) {
+                        /*recyclerView.update(
+                            "Random",
+                            { partida -> onPartidaSelected(partida) }
+                        )*/
+                    } else
+                        println("error")
+                }
+            }
+            repository?.addPartida(partidaLista, callback)
+            idPartida=0
         }
-        listener?.onActualizaLista()
+        listener?.onActualizaLista(partidaLista)
         titulo.text = "Partida " + idPartida
         //startActivity(Intent(v.context, MenuActivity::class.java))
     }

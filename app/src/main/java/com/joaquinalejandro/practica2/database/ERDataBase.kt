@@ -64,9 +64,9 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
         val cursor = queryRounds()
 
         cursor!!.moveToFirst()
-        while (!cursor!!.isAfterLast()) {
-            val round = cursor!!.round
-            if (round.secondPlayerUUID.equals(playeruuid))
+        while (!cursor.isAfterLast()) {
+            val round = cursor.round
+            if (round.secondPlayerUUID.equals(playeruuid) || true)
                 rounds.add(round)
             cursor.moveToNext()
         }
@@ -80,17 +80,17 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
 
 
     private fun queryRounds(): RoundCursorWrapper? {
-        val sql = "SELECT " + PartidaDataBaseSchema.UserTable.Cols.PLAYERNAME + ", " +
-                PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID + ", " +
+        val sql = "SELECT " + //PartidaDataBaseSchema.UserTable.Cols.PLAYERNAME + ", " +
+                PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.ROUNDUUID + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.DATE + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.TITLE + ", " +
-                PartidaDataBaseSchema.RoundTable.Cols.SIZE + ", " +
+                PartidaDataBaseSchema.RoundTable.Cols.FILAS + ", " +
+                PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.BOARD + " " +
-                "FROM " + PartidaDataBaseSchema.UserTable.NAME + " AS p, " +
-                PartidaDataBaseSchema.RoundTable.NAME + " AS r " +
-                "WHERE " + "p." + PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID + "=" +
-                "r." + PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID + ";"
+                "FROM " + //PartidaDataBaseSchema.UserTable.NAME + " AS p, " +
+                PartidaDataBaseSchema.RoundTable.NAME + //" AS r " +"WHERE " + "p." + PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID + "=" + "r." + PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID
+                ";"
         val cursor = db!!.rawQuery(sql, null)
         return RoundCursorWrapper(cursor)
     }
@@ -104,12 +104,13 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
 
     private fun getContentValues(round: PartidaLista): ContentValues {
         val values = ContentValues()
-        values.put(PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID, round.idC)
-        values.put(PartidaDataBaseSchema.RoundTable.Cols.ROUNDUUID, round.idC)
-        values.put(PartidaDataBaseSchema.RoundTable.Cols.DATE, round.dateC)
-        values.put(PartidaDataBaseSchema.RoundTable.Cols.TITLE, round.jugadoresC)
-        values.put(PartidaDataBaseSchema.RoundTable.Cols.SIZE, round.tabC.columnas)
-        values.put(PartidaDataBaseSchema.RoundTable.Cols.BOARD, round.tablero)
+        values.put(PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID, round.secondPlayerUUID)
+        values.put(PartidaDataBaseSchema.RoundTable.Cols.ROUNDUUID, round.id)
+        values.put(PartidaDataBaseSchema.RoundTable.Cols.DATE, round.date)
+        values.put(PartidaDataBaseSchema.RoundTable.Cols.TITLE, round.title)
+        values.put(PartidaDataBaseSchema.RoundTable.Cols.FILAS, round.fil)
+        values.put(PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS, round.col)
+        values.put(PartidaDataBaseSchema.RoundTable.Cols.BOARD, round.board)
         return values
     }
 
@@ -119,9 +120,9 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
         val id = db!!.update(
             PartidaDataBaseSchema.RoundTable.NAME, values,
             PartidaDataBaseSchema.RoundTable.Cols.ROUNDUUID + " = ?",
-            arrayOf(round.idC)
-        )
+            arrayOf(round.id))
         callback.onResponse(id >= 0)
+
 
     }
 
@@ -158,7 +159,8 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
                     + PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID + ", "
                     + PartidaDataBaseSchema.RoundTable.Cols.DATE + " TEXT, "
                     + PartidaDataBaseSchema.RoundTable.Cols.TITLE + " TEXT, "
-                    + PartidaDataBaseSchema.RoundTable.Cols.SIZE + " TEXT, "
+                    + PartidaDataBaseSchema.RoundTable.Cols.FILAS + " TEXT, "
+                    + PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS + " TEXT, "
                     + PartidaDataBaseSchema.RoundTable.Cols.BOARD + " TEXT);")
             try {
                 db.execSQL(str1)

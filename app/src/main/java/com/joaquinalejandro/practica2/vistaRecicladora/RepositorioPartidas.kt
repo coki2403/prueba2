@@ -37,7 +37,7 @@ interface IRepositorioPartidas {
     }
 }
 
-
+/*
 object RepositorioPartidas {
 
 
@@ -86,4 +86,4 @@ object RepositorioPartidas {
 
 
 
-}
+}*/

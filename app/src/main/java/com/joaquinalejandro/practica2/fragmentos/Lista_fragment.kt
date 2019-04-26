@@ -2,6 +2,7 @@ package com.joaquinalejandro.practica2.fragmentos
 
 import android.content.Context
 import android.os.Bundle
+import android.provider.SyncStateContract.Helpers.update
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -14,8 +15,8 @@ import com.joaquinalejandro.practica2.vistaRecicladora.PartidaAdapter
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.activities.ControladorPlayer
+import com.joaquinalejandro.practica2.extras.update
 import com.joaquinalejandro.practica2.model.TableroConecta4
-import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
 import es.uam.eps.multij.Jugador
 import es.uam.eps.multij.JugadorAleatorio
 import es.uam.eps.multij.Partida
@@ -61,9 +62,11 @@ class lista_fragment : Fragment() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(activity)
             itemAnimator = DefaultItemAnimator()
+            update("RND")
+            { round -> listener?.onPartidaSelected(round) }
         }
 
-        crear.setOnClickListener({
+        /*crear.setOnClickListener({
             val listaJugadores = ArrayList<Jugador>()
 
             val randomPlayer = JugadorAleatorio("Maquina")
@@ -75,7 +78,7 @@ class lista_fragment : Fragment() {
             RepositorioPartidas.addPartida(partida)
             updateUI()
 
-        })
+        })*/
     }
 
     override fun onAttach(context: Context?) {
@@ -139,7 +142,9 @@ class lista_fragment : Fragment() {
     }
 
     fun updateUI() {
-        recyclerView.apply {
+        recyclerView.update("RND")
+        { round -> listener?.onPartidaSelected(round) }
+        /*recyclerView.apply {
             if (adapter == null)
                 adapter =
                     PartidaAdapter(RepositorioPartidas.partidas) { partida ->
@@ -153,6 +158,6 @@ class lista_fragment : Fragment() {
         if (RepositorioPartidas.partidas.size == 0)
             sin_partidas.visibility = TextView.VISIBLE
         else
-            sin_partidas.visibility = TextView.INVISIBLE
+            sin_partidas.visibility = TextView.INVISIBLE*/
     }
 }

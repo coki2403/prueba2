@@ -19,7 +19,8 @@ object PartidaDataBaseSchema {
             val ROUNDUUID = "rounduuid"
             val DATE = "date"
             val TITLE = "title"
-            val SIZE = "size"
+            val FILAS = "filas"
+            val COLUMNAS = "columnas"
             val BOARD = "board"
         }
     }

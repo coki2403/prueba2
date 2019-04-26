@@ -16,20 +16,21 @@ class RoundCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
             val rounduuid = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.ROUNDUUID))
             val date = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.DATE))
             val title = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.TITLE))
-            val size = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.SIZE))
+            val filas = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.FILAS))
+            val columnas = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS))
             val board = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.BOARD))
             val round = PartidaLista(
-                rounduuid, date, "jugadores", board,
-                TableroConecta4(0, 0), "Random", playername, "Random", playeruuid
+                filas.toInt(),columnas.toInt()
             )
             round.firstPlayerName = "Random"
             round.firstPlayerUUID = "Random"
             round.secondPlayerName = playername
             round.secondPlayerUUID = playeruuid
-            round.idC = rounduuid
-            round.dateC = date
+            round.id = rounduuid
+            round.date = date
+            round.title = title
             try {
-                round.tabC.stringToTablero(board)
+                round.board=board
             } catch (e: ExcepcionJuego) {
                 Log.d(DEBUG, "Error turning string into tablero")
             }

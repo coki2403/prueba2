@@ -10,7 +10,6 @@ import com.joaquinalejandro.practica2.model.TableroConecta4
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaAdapter
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
-import com.joaquinalejandro.practica2.vistaRecicladora.RepositorioPartidas
 import es.uam.eps.multij.Partida
 
 
@@ -46,5 +45,7 @@ fun RecyclerView.update(userName: String, onClickListener: (PartidaLista) -> Uni
     }
     repository?.getPartidas(userName, "", "", roundsCallback)
 }
+
+
 
 
