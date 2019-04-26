@@ -15,6 +15,7 @@ import com.joaquinalejandro.practica2.fragmentos.tablero_fragment
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import es.uam.eps.multij.Partida
+import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 
@@ -35,6 +36,7 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
                 )
             }
         }
+
 
     }
 

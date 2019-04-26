@@ -23,7 +23,8 @@
                 android:label="@string/title_activity_settings2"
                 android:parentActivityName=".activities.MenuActivity">
         </activity>
-        <activity android:name=".activities.MenuActivity">
+        <activity android:name=".activities.MenuActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

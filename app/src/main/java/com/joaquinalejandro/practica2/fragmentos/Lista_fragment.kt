@@ -6,10 +6,7 @@ import android.provider.SyncStateContract.Helpers.update
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaAdapter
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
@@ -122,6 +119,7 @@ class lista_fragment : Fragment() {
         return true
 
     }
+
 
 
     /*fun onPartidaSelected(partida: PartidaLista) {

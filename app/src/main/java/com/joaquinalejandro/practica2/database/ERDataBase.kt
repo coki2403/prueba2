@@ -80,17 +80,18 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
 
 
     private fun queryRounds(): RoundCursorWrapper? {
-        val sql = "SELECT " + //PartidaDataBaseSchema.UserTable.Cols.PLAYERNAME + ", " +
-                PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID + ", " +
+        val sql = "SELECT " + PartidaDataBaseSchema.UserTable.Cols.PLAYERNAME + ", " +
+                PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.ROUNDUUID + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.DATE + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.TITLE + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.FILAS + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.BOARD + " " +
-                "FROM " + //PartidaDataBaseSchema.UserTable.NAME + " AS p, " +
-                PartidaDataBaseSchema.RoundTable.NAME + //" AS r " +"WHERE " + "p." + PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID + "=" + "r." + PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID
-                ";"
+                "FROM " + PartidaDataBaseSchema.UserTable.NAME + " AS p, " +
+                PartidaDataBaseSchema.RoundTable.NAME + " AS r " +"WHERE " +
+                "p." + PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID + "=" +
+                "r." + PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID+ ";"
         val cursor = db!!.rawQuery(sql, null)
         return RoundCursorWrapper(cursor)
     }

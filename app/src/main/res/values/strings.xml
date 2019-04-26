@@ -18,7 +18,7 @@
     <string name="cancelar_dialogo">NO</string>
     <string name="sin_partidas">No hay partidas disponibles</string>
     <string name="title_activity_settings2">Settings</string>
-
+    <string name="IniciarSesion">Iniciar Sesion</string>
     <string name="action_register">Registrarse</string>
 
     <!-- Strings related to Settings -->
