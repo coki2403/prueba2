@@ -24,6 +24,7 @@ import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.model.guardarPartida
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -104,8 +105,14 @@ class tablero_fragment : Fragment(), PartidaListener {
 
         if (idPartida == -1) {
             if (idCarga != null) {
-                idPartida = idCarga.toString().toInt()
-                println("Recibido: ${idCarga}")
+                idPartida = 0
+                if(idCarga=="-1"){
+                    idPartida = -1
+                }else{
+                    partidaLista= PartidaLista.fromJSONString(idCarga.toString())
+                    println("Recibido: ${idCarga}")
+                }
+
             } else
                 idPartida = -1
         }
@@ -317,10 +324,10 @@ class tablero_fragment : Fragment(), PartidaListener {
         if (idPartida == -1) {
             partidaLista= PartidaLista(filas,columnas)
             partidaLista.board=partida.guardarPartida()
-            partidaLista.firstPlayerName=partida.getJugador(0).nombre
-            partidaLista.firstPlayerName=partida.getJugador(1).nombre
-            partidaLista.firstPlayerUUID=partida.getJugador(0).nombre
-            partidaLista.secondPlayerUUID=partida.getJugador(0).nombre
+            partidaLista.firstPlayerName=SettingsActivity.getPlayerName(context!!)
+            partidaLista.firstPlayerName="maquina"
+            partidaLista.firstPlayerUUID=SettingsActivity.getPlayerUUID(context!!)
+            partidaLista.secondPlayerUUID=SettingsActivity.getPlayerUUID(context!!)
 
 
             val repository = PartidaRepositoryFactory.createRepository(this.context!!)
@@ -338,6 +345,7 @@ class tablero_fragment : Fragment(), PartidaListener {
             repository?.addPartida(partidaLista, callback)
             idPartida=0
         }
+        partidaLista.board=partida.guardarPartida()
         listener?.onActualizaLista(partidaLista)
         titulo.text = "Partida " + idPartida
         //startActivity(Intent(v.context, MenuActivity::class.java))

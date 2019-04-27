@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
+import java.lang.Exception
 import java.util.*
 
 class ERDataBase(context: Context) : IRepositorioPartidas {
@@ -21,22 +22,26 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
 
     override fun login(playername: String, password: String, callback: IRepositorioPartidas.LoginRegisterCallback) {
         Log.d(DEBUG_TAG, "Login $playername")
-        val cursor = db!!.query(
-            PartidaDataBaseSchema.UserTable.NAME,
-            arrayOf(PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID),
-            PartidaDataBaseSchema.UserTable.Cols.PLAYERNAME + " = ? AND "
-                    + PartidaDataBaseSchema.UserTable.Cols.PLAYERPASSWORD + " = ?",
-            arrayOf(playername, password),
-            null, null, null
-        )
-        val count = cursor.count
-        val uuid =
-            if (count == 1 && cursor.moveToFirst()) cursor.getString(0) else ""
-        cursor.close()
-        if (count == 1)
-            callback.onLogin(uuid)
-        else
+        try {
+            val cursor = db!!.query(
+                PartidaDataBaseSchema.UserTable.NAME,
+                arrayOf(PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID),
+                PartidaDataBaseSchema.UserTable.Cols.PLAYERNAME + " = ? AND "
+                        + PartidaDataBaseSchema.UserTable.Cols.PLAYERPASSWORD + " = ?",
+                arrayOf(playername, password),
+                null, null, null
+            )
+            val count = cursor.count
+            val uuid =
+                if (count == 1 && cursor.moveToFirst()) cursor.getString(0) else ""
+            cursor.close()
+            if (count == 1)
+                callback.onLogin(uuid)
+            else
+                callback.onError("Username or password incorrect.")
+        }catch(e:Exception){
             callback.onError("Username or password incorrect.")
+        }
 
     }
 
@@ -46,11 +51,17 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
         values.put(PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID, uuid)
         values.put(PartidaDataBaseSchema.UserTable.Cols.PLAYERNAME, playername)
         values.put(PartidaDataBaseSchema.UserTable.Cols.PLAYERPASSWORD, password)
-        val id = db!!.insert(PartidaDataBaseSchema.UserTable.NAME, null, values)
-        if (id < 0)
+        try {
+            val id = db!!.insert(PartidaDataBaseSchema.UserTable.NAME, null, values)
+            if (id < 0)
+                callback.onError("Error inserting new player named $playername")
+            else
+                callback.onLogin(uuid)
+        }catch(e:Exception){
             callback.onError("Error inserting new player named $playername")
-        else
-            callback.onLogin(uuid)
+        }
+
+
 
     }
 

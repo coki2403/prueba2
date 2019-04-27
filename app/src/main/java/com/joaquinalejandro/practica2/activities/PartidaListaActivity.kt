@@ -57,7 +57,7 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
         } else {
             val intent = Intent(this, MainActivity::class.java)
             println("sel: ${partida.id}")
-            intent.putExtra("ID", partida.id.toInt())
+            intent.putExtra("ID", partida.toJSONString())
             println("enviado: ${intent.extras.getInt("ID")}")
             startActivity(intent)
         }

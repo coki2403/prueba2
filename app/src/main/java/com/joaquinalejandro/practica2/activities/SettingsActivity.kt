@@ -206,19 +206,19 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
 
         val TABLERO_NAME_KEY = "player_name"
-        val TABLERO_NAME_DEFAULT = "player"
+        val TABLERO_NAME_DEFAULT = ""
 
-        val TABLERO_UUID_KEY = "player_name"
-        val TABLERO_UUID_DEFAULT = "uuid"
+        val TABLERO_UUID_KEY = "uuid_name"
+        val TABLERO_UUID_DEFAULT = ""
 
         fun getPlayerUUID(context: Context) :String {
             return PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(TABLERO_NAME_KEY, TABLERO_UUID_DEFAULT)
+                .getString( TABLERO_UUID_KEY, TABLERO_UUID_DEFAULT)
         }
 
         fun getPlayerName(context: Context):String {
             return PreferenceManager.getDefaultSharedPreferences(context)
-                .getString(TABLERO_UUID_KEY, TABLERO_NAME_DEFAULT)
+                .getString(TABLERO_NAME_KEY, TABLERO_NAME_DEFAULT)
         }
 
         fun setPlayerUUID(context: Context, id: String) {

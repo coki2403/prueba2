@@ -5,6 +5,7 @@ import android.graphics.Paint
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.RecyclerView
+import com.joaquinalejandro.practica2.activities.SettingsActivity
 import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.model.TableroConecta4
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
@@ -43,7 +44,7 @@ fun RecyclerView.update(userName: String, onClickListener: (PartidaLista) -> Uni
         override fun onError(error: String) {
         }
     }
-    repository?.getPartidas(userName, "", "", roundsCallback)
+    repository?.getPartidas(SettingsActivity.getPlayerUUID(context), "", "", roundsCallback)
 }
 
 

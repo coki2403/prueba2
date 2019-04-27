@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
 
         /*Comprobacion para cargar la aprtida*/
         if (intent.extras != null) {
-            val idPartida = intent.extras.getInt("ID")
-            tableroFrag = tablero_fragment.newInstance(idPartida.toString())
+            val idPartida = intent.extras.getString("ID")
+            tableroFrag = tablero_fragment.newInstance(idPartida)
         } else {
             tableroFrag = tablero_fragment.newInstance("-1")
         }
@@ -120,6 +120,7 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
                         Snackbar.LENGTH_LONG).show()
             }
         }
+        println("ID:"+partida.id)
         repository?.actualizarPartida(partida, callback)
 
     }

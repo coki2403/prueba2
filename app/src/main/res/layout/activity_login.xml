@@ -110,12 +110,12 @@
             <TextView
                     android:text="@string/sesion_uuid"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/sesion_uuid" android:layout_weight="1"
+                    android:layout_height="wrap_content" android:id="@+id/sesion_uuid" android:layout_weight="0.5"
                     tools:text="@string/sesion_uuid" android:textSize="18sp"/>
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" android:id="@+id/uuid_sesion" android:layout_weight="5"
-                    android:textSize="18sp"/>
+                    android:textSize="12sp"/>
         </LinearLayout>
         <Button
                 android:text="@string/cerrar_sesion"

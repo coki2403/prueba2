@@ -24,6 +24,7 @@ import android.widget.TextView
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
 import android.content.Intent
+import android.opengl.Visibility
 import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
@@ -91,10 +92,11 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             email_sesion.text=SettingsActivity.getPlayerName(this)
             uuid_sesion.text=SettingsActivity.getPlayerUUID(this)
         }else{
-
+            sesion_layout.visibility=View.INVISIBLE
         }
-        cerrarSesion.setOnClickListener({SettingsActivity.setPlayerName(this,"")
-            SettingsActivity.setPlayerName(this,"")})
+        cerrarSesion.setOnClickListener{SettingsActivity.setPlayerName(this,"")
+            SettingsActivity.setPlayerName(this,"")
+            sesion_layout.visibility=View.INVISIBLE}
 
     }
 
