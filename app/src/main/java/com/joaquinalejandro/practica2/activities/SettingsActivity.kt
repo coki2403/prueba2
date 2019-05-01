@@ -291,14 +291,6 @@ class SettingsActivity : AppCompatPreferenceActivity() {
         }
 
         /**
-         * Helper method to determine if the device has an extra-large screen. For
-         * example, 10" tablets are extra-large.
-         */
-        private fun isXLargeTablet(context: Context): Boolean {
-            return context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_XLARGE
-        }
-
-        /**
          * Binds a preference's summary to its value. More specifically, when the
          * preference's value is changed, its summary (line of text below the
          * preference title) is updated to reflect the value. The summary is also
@@ -319,6 +311,26 @@ class SettingsActivity : AppCompatPreferenceActivity() {
                     .getDefaultSharedPreferences(preference.context)
                     .getString(preference.key, "")
             )
+        }
+        val BOARDSIZE_KEY = "boardsize_list"
+        val BOARDSIZE_DEFAULT = "3"
+        fun getBoardSize(context: Context): String {
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(BOARDSIZE_KEY, BOARDSIZE_DEFAULT)
+        }
+        fun setBoardsize(context: Context, size: Int) {
+            val sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context)
+            val editor = sharedPreferences.edit()
+            editor.putInt(SettingsActivity.BOARDSIZE_KEY, size)
+            editor.commit()
+        }
+        /**
+         * Helper method to determine if the device has an extra-large screen. For
+         * example, 10" tablets are extra-large.
+         */
+        private fun isXLargeTablet(context: Context): Boolean {
+            return context.resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK >= Configuration.SCREENLAYOUT_SIZE_XLARGE
         }
     }
 }

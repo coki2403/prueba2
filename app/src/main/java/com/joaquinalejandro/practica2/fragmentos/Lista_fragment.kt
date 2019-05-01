@@ -103,18 +103,18 @@ class lista_fragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        /*when (item!!.itemId) {
-            R.id.menu_item_new_round -> {
+        when (item!!.itemId) {
+            R.id.botonprueba -> {
                 listener?.onNewRoundAdded()
-                round_recycler_view.update { partida -> listener?.onPartidaSelected(partida) }
+                /*partida_recycler_view.onActualizaLista { partida:PartidaLista -> listener?.onPartidaSelected(partida) }*/
                 return true
             }
-            R.id.menu_item_settings -> {
+            R.id.botonprueba2 -> {
                 listener?.onPreferenceSelected()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
-        }*/
+        }
 
         return true
 
