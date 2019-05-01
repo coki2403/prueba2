@@ -58,7 +58,7 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
             val intent = Intent(this, MainActivity::class.java)
             println("sel: ${partida.id}")
             intent.putExtra("ID", partida.toJSONString())
-            println("enviado: ${intent.extras.getInt("ID")}")
+            /*println("enviado: ${intent.extras.getInt("ID")}")*/
             startActivity(intent)
         }
 
@@ -120,6 +120,4 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
         repository?.addPartida(partida, callback)
 
     }
-
-
 }

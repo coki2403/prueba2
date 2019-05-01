@@ -19,7 +19,7 @@ class RoundCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
             val filas = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.FILAS))
             val columnas = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS))
             val board = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.BOARD))
-            val tabImprimir = board.substringAfter("0").substringBefore(",")
+            val tabImprimir = board.substringAfter("0").substringBefore(",").replace("|", "\n")
             val round = PartidaLista(
                 filas.toInt(),columnas.toInt()
             )
