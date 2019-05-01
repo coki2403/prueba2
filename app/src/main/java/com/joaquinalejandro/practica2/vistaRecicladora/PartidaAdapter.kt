@@ -20,13 +20,15 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var idTextView: TextView
     var jugadoresTextView: TextView
     var dateTextView: TextView
-    var tab: TextView
+    /*var tab: TextView*/
+    var tabImprimir: TextView
 
     init {
         idTextView = itemView.findViewById(R.id.list_item_id) as TextView
         jugadoresTextView = itemView.findViewById(R.id.list_item_players) as TextView
         dateTextView = itemView.findViewById(R.id.list_item_date) as TextView
-        tab = itemView.findViewById(R.id.tab) as TextView
+        /*tab = itemView.findViewById(R.id.tab) as TextView*/
+        tabImprimir = itemView.findViewById(R.id.tabImprimir) as TextView
 
     }
 
@@ -36,7 +38,8 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         jugadoresTextView.text = str
         dateTextView.text = partida.date.substringBefore("GMT")
         itemView.setOnClickListener({ listener(partida) })
-        tab.text = partida.board.toString()
+        /*tab.text = partida.board.toString()*/
+        tabImprimir.text = partida.tabImprimir.toString()
     }
 }
 
@@ -59,6 +62,7 @@ class PartidaLista(val fil: Int,val col: Int ){
     var id: String
     var title: String
     var date: String
+    lateinit var tabImprimir: String
     lateinit var board: String
     lateinit var firstPlayerName: String
     lateinit var firstPlayerUUID: String
@@ -96,6 +100,7 @@ class PartidaLista(val fil: Int,val col: Int ){
     companion object {
 
         fun fromJSONString(string: String): PartidaLista {
+
             val jsonObject = JSONObject(string)
             val round = PartidaLista(jsonObject.get("filas") as Int,jsonObject.get("columnas") as Int)
             round.id = jsonObject.get("id") as String

@@ -43,14 +43,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@id/list_item_players"/>
+
     <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/tab"
-            android:layout_below="@id/list_item_players"
+            android:layout_height="wrap_content"
+            android:id="@+id/tabImprimir"
+            android:layout_below="@id/list_item_date"
             android:textAppearance="@style/TextAppearance.AppCompat"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
             android:fontFamily="monospace"
             android:textSize="12sp"
             android:textColor="@color/colorPrimary"/>
-
 </RelativeLayout>

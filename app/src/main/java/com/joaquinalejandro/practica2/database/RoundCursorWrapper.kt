@@ -19,6 +19,7 @@ class RoundCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
             val filas = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.FILAS))
             val columnas = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS))
             val board = getString(getColumnIndex(PartidaDataBaseSchema.RoundTable.Cols.BOARD))
+            val tabImprimir = board.substringAfter("0").substringBefore(",")
             val round = PartidaLista(
                 filas.toInt(),columnas.toInt()
             )
@@ -29,6 +30,7 @@ class RoundCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
             round.id = rounduuid
             round.date = date
             round.title = title
+            round.tabImprimir = tabImprimir
             try {
                 round.board=board
             } catch (e: ExcepcionJuego) {
