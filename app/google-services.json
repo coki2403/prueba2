@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "378612439645",
+    "firebase_url": "https://conecta4-f8e1b.firebaseio.com",
+    "project_id": "conecta4-f8e1b",
+    "storage_bucket": "conecta4-f8e1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378612439645:android:5d5bbdad4769cb98",
+        "android_client_info": {
+          "package_name": "com.joaquinalejandro.practica2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378612439645-4lko2jc5t954nkkk73vrubndtgrdma77.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.joaquinalejandro.practica2",
+            "certificate_hash": "e90caa7cbb0870f6eadab9db2d83fc5d00a01f7b"
+          }
+        },
+        {
+          "client_id": "378612439645-qnain09arjdbpdaldvkkkboa1fq20cdh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuaRm4glqA_KUjlEUIwkVTzvwWFAUV8X0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378612439645-qnain09arjdbpdaldvkkkboa1fq20cdh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

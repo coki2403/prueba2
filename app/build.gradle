@@ -24,6 +24,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-database:16.0.1'
+    implementation 'com.google.firebase:firebase-auth:16.0.3'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.0.0'
@@ -38,3 +41,5 @@ dependencies {
     implementation files('libs/multijugador.jar')
     implementation 'com.android.support:design:27.1.1'
 }
+
+apply plugin: 'com.google.gms.google-services'
