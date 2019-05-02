@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.CompoundButton
 import com.joaquinalejandro.practica2.R
 import kotlinx.android.synthetic.main.activity_menu.*
 
@@ -19,6 +20,19 @@ class MenuActivity : AppCompatActivity() {
         cargarpartida.setOnClickListener({ startActivity(Intent(this@MenuActivity, PartidaListaActivity::class.java)) })
         ajustes.setOnClickListener({ startActivity(Intent(this@MenuActivity, SettingsActivity::class.java)) })
         setSupportActionBar(my_toolbar)
+        online_switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                SettingsActivity.setTipoBD(this,"FIREBASE")
+                println("firebase")
+            } else {
+                SettingsActivity.setTipoBD(this,"LOCAL")
+                println("local")
+            }
+        }
+        if(SettingsActivity.getTipoBd(this)=="LOCAL"){
+            online_switch.isChecked=false
+        }else
+            online_switch.isChecked=true
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

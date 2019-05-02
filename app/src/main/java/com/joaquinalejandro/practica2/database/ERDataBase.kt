@@ -116,7 +116,7 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
 
     private fun getContentValues(round: PartidaLista): ContentValues {
         val values = ContentValues()
-        values.put(PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID, round.secondPlayerUUID)
+        values.put(PartidaDataBaseSchema.RoundTable.Cols.PLAYERUUID, round.firstPlayerUUID)
         values.put(PartidaDataBaseSchema.RoundTable.Cols.ROUNDUUID, round.id)
         values.put(PartidaDataBaseSchema.RoundTable.Cols.DATE, round.date)
         values.put(PartidaDataBaseSchema.RoundTable.Cols.TITLE, round.title)

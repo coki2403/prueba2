@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/ScrollView01"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/ScrollView01"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" >
 
@@ -12,6 +12,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context=".activities.MenuActivity">
+
+
 
             <android.support.v7.widget.Toolbar
                     android:id="@+id/my_toolbar"
@@ -43,15 +45,28 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Display2" android:fontFamily="casual"
                     android:typeface="normal" android:textStyle="bold"
                     android:textAllCaps="false" android:layout_marginTop="10dp"/>
+
+            <Switch
+                    android:layout_width="wrap_content"
+                    android:id="@+id/online_switch"
+                    android:textAlignment="center"
+                    android:splitTrack="false" android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:layout_below="@id/tituloMenu"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/online_text" tools:text="@string/online_text" android:textSize="18sp"
+                    android:lineSpacingExtra="8sp" android:showText="false" android:typeface="normal"
+            />
+
             <Button
                     android:text="@string/boton_nueva"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tituloMenu"
+                    android:layout_below="@id/online_switch"
                     android:id="@+id/nuevapartida"
                     android:layout_marginStart="40dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp" style="@style/Widget.AppCompat.Button"
+                    android:layout_marginTop="10dp" style="@style/Widget.AppCompat.Button"
                     android:background="@drawable/boton_menu" tools:text="@string/boton_nueva" android:textSize="24sp"
                     android:fontFamily="casual" android:typeface="normal" android:textStyle="bold" android:textAllCaps="true"/>
 
@@ -66,6 +81,7 @@
                     android:layout_marginTop="20dp" android:background="@drawable/boton_menu" tools:text="@string/boton_cargar"
                     android:textSize="24sp" android:fontFamily="casual" android:typeface="normal" android:textStyle="bold"
                     android:textAllCaps="true"/>
+
 
             <Button
                     android:text="@string/boton_ajustes"

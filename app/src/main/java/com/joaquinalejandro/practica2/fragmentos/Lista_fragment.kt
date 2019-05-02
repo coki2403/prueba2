@@ -102,7 +102,7 @@ class lista_fragment : Fragment() {
         fun onNewRoundAdded()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    /*override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.botonprueba -> {
                 listener?.onNewRoundAdded()
@@ -118,7 +118,7 @@ class lista_fragment : Fragment() {
 
         return true
 
-    }
+    }*/
 
 
 

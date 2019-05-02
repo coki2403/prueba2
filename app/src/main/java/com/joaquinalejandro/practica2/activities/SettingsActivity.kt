@@ -237,6 +237,29 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             editor.commit()
         }
 
+        val TIPO_BD_KEY = "tipo_bd"
+        val TIPO_BD_DEFAULT = "LOCAL" //LOCAL FIREBASE
+
+        fun setTipoBD(context:Context,tipo:String){
+            if(tipo=="LOCAL" || tipo=="FIREBASE") {
+                val sharedPreferences = PreferenceManager
+                    .getDefaultSharedPreferences(context)
+                val editor = sharedPreferences.edit()
+                editor.putString(SettingsActivity.TIPO_BD_KEY, tipo)
+                editor.commit()
+            }else{
+                println("Error en el tipo de base de datos")
+                return
+            }
+        }
+        fun getTipoBd(context:Context):String{
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString( TIPO_BD_KEY, TIPO_BD_DEFAULT)
+        }
+
+
+
+
         /**
          * A preference value change listener that updates the preference's summary
          * to reflect its new value.

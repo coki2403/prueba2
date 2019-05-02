@@ -25,6 +25,7 @@
     <string name="sesion_Nombre">Email:</string>
     <string name="sesion_uuid">UUID:</string>
     <string name="cerrar_sesion">Cerrar Sesion:</string>
+    <string name="online_text">Online:  </string>
 
     <!-- Strings related to Settings -->
 

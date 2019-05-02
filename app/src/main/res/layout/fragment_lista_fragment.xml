@@ -17,15 +17,6 @@
             android:textAlignment="center" android:text="@string/sin_partidas" tools:text="@string/sin_partidas"
             android:textSize="18sp"/>
 
-    <Button
-            android:id="@+id/botonprueba"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
-
-    <Button
-            android:id="@+id/botonprueba2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
 
     <android.support.v7.widget.RecyclerView
 

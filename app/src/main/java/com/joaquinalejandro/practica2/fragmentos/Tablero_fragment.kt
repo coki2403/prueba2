@@ -324,10 +324,12 @@ class tablero_fragment : Fragment(), PartidaListener {
         if (idPartida == -1) {
             partidaLista= PartidaLista(filas,columnas)
             partidaLista.board=partida.guardarPartida()
+
             partidaLista.firstPlayerName=SettingsActivity.getPlayerName(context!!)
-            partidaLista.firstPlayerName="maquina"
             partidaLista.firstPlayerUUID=SettingsActivity.getPlayerUUID(context!!)
-            partidaLista.secondPlayerUUID=SettingsActivity.getPlayerUUID(context!!)
+
+            partidaLista.secondPlayerName="maquina"
+            partidaLista.secondPlayerUUID="maquina UUID"
 
 
             val repository = PartidaRepositoryFactory.createRepository(this.context!!)

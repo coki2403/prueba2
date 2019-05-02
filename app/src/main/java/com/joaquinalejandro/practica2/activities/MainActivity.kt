@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.widget.FrameLayout
+import android.widget.Toast
 
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
@@ -115,9 +116,11 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
                         { partida -> onPartidaSelected(partida) }
                     )*/
                 } else
-                    Snackbar.make(findViewById(R.id.title),
-                        R.string.error_updating_round,
-                        Snackbar.LENGTH_LONG).show()
+                    /*Toast.makeText(
+                        this,
+                        "Comenzada nueva partida", Toast.LENGTH_SHORT
+                    ).show()*/
+                    println("Error actualizando")
             }
         }
         println("ID:"+partida.id)

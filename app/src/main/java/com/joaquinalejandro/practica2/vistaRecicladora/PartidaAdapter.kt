@@ -39,7 +39,7 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         dateTextView.text = partida.date.substringBefore("GMT")
         itemView.setOnClickListener({ listener(partida) })
         /*tab.text = partida.board.toString()*/
-        tabImprimir.text = partida.tabImprimir.toString()
+        tabImprimir.text = partida.tabImprimir
     }
 }
 
@@ -62,12 +62,14 @@ class PartidaLista(val fil: Int,val col: Int ){
     var id: String
     var title: String
     var date: String
-    lateinit var tabImprimir: String
+    var tabImprimir: String
     lateinit var board: String
     lateinit var firstPlayerName: String
     lateinit var firstPlayerUUID: String
     lateinit var secondPlayerName: String
     lateinit var secondPlayerUUID: String
+
+    constructor():this(0,0)
 
 
     init {
@@ -75,7 +77,7 @@ class PartidaLista(val fil: Int,val col: Int ){
         dateC = Date().toString()
         tabC = TableroConecta4(7, 6)
         tablero = TableroConecta4(7, 6).toString()*/
-
+        tabImprimir=""
         id = UUID.randomUUID().toString()
         title = "ROUND ${id.toString().substring(19, 23).toUpperCase()}"
         date = Date().toString()
