@@ -3,6 +3,7 @@ package com.joaquinalejandro.practica2.firebase
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.joaquinalejandro.practica2.activities.SettingsActivity
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import org.json.JSONObject
@@ -66,7 +67,7 @@ class FBDataBase : IRepositorioPartidas{
                 for (postSnapshot in dataSnapshot.children) {
 
                     val round = postSnapshot.getValue(PartidaLista::class.java)!!
-                    //if (isOpenOrIamIn(round))
+                    if (isOpenOrIamIn(round,playeruuid))
                         partidas += round
                 }
                 callback.onResponse(partidas)
@@ -74,6 +75,12 @@ class FBDataBase : IRepositorioPartidas{
         })
     }
 
+    /*compobramos que la partida tenga un espacio o sea mia*/
+    fun isOpenOrIamIn(round: PartidaLista,uuid:String):Boolean{
+        if(round.firstPlayerUUID==uuid||round.secondPlayerUUID==uuid||round.secondPlayerName=="")
+            return true
+        return false
+    }
 
     override fun addPartida(round: PartidaLista, callback: IRepositorioPartidas.BooleanCallback) {
 
@@ -91,6 +98,7 @@ class FBDataBase : IRepositorioPartidas{
             callback.onResponse(false)
     }
 
+
     fun startListeningChanges(callback: IRepositorioPartidas.RoundsCallback) {
         db = FirebaseDatabase.getInstance().getReference().child(DATABASENAME)
         db.addValueEventListener(object : ValueEventListener {
@@ -102,6 +110,7 @@ class FBDataBase : IRepositorioPartidas{
                 for (postSnapshot in p0.children)
                     partidas += postSnapshot.getValue(PartidaLista::class.java)!!
                 callback.onResponse(partidas)
+
             }
         })
     }

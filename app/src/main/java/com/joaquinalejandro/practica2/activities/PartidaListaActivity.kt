@@ -12,6 +12,7 @@ import com.joaquinalejandro.practica2.extras.executeTransaction
 import com.joaquinalejandro.practica2.extras.update
 import com.joaquinalejandro.practica2.fragmentos.lista_fragment
 import com.joaquinalejandro.practica2.fragmentos.tablero_fragment
+import com.joaquinalejandro.practica2.fragmentos.tablero_fragment_online
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import es.uam.eps.multij.Partida
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 
 class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentInteractionListener,
-    tablero_fragment.OnTableroFragmentInteractionListener {
+    tablero_fragment.OnTableroFragmentInteractionListener, tablero_fragment_online.OnTableroFragmentInteractionListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -2,6 +2,7 @@ package com.joaquinalejandro.practica2.model
 
 
 import es.uam.eps.multij.Partida
+import es.uam.eps.multij.Tablero
 
 
 fun Partida.guardarPartida(): String {
@@ -18,3 +19,4 @@ fun Partida.guardarPartida(): String {
 
 
 }
+

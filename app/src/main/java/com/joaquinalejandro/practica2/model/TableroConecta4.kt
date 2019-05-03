@@ -13,6 +13,7 @@ class TableroConecta4(var filas: Int, var columnas: Int) : Tablero() {
         return tablero[fil][col]
     }
 
+
     init {
 
         for (i in 0 until filas) {

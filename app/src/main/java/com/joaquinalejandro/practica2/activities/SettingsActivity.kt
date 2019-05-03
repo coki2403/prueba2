@@ -170,10 +170,10 @@ class SettingsActivity : AppCompatPreferenceActivity() {
     companion object {
 
         val TABLERO_COLUMNAS_KEY = "num_filas"
-        val TABLERO_COLUMNAS_DEFAULT = "7"
+        val TABLERO_COLUMNAS_DEFAULT = "6"
 
         val TABLERO_FILAS_KEY = "num_columnas"
-        val TABLERO_FILAS_DEFAULT = "6"
+        val TABLERO_FILAS_DEFAULT = "7"
 
 
 
@@ -255,6 +255,23 @@ class SettingsActivity : AppCompatPreferenceActivity() {
         fun getTipoBd(context:Context):String{
             return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString( TIPO_BD_KEY, TIPO_BD_DEFAULT)
+        }
+
+        val TURNO_KEY = "TURNO_KEY"
+        val TURNO_DEFAULT = 0 //LOCAL FIREBASE
+
+        fun setTurno(context:Context,tipo:Int){
+
+            val sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context)
+            val editor = sharedPreferences.edit()
+            editor.putInt(SettingsActivity.TURNO_KEY, tipo)
+            editor.commit()
+
+        }
+        fun getTurno(context:Context):Int{
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                .getInt( TURNO_KEY, TURNO_DEFAULT)
         }
 
 

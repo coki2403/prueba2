@@ -9,7 +9,7 @@ import com.joaquinalejandro.practica2.R
 
 import es.uam.eps.multij.*
 
-class ControladorPlayer : View.OnClickListener, Jugador {
+class ControladorPlayer(var name:String="-"): View.OnClickListener, Jugador {
 
     private lateinit var game: Partida
 
@@ -19,6 +19,15 @@ class ControladorPlayer : View.OnClickListener, Jugador {
 
     override fun onClick(v: View) {
         try {
+
+            if(SettingsActivity.getTurno(v.context)!=game.tablero.turno){
+                Snackbar.make(
+                    v,"No es tu turno", // ???
+                    Snackbar.LENGTH_SHORT
+                ).show()
+                return
+            }
+
             if (game.tablero.estado != Tablero.EN_CURSO) {
                 Snackbar.make(
                     v, R.string.no_en_curso, // ???
@@ -35,7 +44,7 @@ class ControladorPlayer : View.OnClickListener, Jugador {
         }
     }
 
-    override fun getNombre() = "ER local player"
+    override fun getNombre() = name
     override fun puedeJugar(p0: Tablero?) = true
     override fun onCambioEnPartida(p0: Evento) {}
 

@@ -39,13 +39,22 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private var mAuthTask: UserLoginTask? = null
+    private val context=this
 
     private fun attempt(type: String) {
+
+        if(online_switch.isChecked)
+            SettingsActivity.setTipoBD(context,"FIREBASE")
+        else
+            SettingsActivity.setTipoBD(context,"LOCAL")
         val repository = PartidaRepositoryFactory.createRepository(this)
         val loginRegisterCallback = object : IRepositorioPartidas.LoginRegisterCallback {
             override fun onLogin(playerUuid: String) {
+                SettingsActivity.setPlayerUUID(this@LoginActivity, "")
                 SettingsActivity.setPlayerUUID(this@LoginActivity, playerUuid)
                 SettingsActivity.setPlayerName(this@LoginActivity, email.text.toString())
+
+
                 startActivity(
                     Intent(
                         this@LoginActivity,

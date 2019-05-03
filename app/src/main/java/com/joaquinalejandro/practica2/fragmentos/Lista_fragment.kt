@@ -67,36 +67,38 @@ class lista_fragment : Fragment() {
             { round -> listener?.onPartidaSelected(round) }
         }
 
-        crear.setOnClickListener({
-            val listaJugadores = ArrayList<Jugador>()
-            val randomPlayer = JugadorAleatorio("Maquina")
-            val jugadorHumano = ControladorPlayer()
-            listaJugadores.add(jugadorHumano)
-            listaJugadores.add(randomPlayer)
-            var tablero = TableroConecta4(7, 6)
-            var partida = Partida(tablero, listaJugadores)
-            val repository = PartidaRepositoryFactory.createRepository(this.context!!)
-            val callback = object : IRepositorioPartidas.BooleanCallback {
-                override fun onResponse(response: Boolean) {
-                    if (response == true) {
-                        /*recyclerView.update(
-                            "Random",
-                            { partida -> onPartidaSelected(partida) }
-                        )*/
-                    } else
-                        println("error")
-                }
-            }
-            val partidaLista=PartidaLista(6,7)
-            partidaLista.board=partida.guardarPartida()
-            partidaLista.firstPlayerName= SettingsActivity.getPlayerName(context!!)
-            partidaLista.firstPlayerUUID= SettingsActivity.getPlayerUUID(context!!)
+        crear.setOnClickListener({crearPartida()})
+    }
 
-            partidaLista.secondPlayerName="maquina"
-            partidaLista.secondPlayerUUID="maquina UUID"
-            repository?.addPartida(partidaLista, callback)
-            updateUI()
-        })
+    fun crearPartida(){
+        val listaJugadores = ArrayList<Jugador>()
+        val randomPlayer = JugadorAleatorio("Maquina")
+        val jugadorHumano = ControladorPlayer()
+        listaJugadores.add(jugadorHumano)
+        listaJugadores.add(randomPlayer)
+        var tablero = TableroConecta4(6, 7)
+        var partida = Partida(tablero, listaJugadores)
+        val repository = PartidaRepositoryFactory.createRepository(this.context!!)
+        val callback = object : IRepositorioPartidas.BooleanCallback {
+            override fun onResponse(response: Boolean) {
+                if (response == true) {
+                    /*recyclerView.update(
+                        "Random",
+                        { partida -> onPartidaSelected(partida) }
+                    )*/
+                } else
+                    println("error")
+            }
+        }
+        val partidaLista=PartidaLista(6,7)
+        partidaLista.board=partida.guardarPartida()
+        partidaLista.firstPlayerName= SettingsActivity.getPlayerName(context!!)
+        partidaLista.firstPlayerUUID= SettingsActivity.getPlayerUUID(context!!)
+
+        partidaLista.secondPlayerName="maquina"
+        partidaLista.secondPlayerUUID="maquina UUID"
+        repository?.addPartida(partidaLista, callback)
+        updateUI()
     }
 
     override fun onAttach(context: Context?) {

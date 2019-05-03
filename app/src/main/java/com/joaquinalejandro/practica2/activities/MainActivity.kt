@@ -14,13 +14,14 @@ import com.joaquinalejandro.practica2.extras.executeTransaction
 import com.joaquinalejandro.practica2.extras.update
 import com.joaquinalejandro.practica2.fragmentos.lista_fragment
 import com.joaquinalejandro.practica2.fragmentos.tablero_fragment
+import com.joaquinalejandro.practica2.fragmentos.tablero_fragment_online
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 
 class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentInteractionListener,
-    tablero_fragment.OnTableroFragmentInteractionListener {
+    tablero_fragment.OnTableroFragmentInteractionListener, tablero_fragment_online.OnTableroFragmentInteractionListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,22 +29,42 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
         setContentView(R.layout.activity_main)
 
         val fm = supportFragmentManager
-        val tableroFrag: tablero_fragment
 
-        /*Comprobacion para cargar la aprtida*/
-        if (intent.extras != null) {
-            val idPartida = intent.extras.getString("ID")
-            tableroFrag = tablero_fragment.newInstance(idPartida)
-        } else {
-            tableroFrag = tablero_fragment.newInstance("-1")
+
+        if(SettingsActivity.getTipoBd(this)=="LOCAL"){
+            val tableroFrag: tablero_fragment
+            /*Comprobacion para cargar la aprtida*/
+            if (intent.extras != null) {
+                val idPartida = intent.extras.getString("ID")
+                tableroFrag = tablero_fragment.newInstance(idPartida)
+            } else {
+                tableroFrag = tablero_fragment.newInstance("-1")
+            }
+
+
+
+            if (fm.findFragmentById(R.id.fragment_container_tablero) == null) {
+
+                fm.executeTransaction { add(R.id.fragment_container_tablero, tableroFrag) }
+            }
+        }else{
+            val tableroFragOnline: tablero_fragment_online
+            /*Comprobacion para cargar la aprtida*/
+            if (intent.extras != null) {
+                val idPartida = intent.extras.getString("ID")
+                tableroFragOnline = tablero_fragment_online.newInstance(idPartida)
+            } else {
+                tableroFragOnline = tablero_fragment_online.newInstance("-1")
+            }
+
+
+
+            if (fm.findFragmentById(R.id.fragment_container_tablero) == null) {
+
+                fm.executeTransaction { add(R.id.fragment_container_tablero, tableroFragOnline) }
+            }
         }
 
-
-
-        if (fm.findFragmentById(R.id.fragment_container_tablero) == null) {
-
-            fm.executeTransaction { add(R.id.fragment_container_tablero, tableroFrag) }
-        }
 
         if (findViewById<FrameLayout>(R.id.fragment_container_lista) != null) {
             if (fm.findFragmentById(R.id.fragment_container_lista) == null) {

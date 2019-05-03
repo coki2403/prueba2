@@ -46,25 +46,25 @@
                     android:typeface="normal" android:textStyle="bold"
                     android:textAllCaps="false" android:layout_marginTop="10dp"/>
 
-            <Switch
+            <TextView
                     android:layout_width="wrap_content"
-                    android:id="@+id/online_switch"
-                    android:textAlignment="center"
-                    android:splitTrack="false" android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:layout_below="@id/tituloMenu"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/online_text"
-                    tools:text="@string/online_text"
-                    android:textSize="18sp"
-                    android:lineSpacingExtra="8sp" android:showText="false" android:typeface="normal"
-            />
+                    android:id="@+id/tituloOnline"
+                    android:layout_toRightOf="@id/tituloMenu"
+                    android:layout_below="@id/imageView"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display2" android:fontFamily="casual"
+                    android:typeface="normal" android:textStyle="bold"
+                    android:textAllCaps="false" android:layout_marginTop="10dp"
+                     android:textSize="14sp"/>
+
+
 
             <Button
                     android:text="@string/boton_nueva"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/online_switch"
+                    android:layout_below="@id/tituloMenu"
                     android:id="@+id/nuevapartida"
                     android:layout_marginStart="40dp"
                     android:layout_centerHorizontal="true"
