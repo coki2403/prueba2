@@ -9,7 +9,12 @@ object PartidaRepositoryFactory {
     private val LOCAL = true
     fun createRepository(context: Context): IRepositorioPartidas? {
         val repository: IRepositorioPartidas
-        repository = if (SettingsActivity.getTipoBd(context)=="LOCAL") ERDataBase(context) else FBDataBase()
+
+        repository = if (SettingsActivity.getTipoBd(context)=="LOCAL")
+            ERDataBase(context)
+        else
+            FBDataBase()
+
         try {
             repository.open()
         } catch (e: Exception) {

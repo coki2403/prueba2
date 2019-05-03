@@ -54,7 +54,9 @@
                     android:checked="false"
                     android:layout_below="@id/tituloMenu"
                     android:layout_centerHorizontal="true"
-                    android:text="@string/online_text" tools:text="@string/online_text" android:textSize="18sp"
+                    android:text="@string/online_text"
+                    tools:text="@string/online_text"
+                    android:textSize="18sp"
                     android:lineSpacingExtra="8sp" android:showText="false" android:typeface="normal"
             />
 

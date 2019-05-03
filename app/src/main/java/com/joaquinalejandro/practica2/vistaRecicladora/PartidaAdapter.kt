@@ -1,6 +1,7 @@
 package com.joaquinalejandro.practica2.vistaRecicladora
 
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.view.LayoutInflater
@@ -39,6 +40,8 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         dateTextView.text = partida.date.substringBefore("GMT")
         itemView.setOnClickListener({ listener(partida) })
         /*tab.text = partida.board.toString()*/
+        Log.d("DEBUG:",partida.board)
+        partida.tabImprimir = partida.board.substringAfter(",").substringAfter(",").substringBefore(",").replace("|", "\n")
         tabImprimir.text = partida.tabImprimir
     }
 }
@@ -64,6 +67,7 @@ class PartidaLista(val fil: Int,val col: Int ){
     var date: String
     var tabImprimir: String
     lateinit var board: String
+
     lateinit var firstPlayerName: String
     lateinit var firstPlayerUUID: String
     lateinit var secondPlayerName: String

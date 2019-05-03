@@ -12,8 +12,12 @@ import com.joaquinalejandro.practica2.vistaRecicladora.PartidaAdapter
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.activities.ControladorPlayer
+import com.joaquinalejandro.practica2.activities.SettingsActivity
+import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.extras.update
 import com.joaquinalejandro.practica2.model.TableroConecta4
+import com.joaquinalejandro.practica2.model.guardarPartida
+import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import es.uam.eps.multij.Jugador
 import es.uam.eps.multij.JugadorAleatorio
 import es.uam.eps.multij.Partida
@@ -63,19 +67,36 @@ class lista_fragment : Fragment() {
             { round -> listener?.onPartidaSelected(round) }
         }
 
-        /*crear.setOnClickListener({
+        crear.setOnClickListener({
             val listaJugadores = ArrayList<Jugador>()
-
             val randomPlayer = JugadorAleatorio("Maquina")
             val jugadorHumano = ControladorPlayer()
             listaJugadores.add(jugadorHumano)
             listaJugadores.add(randomPlayer)
             var tablero = TableroConecta4(7, 6)
             var partida = Partida(tablero, listaJugadores)
-            RepositorioPartidas.addPartida(partida)
-            updateUI()
+            val repository = PartidaRepositoryFactory.createRepository(this.context!!)
+            val callback = object : IRepositorioPartidas.BooleanCallback {
+                override fun onResponse(response: Boolean) {
+                    if (response == true) {
+                        /*recyclerView.update(
+                            "Random",
+                            { partida -> onPartidaSelected(partida) }
+                        )*/
+                    } else
+                        println("error")
+                }
+            }
+            val partidaLista=PartidaLista(6,7)
+            partidaLista.board=partida.guardarPartida()
+            partidaLista.firstPlayerName= SettingsActivity.getPlayerName(context!!)
+            partidaLista.firstPlayerUUID= SettingsActivity.getPlayerUUID(context!!)
 
-        })*/
+            partidaLista.secondPlayerName="maquina"
+            partidaLista.secondPlayerUUID="maquina UUID"
+            repository?.addPartida(partidaLista, callback)
+            updateUI()
+        })
     }
 
     override fun onAttach(context: Context?) {
