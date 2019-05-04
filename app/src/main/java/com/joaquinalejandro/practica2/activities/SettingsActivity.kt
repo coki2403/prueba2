@@ -211,6 +211,22 @@ class SettingsActivity : AppCompatPreferenceActivity() {
         val TABLERO_UUID_KEY = "uuid_name"
         val TABLERO_UUID_DEFAULT = ""
 
+        val DESCRIPCION = "desc"
+        val DESCRIPCION_DEFAULT = ""
+
+        fun getDescripcion(context: Context) :String {
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString( DESCRIPCION, DESCRIPCION_DEFAULT)
+        }
+
+        fun setDescripcion(context: Context, id: String) {
+            val sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context)
+            val editor = sharedPreferences.edit()
+            editor.putString(SettingsActivity.DESCRIPCION, id)
+            editor.commit()
+        }
+
         fun getPlayerUUID(context: Context) :String {
             return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString( TABLERO_UUID_KEY, TABLERO_UUID_DEFAULT)

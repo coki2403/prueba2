@@ -23,6 +23,7 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     var dateTextView: TextView
     /*var tab: TextView*/
     var tabImprimir: TextView
+    var descripcion: TextView
 
     init {
         idTextView = itemView.findViewById(R.id.list_item_id) as TextView
@@ -30,6 +31,8 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         dateTextView = itemView.findViewById(R.id.list_item_date) as TextView
         /*tab = itemView.findViewById(R.id.tab) as TextView*/
         tabImprimir = itemView.findViewById(R.id.tabImprimir) as TextView
+        descripcion = itemView.findViewById(R.id.TextoInfo) as TextView
+
 
     }
 
@@ -43,6 +46,7 @@ class PartidaHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Log.d("DEBUG:",partida.board)
         partida.tabImprimir = partida.board.substringAfter(",").substringAfter(",").substringBefore(",").replace("|", "\n")
         tabImprimir.text = partida.tabImprimir
+        descripcion.text = partida.descripcion
     }
 }
 
@@ -66,6 +70,7 @@ class PartidaLista(val fil: Int,val col: Int ){
     var title: String
     var date: String
     var tabImprimir: String
+    var descripcion: String
     lateinit var board: String
 
     lateinit var firstPlayerName: String
@@ -82,6 +87,7 @@ class PartidaLista(val fil: Int,val col: Int ){
         tabC = TableroConecta4(7, 6)
         tablero = TableroConecta4(7, 6).toString()*/
         tabImprimir=""
+        descripcion = ""
         id = UUID.randomUUID().toString()
         title = "ROUND ${id.toString().substring(19, 23).toUpperCase()}"
         date = Date().toString()
@@ -100,6 +106,7 @@ class PartidaLista(val fil: Int,val col: Int ){
         json.put("firstPlayerUUID", firstPlayerUUID)
         json.put("secondPlayerName", secondPlayerName)
         json.put("secondPlayerUUID", secondPlayerUUID)
+        json.put("secondPlayerUUID", descripcion)
         return json.toString()
     }
 
@@ -117,6 +124,7 @@ class PartidaLista(val fil: Int,val col: Int ){
             round.firstPlayerUUID = jsonObject.get("firstPlayerUUID") as String
             round.secondPlayerName = jsonObject.get("secondPlayerName") as String
             round.secondPlayerUUID = jsonObject.get("secondPlayerUUID") as String
+            round.descripcion = jsonObject.get("descripcion") as String
             return round
         }
     }

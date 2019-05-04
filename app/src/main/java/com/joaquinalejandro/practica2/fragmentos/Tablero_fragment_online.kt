@@ -154,7 +154,6 @@ class tablero_fragment_online : Fragment(), PartidaListener {
             idCarga = it.getString(ARG_PARAM1)
             if(idCarga!="-1")
               partidaLista = PartidaLista.fromJSONString(it.getString(ARG_PARAM1))
-            //partida = PartidaLista.fromJSONString(it.getString(ARG_PARAM1))
         }
     }
 
@@ -212,6 +211,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
         when (evento.tipo) {
             Evento.EVENTO_CAMBIO -> {
                 TextoInfo.text = evento.descripcion
+                SettingsActivity.setDescripcion(context!!, evento.descripcion)
                 actualizaInterfaz()
                 guardarPartida()
 
@@ -273,7 +273,6 @@ class tablero_fragment_online : Fragment(), PartidaListener {
         val turno = partidaString.split(",".toRegex())[4]
         val numjugadas = partidaString.split(",".toRegex())[5]
 
-
         val listaJugadores = arrayListOf<Jugador>()
         val jugadorHumano:Jugador
         /*jugadores*/
@@ -285,6 +284,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
             listaJugadores.add(jugadorHumano)
             partidaLista.secondPlayerName=SettingsActivity.getPlayerName(context!!)
             partidaLista.secondPlayerUUID=SettingsActivity.getPlayerUUID(context!!)
+            partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
             SettingsActivity.setTurno(context!!,1)
 
         }else{
@@ -294,6 +294,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                 registerListeners(jugadorHumano)
                 listaJugadores.add(jugadorHumano)
                 listaJugadores.add(jugadorRemoto)
+                partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
                 SettingsActivity.setTurno(context!!,0)
 
             }else if(partidaLista.secondPlayerName==SettingsActivity.getPlayerName(context!!)){
@@ -302,6 +303,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                 registerListeners(jugadorHumano)
                 listaJugadores.add(jugadorRemoto)
                 listaJugadores.add(jugadorHumano)
+                partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
                 SettingsActivity.setTurno(context!!,1)
             }else{
                 println("Error al cargar partida")
@@ -361,7 +363,6 @@ class tablero_fragment_online : Fragment(), PartidaListener {
 
             partidaLista.secondPlayerName=partida.getJugador(1).nombre
             partidaLista.secondPlayerUUID=""
-
 
             val repository = PartidaRepositoryFactory.createRepository(this.context!!)
             val callback = object : IRepositorioPartidas.BooleanCallback {

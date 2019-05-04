@@ -28,7 +28,7 @@ class FBDataBase : IRepositorioPartidas{
         val firebaseAuth = FirebaseAuth.getInstance()
         firebaseAuth.signInWithEmailAndPassword(playername, password).addOnCompleteListener()
         {task->
-            // Aquí deberás colocar el código para llamar a onLogin() y onError()
+
             if (task.isSuccessful) {
                 callback.onLogin(playername)
             }else{
@@ -48,10 +48,7 @@ class FBDataBase : IRepositorioPartidas{
             }else{
                 callback.onError("Error al Registrar sesión.")
             }
-
-
         }
-
     }
 
     override fun getPartidas(playeruuid: String,

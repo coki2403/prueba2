@@ -22,6 +22,7 @@ object PartidaDataBaseSchema {
             val FILAS = "filas"
             val COLUMNAS = "columnas"
             val BOARD = "board"
+            val DESCRIPCION = "descripcion"
         }
     }
 }
