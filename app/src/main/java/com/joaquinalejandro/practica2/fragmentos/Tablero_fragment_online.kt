@@ -14,14 +14,12 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.activities.ControladorPlayer
-import com.joaquinalejandro.practica2.activities.MenuActivity
 import com.joaquinalejandro.practica2.activities.PartidaListaActivity
 import com.joaquinalejandro.practica2.model.TableroConecta4
 import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
 import android.support.v7.app.AlertDialog
 import android.widget.TextView
-import com.google.firebase.database.FirebaseDatabase
 import com.joaquinalejandro.practica2.activities.SettingsActivity
 import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.firebase.FBDataBase
@@ -39,13 +37,13 @@ private const val ARG_PARAM1 = "param1"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [tablero_fragment.OnFragmentInteractionListener] interface
+ * [Tablero_fragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [tablero_fragment.newInstance] factory method to
+ * Use the [Tablero_fragment.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class tablero_fragment_online : Fragment(), PartidaListener {
+class Tablero_fragment_online : Fragment(), PartidaListener {
     // TODO: Rename and change types of parameters
     private var idCarga: String? = null
     var listener: OnTableroFragmentInteractionListener? = null
@@ -54,7 +52,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        if (context is tablero_fragment_online.OnTableroFragmentInteractionListener) {
+        if (context is Tablero_fragment_online.OnTableroFragmentInteractionListener) {
             listener = context
         } else {
             throw RuntimeException(
@@ -185,12 +183,12 @@ class tablero_fragment_online : Fragment(), PartidaListener {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment tablero_fragment.
+         * @return A new instance of fragment Tablero_fragment.
          */
 
         @JvmStatic
         fun newInstance(param1: String) =
-            tablero_fragment_online().apply {
+            Tablero_fragment_online().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                 }
@@ -203,7 +201,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
     var filas = 6
     var columnas = 7
     var idPartida = -1
-    var descripcion:String=""
+    var descripcion:String = ""
     private lateinit var partida: Partida
     private lateinit var tablero: Tablero
 
@@ -224,7 +222,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                 actualizaInterfaz()
                 guardarPartida()
                 TextoInfo.text = evento.descripcion
-                createDialog(evento.descripcion).show()
+                createDialog().show()
                 descripcion=evento.descripcion
                 guardarPartida()
             }
@@ -290,7 +288,6 @@ class tablero_fragment_online : Fragment(), PartidaListener {
             listaJugadores.add(jugadorHumano)
             partidaLista.secondPlayerName=SettingsActivity.getPlayerName(context!!)
             partidaLista.secondPlayerUUID=SettingsActivity.getPlayerUUID(context!!)
-            //partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
             SettingsActivity.setTurno(context!!,1)
 
         }else{
@@ -300,7 +297,6 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                 registerListeners(jugadorHumano)
                 listaJugadores.add(jugadorHumano)
                 listaJugadores.add(jugadorRemoto)
-                //partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
                 SettingsActivity.setTurno(context!!,0)
 
             }else if(partidaLista.secondPlayerName==SettingsActivity.getPlayerName(context!!)){
@@ -309,7 +305,6 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                 registerListeners(jugadorHumano)
                 listaJugadores.add(jugadorRemoto)
                 listaJugadores.add(jugadorHumano)
-                //partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
                 SettingsActivity.setTurno(context!!,1)
             }else{
                 println("Error al cargar partida")
@@ -418,7 +413,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
     }
 
 
-    fun createDialog(msg: String): AlertDialog {
+    fun createDialog(): AlertDialog {
         val builder = AlertDialog.Builder(this.getActivity()!!)
         builder.setTitle(R.string.tiutlo_dialogo)
             .setMessage("¿Comenzar nueva partida?")
@@ -455,8 +450,6 @@ class tablero_fragment_online : Fragment(), PartidaListener {
 
                         t2.stringToTablero(tab)
 
-                        /*t2.setEstado(estado.toInt())
-                        t2.setNumJugadas(numjugadas.toInt())*/
                         t2.numJugadas = numjugadas.toInt()
                         t2.estado = estado.toInt()
                         tablero = t2

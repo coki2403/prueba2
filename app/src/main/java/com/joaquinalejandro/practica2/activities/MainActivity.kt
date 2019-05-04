@@ -4,24 +4,20 @@ package com.joaquinalejandro.practica2.activities
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.widget.FrameLayout
-import android.widget.Toast
 
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.extras.executeTransaction
-import com.joaquinalejandro.practica2.extras.update
-import com.joaquinalejandro.practica2.fragmentos.lista_fragment
-import com.joaquinalejandro.practica2.fragmentos.tablero_fragment
-import com.joaquinalejandro.practica2.fragmentos.tablero_fragment_online
+import com.joaquinalejandro.practica2.fragmentos.Lista_fragment
+import com.joaquinalejandro.practica2.fragmentos.Tablero_fragment
+import com.joaquinalejandro.practica2.fragmentos.Tablero_fragment_online
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
-import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 
-class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentInteractionListener,
-    tablero_fragment.OnTableroFragmentInteractionListener, tablero_fragment_online.OnTableroFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), Lista_fragment.OnPartidaListaFragmentInteractionListener,
+    Tablero_fragment.OnTableroFragmentInteractionListener, Tablero_fragment_online.OnTableroFragmentInteractionListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,13 +28,13 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
 
 
         if(SettingsActivity.getTipoBd(this)=="LOCAL"){
-            val tableroFrag: tablero_fragment
+            val tableroFrag: Tablero_fragment
             /*Comprobacion para cargar la aprtida*/
             if (intent.extras != null) {
                 val idPartida = intent.extras.getString("ID")
-                tableroFrag = tablero_fragment.newInstance(idPartida)
+                tableroFrag = Tablero_fragment.newInstance(idPartida)
             } else {
-                tableroFrag = tablero_fragment.newInstance("-1")
+                tableroFrag = Tablero_fragment.newInstance("-1")
             }
 
 
@@ -48,13 +44,13 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
                 fm.executeTransaction { add(R.id.fragment_container_tablero, tableroFrag) }
             }
         }else{
-            val tableroFragOnline: tablero_fragment_online
+            val tableroFragOnline: Tablero_fragment_online
             /*Comprobacion para cargar la aprtida*/
             if (intent.extras != null) {
                 val idPartida = intent.extras.getString("ID")
-                tableroFragOnline = tablero_fragment_online.newInstance(idPartida)
+                tableroFragOnline = Tablero_fragment_online.newInstance(idPartida)
             } else {
-                tableroFragOnline = tablero_fragment_online.newInstance("-1")
+                tableroFragOnline = Tablero_fragment_online.newInstance("-1")
             }
 
 
@@ -72,7 +68,7 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
                 fm.executeTransaction {
                     add(
                         R.id.fragment_container_lista,
-                        lista_fragment()
+                        Lista_fragment()
                     )
                 }
             }
@@ -86,9 +82,9 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
 
         if (findViewById<FrameLayout>(R.id.fragment_container_tablero) != null) {
             val fm = supportFragmentManager
-            val tableroFrag: tablero_fragment
+            val tableroFrag: Tablero_fragment
 
-            tableroFrag = tablero_fragment.newInstance(partida.id)
+            tableroFrag = Tablero_fragment.newInstance(partida.id)
 
             if (fm.findFragmentById(R.id.fragment_container_tablero) != null) {
 
@@ -110,9 +106,9 @@ class MainActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentI
     override fun onReiniciar() {
         if (findViewById<FrameLayout>(R.id.fragment_container_tablero) != null) {
             val fm = supportFragmentManager
-            val tableroFrag: tablero_fragment
+            val tableroFrag: Tablero_fragment
 
-            tableroFrag = tablero_fragment.newInstance("-1")
+            tableroFrag = Tablero_fragment.newInstance("-1")
 
             if (fm.findFragmentById(R.id.fragment_container_tablero) != null) {
 

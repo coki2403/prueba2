@@ -3,7 +3,6 @@ package com.joaquinalejandro.practica2.fragmentos
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat.getDrawable
 import android.view.LayoutInflater
@@ -13,7 +12,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.activities.ControladorPlayer
-import com.joaquinalejandro.practica2.activities.MenuActivity
 import com.joaquinalejandro.practica2.activities.PartidaListaActivity
 import com.joaquinalejandro.practica2.model.TableroConecta4
 import es.uam.eps.multij.*
@@ -34,13 +32,13 @@ private const val ARG_PARAM1 = "param1"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [tablero_fragment.OnFragmentInteractionListener] interface
+ * [Tablero_fragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [tablero_fragment.newInstance] factory method to
+ * Use the [Tablero_fragment.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class tablero_fragment : Fragment(), PartidaListener {
+class Tablero_fragment : Fragment(), PartidaListener {
     // TODO: Rename and change types of parameters
     private var idCarga: String? = null
     var listener: OnTableroFragmentInteractionListener? = null
@@ -49,7 +47,7 @@ class tablero_fragment : Fragment(), PartidaListener {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        if (context is tablero_fragment.OnTableroFragmentInteractionListener) {
+        if (context is Tablero_fragment.OnTableroFragmentInteractionListener) {
             listener = context
         } else {
             throw RuntimeException(
@@ -178,12 +176,12 @@ class tablero_fragment : Fragment(), PartidaListener {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment tablero_fragment.
+         * @return A new instance of fragment Tablero_fragment.
          */
 
         @JvmStatic
         fun newInstance(param1: String) =
-            tablero_fragment().apply {
+            Tablero_fragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                 }
@@ -212,7 +210,7 @@ class tablero_fragment : Fragment(), PartidaListener {
                 actualizaInterfaz()
                 guardarPartida()
                 TextoInfo.text = evento.descripcion
-                createDialog(evento.descripcion).show()
+                createDialog().show()
             }
         }
     }
@@ -375,7 +373,7 @@ class tablero_fragment : Fragment(), PartidaListener {
     }
 
 
-    fun createDialog(msg: String): AlertDialog {
+    fun createDialog(): AlertDialog {
         val builder = AlertDialog.Builder(this.getActivity()!!)
         builder.setTitle(R.string.tiutlo_dialogo)
             .setMessage("¿Comenzar nueva partida?")

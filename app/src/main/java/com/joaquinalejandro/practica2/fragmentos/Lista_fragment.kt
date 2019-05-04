@@ -2,13 +2,10 @@ package com.joaquinalejandro.practica2.fragmentos
 
 import android.content.Context
 import android.os.Bundle
-import android.provider.SyncStateContract.Helpers.update
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.*
-import android.widget.TextView
-import com.joaquinalejandro.practica2.vistaRecicladora.PartidaAdapter
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
 import com.joaquinalejandro.practica2.R
 import com.joaquinalejandro.practica2.activities.ControladorPlayer
@@ -32,13 +29,13 @@ private const val ARG_PARAM2 = "param2"
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [lista_fragment.OnFragmentInteractionListener] interface
+ * [Lista_fragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [lista_fragment.newInstance] factory method to
+ * Use the [Lista_fragment.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class lista_fragment : Fragment() {
+class Lista_fragment : Fragment() {
 
     var listener: OnPartidaListaFragmentInteractionListener? = null
 

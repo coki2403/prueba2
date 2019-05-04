@@ -10,18 +10,16 @@ import com.joaquinalejandro.practica2.*
 import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.extras.executeTransaction
 import com.joaquinalejandro.practica2.extras.update
-import com.joaquinalejandro.practica2.fragmentos.lista_fragment
-import com.joaquinalejandro.practica2.fragmentos.tablero_fragment
-import com.joaquinalejandro.practica2.fragmentos.tablero_fragment_online
+import com.joaquinalejandro.practica2.fragmentos.Lista_fragment
+import com.joaquinalejandro.practica2.fragmentos.Tablero_fragment
+import com.joaquinalejandro.practica2.fragmentos.Tablero_fragment_online
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
 import com.joaquinalejandro.practica2.vistaRecicladora.PartidaLista
-import es.uam.eps.multij.Partida
-import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.fragment_lista_fragment.*
 
 
-class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaFragmentInteractionListener,
-    tablero_fragment.OnTableroFragmentInteractionListener, tablero_fragment_online.OnTableroFragmentInteractionListener {
+class PartidaListaActivity : AppCompatActivity(), Lista_fragment.OnPartidaListaFragmentInteractionListener,
+    Tablero_fragment.OnTableroFragmentInteractionListener, Tablero_fragment_online.OnTableroFragmentInteractionListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +31,7 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
             fm.executeTransaction {
                 add(
                     R.id.fragment_container,
-                    lista_fragment()
+                    Lista_fragment()
                 )
             }
         }
@@ -46,9 +44,9 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
 
         if (findViewById<FrameLayout>(R.id.fragment_container_tablero) != null) {
             val fm = supportFragmentManager
-            val tableroFrag: tablero_fragment
+            val tableroFrag: Tablero_fragment
 
-            tableroFrag = tablero_fragment.newInstance(partida.id)
+            tableroFrag = Tablero_fragment.newInstance(partida.id)
 
             if (fm.findFragmentById(R.id.fragment_container_tablero) == null) {
 
@@ -110,7 +108,7 @@ class PartidaListaActivity : AppCompatActivity(), lista_fragment.OnPartidaListaF
                         "New " + partida.id + " added", Snackbar.LENGTH_LONG).show()
                     val fragmentManager = supportFragmentManager
                     val roundListFragment = fragmentManager.findFragmentById(R.id.fragment_container)
-                                as lista_fragment
+                                as Lista_fragment
                     roundListFragment.recyclerView.update(
                         SettingsActivity.getPlayerUUID(baseContext).toString(),
                         { partida -> onPartidaSelected(partida) }
