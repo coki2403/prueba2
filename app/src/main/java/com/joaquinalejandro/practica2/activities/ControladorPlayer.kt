@@ -20,7 +20,7 @@ class ControladorPlayer(var name:String="-"): View.OnClickListener, Jugador {
     override fun onClick(v: View) {
         try {
 
-            if(SettingsActivity.getTurno(v.context)!=game.tablero.turno){
+            if(SettingsActivity.getTurno(v.context)!=game.tablero.turno && SettingsActivity.getTipoBd(v.context)=="FIREBASE"){
                 Snackbar.make(
                     v,"No es tu turno", // ???
                     Snackbar.LENGTH_SHORT

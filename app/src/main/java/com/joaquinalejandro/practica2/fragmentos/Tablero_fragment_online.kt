@@ -203,17 +203,21 @@ class tablero_fragment_online : Fragment(), PartidaListener {
     var filas = 6
     var columnas = 7
     var idPartida = -1
+    var descripcion:String=""
     private lateinit var partida: Partida
     private lateinit var tablero: Tablero
 
 
     override fun onCambioEnPartida(evento: Evento) {
+
         when (evento.tipo) {
             Evento.EVENTO_CAMBIO -> {
                 TextoInfo.text = evento.descripcion
                 SettingsActivity.setDescripcion(context!!, evento.descripcion)
                 actualizaInterfaz()
+                descripcion=evento.descripcion
                 guardarPartida()
+
 
             }
             Evento.EVENTO_FIN -> {
@@ -221,6 +225,8 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                 guardarPartida()
                 TextoInfo.text = evento.descripcion
                 createDialog(evento.descripcion).show()
+                descripcion=evento.descripcion
+                guardarPartida()
             }
         }
     }
@@ -284,7 +290,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
             listaJugadores.add(jugadorHumano)
             partidaLista.secondPlayerName=SettingsActivity.getPlayerName(context!!)
             partidaLista.secondPlayerUUID=SettingsActivity.getPlayerUUID(context!!)
-            partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
+            //partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
             SettingsActivity.setTurno(context!!,1)
 
         }else{
@@ -294,7 +300,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                 registerListeners(jugadorHumano)
                 listaJugadores.add(jugadorHumano)
                 listaJugadores.add(jugadorRemoto)
-                partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
+                //partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
                 SettingsActivity.setTurno(context!!,0)
 
             }else if(partidaLista.secondPlayerName==SettingsActivity.getPlayerName(context!!)){
@@ -303,7 +309,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                 registerListeners(jugadorHumano)
                 listaJugadores.add(jugadorRemoto)
                 listaJugadores.add(jugadorHumano)
-                partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
+                //partidaLista.descripcion = SettingsActivity.getDescripcion(context!!)
                 SettingsActivity.setTurno(context!!,1)
             }else{
                 println("Error al cargar partida")
@@ -363,6 +369,7 @@ class tablero_fragment_online : Fragment(), PartidaListener {
 
             partidaLista.secondPlayerName=partida.getJugador(1).nombre
             partidaLista.secondPlayerUUID=""
+            partidaLista.descripcion=descripcion
 
             val repository = PartidaRepositoryFactory.createRepository(this.context!!)
             val callback = object : IRepositorioPartidas.BooleanCallback {
@@ -380,8 +387,9 @@ class tablero_fragment_online : Fragment(), PartidaListener {
             idPartida=0
         }
         partidaLista.board=partida.guardarPartida()
+        partidaLista.descripcion=descripcion
         listener?.onActualizaLista(partidaLista)
-        titulo.text = "Partida " + idPartida
+        titulo.text = partidaLista.title
         //startActivity(Intent(v.context, MenuActivity::class.java))
         compruebaCambio()
 
@@ -458,19 +466,23 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                         (partida.tablero as TableroConecta4).numJugadas=t2.numJugadas
                         if(partida.tablero.turno!=t2.turno)
                             (partida.tablero as TableroConecta4).cambiarTurno()
-                        if(context!=null)
+                        if(context!=null){
                             actualizaInterfaz()
+                            TextoInfo.text = partidaLista.descripcion
 
-                        if(turno == SettingsActivity.getTurno(context!!).toString()) {
+                            if(turno == SettingsActivity.getTurno(context!!).toString()) {
 
-                            val toast = Toast.makeText(context, "Tu turno!", Toast.LENGTH_LONG)
-                            val view = toast.view
-                            view.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN)
+                                val toast = Toast.makeText(context, "Tu turno!", Toast.LENGTH_LONG)
+                                val view = toast.view
+                                view.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN)
 
-                            val text = view.findViewById<TextView>(android.R.id.message)
-                            text.setTextColor(Color.WHITE)
-                            toast.show()
+                                val text = view.findViewById<TextView>(android.R.id.message)
+                                text.setTextColor(Color.WHITE)
+                                toast.show()
+                            }
+
                         }
+
                     }
                 }
             }

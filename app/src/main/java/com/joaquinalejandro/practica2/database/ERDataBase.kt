@@ -99,7 +99,6 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
                 PartidaDataBaseSchema.RoundTable.Cols.FILAS + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS + ", " +
                 PartidaDataBaseSchema.RoundTable.Cols.BOARD + " " +
-                PartidaDataBaseSchema.RoundTable.Cols.DESCRIPCION + " " +
                 "FROM " + PartidaDataBaseSchema.UserTable.NAME + " AS p, " +
                 PartidaDataBaseSchema.RoundTable.NAME + " AS r " +"WHERE " +
                 "p." + PartidaDataBaseSchema.UserTable.Cols.PLAYERUUID + "=" +
@@ -124,7 +123,6 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
         values.put(PartidaDataBaseSchema.RoundTable.Cols.FILAS, round.fil)
         values.put(PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS, round.col)
         values.put(PartidaDataBaseSchema.RoundTable.Cols.BOARD, round.board)
-        values.put(PartidaDataBaseSchema.RoundTable.Cols.DESCRIPCION, round.descripcion)
         return values
     }
 
@@ -175,8 +173,8 @@ class ERDataBase(context: Context) : IRepositorioPartidas {
                     + PartidaDataBaseSchema.RoundTable.Cols.TITLE + " TEXT, "
                     + PartidaDataBaseSchema.RoundTable.Cols.FILAS + " TEXT, "
                     + PartidaDataBaseSchema.RoundTable.Cols.COLUMNAS + " TEXT, "
-                    + PartidaDataBaseSchema.RoundTable.Cols.BOARD + " TEXT, );"
-                    + PartidaDataBaseSchema.RoundTable.Cols.DESCRIPCION + " TEXT")
+                    + PartidaDataBaseSchema.RoundTable.Cols.BOARD + " TEXT );"
+                    )
             try {
                 db.execSQL(str1)
                 db.execSQL(str2)
