@@ -2,8 +2,9 @@ package com.joaquinalejandro.practica2.fragmentos
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat.getDrawable
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ import com.joaquinalejandro.practica2.model.TableroConecta4
 import es.uam.eps.multij.*
 import kotlinx.android.synthetic.main.fragment_tablero_fragment.*
 import android.support.v7.app.AlertDialog
+import android.widget.TextView
 import com.google.firebase.database.FirebaseDatabase
 import com.joaquinalejandro.practica2.activities.SettingsActivity
 import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
@@ -458,9 +460,16 @@ class tablero_fragment_online : Fragment(), PartidaListener {
                         if(context!=null)
                             actualizaInterfaz()
 
+                        if(turno == SettingsActivity.getTurno(context!!).toString()) {
 
+                            val toast = Toast.makeText(context, "Tu turno!", Toast.LENGTH_LONG)
+                            val view = toast.view
+                            view.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_IN)
 
-
+                            val text = view.findViewById<TextView>(android.R.id.message)
+                            text.setTextColor(Color.WHITE)
+                            toast.show()
+                        }
                     }
                 }
             }

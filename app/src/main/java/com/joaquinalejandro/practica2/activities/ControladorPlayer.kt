@@ -49,4 +49,6 @@ class ControladorPlayer(var name:String="-"): View.OnClickListener, Jugador {
     override fun onCambioEnPartida(p0: Evento) {}
 
 
+
+
 }
