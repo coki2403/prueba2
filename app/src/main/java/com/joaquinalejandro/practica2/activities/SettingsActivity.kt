@@ -96,11 +96,11 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             // updated to reflect the new value, per the Android Design
             // guidelines.
 
-            bindPreferenceSummaryToValue(findPreference("color_tablero"))
-            bindPreferenceSummaryToValue(findPreference("color_fichas"))
+            bindPreferenceSummaryToValue(findPreference("TABLERO_KEY"))
+            bindPreferenceSummaryToValue(findPreference("FICHAS_KEY"))
 
-            val color_tab = findPreference("color_tablero")
-            val color_fich = findPreference("color_fichas")
+            val color_tab = findPreference("TABLERO_KEY")
+            val color_fich = findPreference("FICHAS_KEY")
 
             println(color_tab)
             println(color_fich)
@@ -176,11 +176,11 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
     companion object {
 
-        val COLOR_TABLERO_KEY = "Azul"
-        val COLOR_FICHAS_KEY = "Rojo/Amarillo"
+        val COLOR_TABLERO_KEY = "TABLERO_KEY"
+        val COLOR_FICHAS_KEY = "FICHAS_KEY"
 
-        val COLOR_TABLERO_DEFAULT = ""
-        val COLOR_FICHAS_DEFAULT = ""
+        val COLOR_TABLERO_DEFAULT = "Azul"
+        val COLOR_FICHAS_DEFAULT = "Rojo/Amarillo"
 
         fun getColorTablero(context: Context): String {
             return PreferenceManager.getDefaultSharedPreferences(context)
