@@ -153,10 +153,7 @@ class Tablero_fragment : Fragment(), PartidaListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //partida_id.text = "${partida.id}"
-        //if (savedInstanceState != null) {
-            //partida.Tablero.stringToTablero(savedInstanceState.getString(BOARDSTRING))
-        //}
+        tabla.background=getDrawable(context!!, R.drawable.fondo3)
 
     }
 
