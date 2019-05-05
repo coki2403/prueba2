@@ -153,7 +153,16 @@ class Tablero_fragment : Fragment(), PartidaListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tabla.background=getDrawable(context!!, R.drawable.fondo3)
+        val color_tablero = SettingsActivity.getColorTablero(context!!)
+
+        if(color_tablero == "Azul"){
+            tabla.background=getDrawable(context!!, R.drawable.fondo)
+        }else if(color_tablero == "Verde"){
+            tabla.background=getDrawable(context!!, R.drawable.fondo2)
+        }else if(color_tablero == "Rojo"){
+            tabla.background=getDrawable(context!!, R.drawable.fondo3)
+        }
+
 
     }
 
@@ -192,8 +201,6 @@ class Tablero_fragment : Fragment(), PartidaListener {
     var filas = 6
     var columnas = 7
     var idPartida = -1
-    var color_tab: Drawable? = null
-    var color_fich: Drawable? = null
     private lateinit var partida: Partida
     private lateinit var tablero: Tablero
 

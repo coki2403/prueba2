@@ -160,10 +160,15 @@ class Tablero_fragment_online : Fragment(), PartidaListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //partida_id.text = "${partida.id}"
-        //if (savedInstanceState != null) {
-            //partida.Tablero.stringToTablero(savedInstanceState.getString(BOARDSTRING))
-        //}
+        val color_tablero = SettingsActivity.getColorTablero(context!!)
+
+        if(color_tablero == "Azul"){
+            tabla.background=getDrawable(context!!, R.drawable.fondo)
+        }else if(color_tablero == "Verde"){
+            tabla.background=getDrawable(context!!, R.drawable.fondo2)
+        }else if(color_tablero == "Rojo"){
+            tabla.background=getDrawable(context!!, R.drawable.fondo3)
+        }
 
     }
 
@@ -232,40 +237,49 @@ class Tablero_fragment_online : Fragment(), PartidaListener {
 
 
     fun actualizaInterfaz() {
+
+        val color_tablero = SettingsActivity.getColorTablero(context!!)
+        val color_fichas = SettingsActivity.getColorFichas(context!!)
+
         if (ids == null)
             return
         for (i in 0 until filas) {
             for (j in 0 until columnas) {
                 val elem = (tablero as TableroConecta4).getTablero(i, j)
                 if (elem == 1) {
-                    ids!!.get(i)[j].setImageDrawable(
-                        getDrawable(
-                            context!!,
-                            R.drawable.circulo_rojo
-                        )
-                    )
+
+                    if(color_fichas == "Rojo/Amarillo"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_rojo))
+                    }else if(color_fichas == "Blanco/Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_blanco))
+                    }else if(color_fichas == "Amarillo/Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_amarillo))
+                    }
+
                 } else if (elem == 2) {
-                    ids!!.get(i)[j].setImageDrawable(
-                        getDrawable(
-                            context!!,
-                            R.drawable.circulo_amarillo
-                        )
-                    )
+
+                    if(color_fichas == "Rojo/Amarillo"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_amarillo))
+                    }else if(color_fichas == "Blanco/Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_verde))
+                    }else if(color_fichas == "Amarillo/Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_verde))
+                    }
                     /*****************************************CUIDADO(cotext)***********************************/
                 } else {
-                    ids!!.get(i)[j].setImageDrawable(
-                        getDrawable(
-                            context!!,
-                            R.drawable.circulo
-                        )
-                    )
+
+                    if(color_tablero == "Azul"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo))
+                    }else if(color_tablero == "Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo2))
+                    }else if(color_tablero == "Rojo"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo3))
+                    }
                 }
             }
         }
 
     }
-
-
 
     /***** volver al menus***/
     /*override  fun onBackPressed(){
