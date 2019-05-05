@@ -123,13 +123,24 @@ class MainActivity : AppCompatActivity(), Lista_fragment.OnPartidaListaFragmentI
     override fun onReiniciar() {
         if (findViewById<FrameLayout>(R.id.fragment_container_tablero) != null) {
             val fm = supportFragmentManager
-            val tableroFrag: Tablero_fragment
 
-            tableroFrag = Tablero_fragment.newInstance("-1")
+            if (SettingsActivity.getTipoBd(this) == "LOCAL") {
+                val tableroFrag: Tablero_fragment
 
-            if (fm.findFragmentById(R.id.fragment_container_tablero) != null) {
+                tableroFrag = Tablero_fragment.newInstance("-1")
+                if (fm.findFragmentById(R.id.fragment_container_tablero) != null) {
 
-                fm.executeTransaction { replace(R.id.fragment_container_tablero, tableroFrag) }
+                    fm.executeTransaction { replace(R.id.fragment_container_tablero, tableroFrag) }
+                }
+
+            } else {
+                val tableroFragOnline: Tablero_fragment_online
+
+                tableroFragOnline = Tablero_fragment_online.newInstance("-1")
+                if (fm.findFragmentById(R.id.fragment_container_tablero) != null) {
+
+                    fm.executeTransaction { replace(R.id.fragment_container_tablero, tableroFragOnline) }
+                }
             }
 
         } else {
