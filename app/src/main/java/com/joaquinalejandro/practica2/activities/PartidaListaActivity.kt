@@ -22,6 +22,7 @@ class PartidaListaActivity : AppCompatActivity(), Lista_fragment.OnPartidaListaF
     Tablero_fragment.OnTableroFragmentInteractionListener, Tablero_fragment_online.OnTableroFragmentInteractionListener {
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_partida_lista)
@@ -46,7 +47,7 @@ class PartidaListaActivity : AppCompatActivity(), Lista_fragment.OnPartidaListaF
             val fm = supportFragmentManager
             val tableroFrag: Tablero_fragment
 
-            tableroFrag = Tablero_fragment.newInstance(partida.id)
+            tableroFrag = Tablero_fragment.newInstance(partida.toJSONString())
 
             if (fm.findFragmentById(R.id.fragment_container_tablero) == null) {
 
@@ -118,5 +119,12 @@ class PartidaListaActivity : AppCompatActivity(), Lista_fragment.OnPartidaListaF
         }
         repository?.addPartida(partida, callback)
 
+    }
+
+    override fun ActualizarListaOnline() {
+        if (findViewById<FrameLayout>(R.id.recyclerView) != null) {
+            recyclerView.update("RND")
+            { round -> onPartidaSelected(round) }
+        }
     }
 }

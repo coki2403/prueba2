@@ -23,10 +23,10 @@ class RoundCursorWrapper(cursor: Cursor) : CursorWrapper(cursor) {
             val round = PartidaLista(
                 filas.toInt(),columnas.toInt()
             )
-            round.firstPlayerName = "Random"
-            round.firstPlayerUUID = "Random"
-            round.secondPlayerName = playername
-            round.secondPlayerUUID = playeruuid
+            round.firstPlayerName = playername
+            round.firstPlayerUUID = playeruuid
+            round.secondPlayerName = "Random"
+            round.secondPlayerUUID = "Random"
             round.id = rounduuid
             round.date = date
             round.title = title

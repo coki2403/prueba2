@@ -136,13 +136,14 @@ class Tablero_fragment_online : Fragment(), PartidaListener {
         if (idPartida == -1)
             titulo.text = "Nueva Partida"
         else
-            titulo.text = "Partida " + idPartida
+            titulo.text =partidaLista.title
 
     }
 
     interface OnTableroFragmentInteractionListener {
         fun onReiniciar()
         fun onActualizaLista(partidaLista: PartidaLista)
+        fun ActualizarListaOnline()
     }
 
 
@@ -261,6 +262,7 @@ class Tablero_fragment_online : Fragment(), PartidaListener {
                 }
             }
         }
+
     }
 
 
@@ -472,6 +474,7 @@ class Tablero_fragment_online : Fragment(), PartidaListener {
                                 val text = view.findViewById<TextView>(android.R.id.message)
                                 text.setTextColor(Color.WHITE)
                                 toast.show()
+                                listener!!.ActualizarListaOnline()
                             }
 
                         }

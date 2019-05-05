@@ -12,6 +12,7 @@ import com.joaquinalejandro.practica2.activities.ControladorPlayer
 import com.joaquinalejandro.practica2.activities.SettingsActivity
 import com.joaquinalejandro.practica2.database.PartidaRepositoryFactory
 import com.joaquinalejandro.practica2.extras.update
+import com.joaquinalejandro.practica2.model.JugadorRemoto
 import com.joaquinalejandro.practica2.model.TableroConecta4
 import com.joaquinalejandro.practica2.model.guardarPartida
 import com.joaquinalejandro.practica2.vistaRecicladora.IRepositorioPartidas
@@ -68,21 +69,25 @@ class Lista_fragment : Fragment() {
     }
 
     fun crearPartida(){
+
         val listaJugadores = ArrayList<Jugador>()
-        val randomPlayer = JugadorAleatorio("Maquina")
+        val randomPlayer :Jugador
         val jugadorHumano = ControladorPlayer()
         listaJugadores.add(jugadorHumano)
+        if(SettingsActivity.getTipoBd(context!!)=="LOCAL"){
+            randomPlayer = JugadorAleatorio("Maquina")
+        }else{
+            randomPlayer = JugadorRemoto("")
+        }
+
         listaJugadores.add(randomPlayer)
-        var tablero = TableroConecta4(6, 7)
-        var partida = Partida(tablero, listaJugadores)
+        val tablero = TableroConecta4(6, 7)
+        val partida = Partida(tablero, listaJugadores)
         val repository = PartidaRepositoryFactory.createRepository(this.context!!)
         val callback = object : IRepositorioPartidas.BooleanCallback {
             override fun onResponse(response: Boolean) {
                 if (response == true) {
-                    /*recyclerView.update(
-                        "Random",
-                        { partida -> onPartidaSelected(partida) }
-                    )*/
+                    updateUI()
                 } else
                     println("error")
             }
@@ -92,8 +97,13 @@ class Lista_fragment : Fragment() {
         partidaLista.firstPlayerName= SettingsActivity.getPlayerName(context!!)
         partidaLista.firstPlayerUUID= SettingsActivity.getPlayerUUID(context!!)
 
-        partidaLista.secondPlayerName="maquina"
-        partidaLista.secondPlayerUUID="maquina UUID"
+        if(SettingsActivity.getTipoBd(context!!)=="LOCAL"){
+            partidaLista.secondPlayerName=""
+            partidaLista.secondPlayerUUID=""
+        }else{
+            partidaLista.secondPlayerName=""
+            partidaLista.secondPlayerUUID=""
+        }
         repository?.addPartida(partidaLista, callback)
         updateUI()
     }
@@ -122,37 +132,6 @@ class Lista_fragment : Fragment() {
         fun onNewRoundAdded()
     }
 
-    /*override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            R.id.botonprueba -> {
-                listener?.onNewRoundAdded()
-                /*partida_recycler_view.onActualizaLista { partida:PartidaLista -> listener?.onPartidaSelected(partida) }*/
-                return true
-            }
-            R.id.botonprueba2 -> {
-                listener?.onPreferenceSelected()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-
-        return true
-
-    }*/
-
-
-
-    /*fun onPartidaSelected(partida: PartidaLista) {
-
-
-        val intent = Intent(activity, MainActivity::class.java)
-        println("sel: ${partida.idC}")
-        intent.putExtra("ID", partida.idC.toInt())
-        println("enviado: ${intent.extras.getInt("ID")}")
-        startActivity(intent)
-
-
-    }*/
 
     override fun onResume() {
         super.onResume()
@@ -162,20 +141,6 @@ class Lista_fragment : Fragment() {
     fun updateUI() {
         recyclerView.update("RND")
         { round -> listener?.onPartidaSelected(round) }
-        /*recyclerView.apply {
-            if (adapter == null)
-                adapter =
-                    PartidaAdapter(RepositorioPartidas.partidas) { partida ->
-                        listener?.onPartidaSelected(
-                            partida
-                        )
-                    }
-            else
-                adapter.notifyDataSetChanged()
-        }
-        if (RepositorioPartidas.partidas.size == 0)
-            sin_partidas.visibility = TextView.VISIBLE
-        else
-            sin_partidas.visibility = TextView.INVISIBLE*/
+
     }
 }
