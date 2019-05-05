@@ -3,6 +3,21 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="tablero">#5880f7</color>
-    <color name="verde">#65e93d</color>
+
+    <color name="tablero">#2468c7</color>
+    <color name="tablero2">#186E1F</color>
+    <color name="tablero3">#671212</color>
+
+    <color name="vacio">#0f0058</color>
+    <color name="vacio2">#0F3309</color>
+    <color name="vacio3">#450B0B</color>
+
+    0f0058
+
+    <color name="verde">#309F1D</color>
+    <color name="rojo">#d40617</color>
+    <color name="amarillo">#fffb00</color>
+    <color name="blanco">#ffffff</color>
+    <color name="azul">#18e0f7</color>
+
 </resources>

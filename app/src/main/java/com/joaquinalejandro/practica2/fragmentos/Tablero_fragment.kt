@@ -2,6 +2,7 @@ package com.joaquinalejandro.practica2.fragmentos
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat.getDrawable
@@ -194,6 +195,8 @@ class Tablero_fragment : Fragment(), PartidaListener {
     var filas = 6
     var columnas = 7
     var idPartida = -1
+    var color_tab: Drawable? = null
+    var color_fich: Drawable? = null
     private lateinit var partida: Partida
     private lateinit var tablero: Tablero
 
@@ -217,53 +220,49 @@ class Tablero_fragment : Fragment(), PartidaListener {
 
 
     fun actualizaInterfaz() {
+
+        val color_tablero = SettingsActivity.getColorTablero(context!!)
+        val color_fichas = SettingsActivity.getColorFichas(context!!)
+        //println(color_tablero + color_fichas)
+
         if (ids == null)
             return
         for (i in 0 until filas) {
             for (j in 0 until columnas) {
                 val elem = (tablero as TableroConecta4).getTablero(i, j)
                 if (elem == 1) {
-                    ids!!.get(i)[j].setImageDrawable(
-                        getDrawable(
-                            context!!,
-                            R.drawable.circulo_rojo
-                        )
-                    )
+
+                    if(color_fichas == "Rojo/Amarillo"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_rojo))
+                    }else if(color_fichas == "Blanco/Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_blanco))
+                    }else if(color_fichas == "Amarillo/Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_amarillo))
+                    }
+
                 } else if (elem == 2) {
-                    ids!!.get(i)[j].setImageDrawable(
-                        getDrawable(
-                            context!!,
-                            R.drawable.circulo_amarillo
-                        )
-                    )
+
+                    if(color_fichas == "Rojo/Amarillo"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_amarillo))
+                    }else if(color_fichas == "Blanco/Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_verde))
+                    }else if(color_fichas == "Amarillo/Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo_verde))
+                    }
                     /*****************************************CUIDADO(cotext)***********************************/
                 } else {
-                    ids!!.get(i)[j].setImageDrawable(
-                        getDrawable(
-                            context!!,
-                            R.drawable.circulo
-                        )
-                    )
+
+                    if(color_tablero == "Azul"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo))
+                    }else if(color_tablero == "Verde"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo2))
+                    }else if(color_tablero == "Rojo"){
+                        ids!!.get(i)[j].setImageDrawable(getDrawable(context!!, R.drawable.circulo3))
+                    }
                 }
             }
         }
     }
-
-
-    /*override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.activity_main)
-
-
-
-
-    }*/
-
-    /***** volver al menus***/
-    /*override  fun onBackPressed(){
-
-    }*/
 
     fun cargarPartida() {
         val partidaString = partidaLista.board

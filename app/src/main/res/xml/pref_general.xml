@@ -10,10 +10,7 @@
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
                 android:title="Nombre del jugador" />
-         <Preference
-            android:key="prueba"
-            android:summary="Pulsa para mostrar un Toast"
-            android:title="Esto es una prueba" />
+
     </PreferenceCategory>
     <PreferenceCategory
             android:title="Ajustes del juego">
@@ -24,22 +21,22 @@
             android:title="Sonido" />
 
          <ListPreference
-         android:defaultValue="7"
-                android:entries="@array/pref_game_level_list_titles"
-                android:entryValues="@array/pref_game_level_list_values"
-                android:key="num_columnas"
+         android:defaultValue="Azul"
+                android:entries="@array/tableros"
+                android:entryValues="@array/tableros"
+                android:key="color_tablero"
                 android:negativeButtonText="@null"
                 android:positiveButtonText="@null"
-                android:title="Elige numero de columnas del tablero" />
+                android:title="Elige el color del tablero" />
 
         <ListPreference
-                android:defaultValue="6"
-                android:entries="@array/pref_game_level_list_titles"
-                android:entryValues="@array/pref_game_level_list_values"
-                android:key="num_filas"
+                android:defaultValue="Rojo/Amarillo"
+                android:entries="@array/fichas"
+                android:entryValues="@array/fichas"
+                android:key="color_fichas"
                 android:negativeButtonText="@null"
                 android:positiveButtonText="@null"
-                android:title="Elige numero de filas del tablero" />
+                android:title="Elige el color de las fichas" />
 
     </PreferenceCategory>
 </android.preference.PreferenceScreen>

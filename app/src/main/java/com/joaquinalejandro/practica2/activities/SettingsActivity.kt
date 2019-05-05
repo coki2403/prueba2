@@ -84,20 +84,26 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             addPreferencesFromResource(R.xml.pref_general)
             setHasOptionsMenu(true)
 
-            val preference = findPreference("prueba")
+            /*val preference = findPreference("prueba")
             preference.onPreferenceClickListener = Preference.OnPreferenceClickListener()
             {
                 Toast.makeText(activity, "Preferencia pulsada", Toast.LENGTH_LONG).show()
                 true
-            }
+            }*/
 
             // Bind the summaries of EditText/List/Dialog/Ringtone preferences
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
 
-            bindPreferenceSummaryToValue(findPreference("num_filas"))
-            bindPreferenceSummaryToValue(findPreference("num_columnas"))
+            bindPreferenceSummaryToValue(findPreference("color_tablero"))
+            bindPreferenceSummaryToValue(findPreference("color_fichas"))
+
+            val color_tab = findPreference("color_tablero")
+            val color_fich = findPreference("color_fichas")
+
+            println(color_tab)
+            println(color_fich)
         }
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -126,6 +132,7 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"))
+
         }
 
         override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -169,7 +176,39 @@ class SettingsActivity : AppCompatPreferenceActivity() {
 
     companion object {
 
-        val TABLERO_COLUMNAS_KEY = "num_filas"
+        val COLOR_TABLERO_KEY = "Azul"
+        val COLOR_FICHAS_KEY = "Rojo/Amarillo"
+
+        val COLOR_TABLERO_DEFAULT = ""
+        val COLOR_FICHAS_DEFAULT = ""
+
+        fun getColorTablero(context: Context): String {
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(COLOR_TABLERO_KEY, COLOR_TABLERO_DEFAULT)
+        }
+
+        fun getColorFichas(context: Context): String {
+            return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(COLOR_FICHAS_KEY, COLOR_FICHAS_DEFAULT)
+        }
+
+        fun setColorTablero(context: Context, color:String) {
+            val sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context)
+            val editor = sharedPreferences.edit()
+            editor.putString(SettingsActivity.COLOR_TABLERO_KEY, color)
+            editor.commit()
+        }
+
+        fun setColorFichas(context: Context, color:String) {
+            val sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context)
+            val editor = sharedPreferences.edit()
+            editor.putString(SettingsActivity.COLOR_FICHAS_KEY, color)
+            editor.commit()
+        }
+
+        /*val TABLERO_COLUMNAS_KEY = "num_filas"
         val TABLERO_COLUMNAS_DEFAULT = "6"
 
         val TABLERO_FILAS_KEY = "num_columnas"
@@ -202,7 +241,7 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             val editor = sharedPreferences.edit()
             editor.putInt(SettingsActivity.TABLERO_FILAS_KEY, size)
             editor.commit()
-        }
+        }*/
 
 
         val TABLERO_NAME_KEY = "player_name"
@@ -289,9 +328,6 @@ class SettingsActivity : AppCompatPreferenceActivity() {
             return PreferenceManager.getDefaultSharedPreferences(context)
                 .getInt( TURNO_KEY, TURNO_DEFAULT)
         }
-
-
-
 
         /**
          * A preference value change listener that updates the preference's summary
